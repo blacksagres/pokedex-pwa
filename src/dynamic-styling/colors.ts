@@ -23,15 +23,15 @@ export const generateGradient = (
   colors: Array<string>
 ): { background: string } => {
   const [primary, secondary] = colors;
-  console.log({ primary, secondary });
 
   if (!secondary) {
     return {
-      background: `linear-gradient(180deg, ${typeColors[primary]} 35%, rgba(255,255,255,1) 100%)`
+      // background: `linear-gradient(180deg, ${typeColors[primary]} 35%, rgba(255,255,255,1) 100%)`
+      background: `${typeColors[primary]}`
     };
   }
 
   return {
-    background: `linear-gradient(90deg, ${typeColors[primary]} 35%, ${typeColors[secondary]} 65%)}`
+    background: `linear-gradient(90deg, ${typeColors[primary]} 35%, ${typeColors[secondary]} 65%)`
   };
 };
