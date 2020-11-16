@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { useAsync } from "react-use";
 import { styled } from "../../stitches.config";
 import { bounce as bounceSprite } from "../animations";
