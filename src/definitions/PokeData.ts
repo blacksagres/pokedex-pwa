@@ -6,12 +6,22 @@ interface PokeType {
   };
 }
 
+interface PokeBaseStat {
+  base_stat: number;
+  effort: number;
+  stat: {
+    name: string;
+    url: string;
+  };
+}
+
 interface PokeData {
   name: string;
   sprites: {
     front_default: "string";
   };
   types: Array<PokeType>;
+  stats: Array<PokeBaseStat>;
 }
 
 export default PokeData;
