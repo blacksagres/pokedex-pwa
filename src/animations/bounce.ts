@@ -1,4 +1,4 @@
-import gsap, { Bounce, Power3 } from "gsap";
+import gsap, { Bounce } from "gsap";
 
 export default ({ element }) => {
   return gsap.fromTo(
