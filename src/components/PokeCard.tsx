@@ -26,6 +26,10 @@ const Card = styled("div", {
 
   ":hover": {
     boxShadow: ".25rem .25rem .75rem 1px rgba(0, 0, 0, .3)"
+  },
+
+  ":not(:last-child)": {
+    marginRight: "1rem"
   }
 });
 
