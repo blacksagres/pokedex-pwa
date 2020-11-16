@@ -32,6 +32,6 @@ export const generateGradient = (
   }
 
   return {
-    background: `linear-gradient(90deg, ${typeColors[primary]} 35%, ${typeColors[secondary]} 65%)`
+    background: `linear-gradient(120deg, ${typeColors[primary]} 0%, ${typeColors[secondary]} 100%)`
   };
 };
