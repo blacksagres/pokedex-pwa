@@ -2,7 +2,7 @@ import React from "react";
 import { useAsync } from "react-use";
 import { styled } from "../../stitches.config";
 import { bounce as bounceSprite } from "../animations";
-import { colors } from "../dynamic-styling/colors";
+import { generateGradient } from "../dynamic-styling/colors";
 import { fetchPokemon } from "../gateways/poke-gateway";
 import { SwordAndShieldLoader } from "./SwordShieldLoader";
 
@@ -47,11 +47,7 @@ export const PokeCard = ({ pokemonName }) => {
   return loading ? (
     <SwordAndShieldLoader />
   ) : (
-    <Card
-      style={{
-        backgroundColor: colors[pokemon.types[0].type.name]
-      }}
-    >
+    <Card style={generateGradient(pokemon.types.map((type) => type.type.name))}>
       <PokeSprite
         ref={attachHoverEvent}
         src={pokemon.sprites.front_default}

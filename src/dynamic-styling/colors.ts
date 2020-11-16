@@ -1,4 +1,4 @@
-export const colors = {
+const typeColors = {
   normal: "#A8A77A",
   fire: "#EE8130",
   water: "#6390F0",
@@ -17,4 +17,21 @@ export const colors = {
   dark: "#705746",
   steel: "#B7B7CE",
   fairy: "#D685AD"
+};
+
+export const generateGradient = (
+  colors: Array<string>
+): { background: string } => {
+  const [primary, secondary] = colors;
+  console.log({ primary, secondary });
+
+  if (!secondary) {
+    return {
+      background: `linear-gradient(180deg, ${typeColors[primary]} 35%, rgba(255,255,255,1) 100%)`
+    };
+  }
+
+  return {
+    background: `linear-gradient(90deg, ${typeColors[primary]} 35%, ${typeColors[secondary]} 65%)}`
+  };
 };
