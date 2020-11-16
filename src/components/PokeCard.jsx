@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useAsync } from "react-use";
+import { styled } from "../../stitches.config";
+import { bounceSprite } from "../animations/bounce";
 import { fetchPokemon } from "../gateways/poke-gateway";
 import { SwordAndShieldLoader } from "./SwordShieldLoader";
+
+const PokeSprite = styled("img", {
+  height: "10rem"
+});
 
 export const PokeCard = ({ pokemonName }) => {
   const { loading, value, error } = useAsync(async () => {
@@ -11,16 +17,25 @@ export const PokeCard = ({ pokemonName }) => {
       return error;
     }
   });
+
+  const attachHoverEvent = (element) => {
+    element.addEventListener("mouseenter", (event) => {
+      console.log(event);
+      bounceSprite({ element: element });
+    });
+  };
+
   return (
     <div>
       {loading ? (
         <SwordAndShieldLoader />
       ) : (
         <div>
-          <img src={value.sprites.back_default} alt="back_default" />
-          <img src={value.sprites.front_default} alt="front_default" />
-          <img src={value.sprites.back_shiny} alt="back_shiny" />
-          <img src={value.sprites.front_shiny} alt="front_shiny" />
+          <PokeSprite
+            ref={attachHoverEvent}
+            src={value.sprites.front_default}
+            alt="front_default"
+          />
           {/* <pre>{JSON.stringify(value, null, 2)}</pre> */}
         </div>
       )}
