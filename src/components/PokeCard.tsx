@@ -2,11 +2,13 @@ import React from "react";
 import { useAsync } from "react-use";
 import { styled } from "../../stitches.config";
 import { bounce as bounceSprite } from "../animations";
+import { colors } from "../dynamic-styling/colors";
 import { fetchPokemon } from "../gateways/poke-gateway";
 import { SwordAndShieldLoader } from "./SwordShieldLoader";
 
 const PokeSprite = styled("img", {
-  height: "10rem"
+  height: "10rem",
+  userSelect: "none"
 });
 
 const Card = styled("div", {
@@ -42,19 +44,19 @@ export const PokeCard = ({ pokemonName }) => {
     });
   };
 
-  return (
-    <div>
-      {loading ? (
-        <SwordAndShieldLoader />
-      ) : (
-        <Card>
-          <PokeSprite
-            ref={attachHoverEvent}
-            src={pokemon.sprites.front_default}
-            alt="front_default"
-          />
-        </Card>
-      )}
-    </div>
+  return loading ? (
+    <SwordAndShieldLoader />
+  ) : (
+    <Card
+      style={{
+        backgroundColor: colors[pokemon.types[0].type.name]
+      }}
+    >
+      <PokeSprite
+        ref={attachHoverEvent}
+        src={pokemon.sprites.front_default}
+        alt="front_default"
+      />
+    </Card>
   );
 };
