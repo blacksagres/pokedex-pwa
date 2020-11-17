@@ -7,8 +7,12 @@ import { SwordAndShieldLoader } from "./SwordShieldLoader";
 import { TypeTag } from "./TypeTag";
 
 const PokeSprite = styled("img", {
-  height: "10rem",
-  userSelect: "none"
+  height: "5rem",
+  userSelect: "none",
+
+  md: {
+    height: "8rem"
+  }
 });
 
 const Card = styled("div", {

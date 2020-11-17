@@ -15,14 +15,13 @@ export const TypeTag = ({ types }) => {
     const Tag = styled("div", {
       transition: "background .3s ease-in-out",
 
-      padding: ".5rem 1rem",
+      padding: ".3rem 1rem",
       color: "white",
       textAlign: "center",
 
-      height: ".8rem",
-      width: "3.5rem",
+      width: "3rem",
 
-      fontSize: ".8rem",
+      fontSize: ".7rem",
       textTransform: "capitalize",
       textShadow: "2px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000",
 
@@ -40,7 +39,19 @@ export const TypeTag = ({ types }) => {
       },
 
       ":not(:last-child)": {
-        marginBottom: "1rem"
+        marginBottom: ".5rem"
+      },
+
+      md: {
+        padding: ".5rem 1rem",
+        fontSize: ".8rem",
+
+        height: ".8rem",
+        width: "4rem",
+
+        ":not(:last-child)": {
+          marginBottom: "1rem"
+        }
       }
     });
 
