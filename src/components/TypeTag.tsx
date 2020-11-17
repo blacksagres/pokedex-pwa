@@ -37,6 +37,10 @@ export const TypeTag = ({ types }) => {
         background: `linear-gradient(0deg, ${
           typeColors[type.type.name]
         } 45%, ${hexToRgbA(typeColors[type.type.name])} 100%)`
+      },
+
+      ":not(:last-child)": {
+        marginBottom: "1rem"
       }
     });
 
