@@ -53,6 +53,10 @@ export const PokeCard = ({ pokemonName }) => {
     element.addEventListener("mouseenter", () => {
       bounceSprite({ element: element });
     });
+
+    element.addEventListener("click", () => {
+      bounceSprite({ element: element });
+    });
   };
 
   return loading ? (
