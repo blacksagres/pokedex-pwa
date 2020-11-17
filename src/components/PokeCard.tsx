@@ -2,9 +2,9 @@ import React from "react";
 import { useAsync } from "react-use";
 import { styled } from "../../stitches.config";
 import { bounce as bounceSprite } from "../animations";
-import { generateGradient } from "../dynamic-styling/colors";
 import { fetchPokemon } from "../gateways/poke-gateway";
 import { SwordAndShieldLoader } from "./SwordShieldLoader";
+import { TypeTag } from "./TypeTag";
 
 const PokeSprite = styled("img", {
   height: "10rem",
@@ -12,7 +12,6 @@ const PokeSprite = styled("img", {
 });
 
 const Card = styled("div", {
-  border: ".2rem solid black",
   borderRadius: "1rem",
 
   display: "flex",
@@ -51,12 +50,13 @@ export const PokeCard = ({ pokemonName }) => {
   return loading ? (
     <SwordAndShieldLoader />
   ) : (
-    <Card style={generateGradient(pokemon.types.map((type) => type.type.name))}>
+    <Card>
       <PokeSprite
         ref={attachHoverEvent}
         src={pokemon.sprites.front_default}
         alt="front_default"
       />
+      <TypeTag types={pokemon.types} />
     </Card>
   );
 };
