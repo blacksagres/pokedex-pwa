@@ -17,7 +17,8 @@ const Card = styled("div", {
   display: "flex",
   flexDirection: "row",
   alignContent: "center",
-  justifyContent: "center",
+  justifyContent: "space-between",
+  padding: "0 1rem",
 
   transition: "box-shadow .150s ease-in-out",
   boxShadow: ".25rem .25rem .25rem 1px rgba(0, 0, 0, .2)",
@@ -29,7 +30,7 @@ const Card = styled("div", {
   },
 
   ":not(:last-child)": {
-    marginRight: "1rem"
+    marginBottom: "1rem"
   }
 });
 

@@ -7,9 +7,7 @@ export default function App() {
   return (
     <div
       style={{
-        width: "100vw",
-        display: "flex",
-        flexWrap: "wrap"
+        padding: "1rem"
       }}
     >
       {["blastoise", "charizard", "venusaur", "eevee", "pikachu"].map(
