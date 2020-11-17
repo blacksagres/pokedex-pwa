@@ -23,7 +23,7 @@ export const TypeTag = ({ types }) => {
 
       fontSize: ".7rem",
       textTransform: "capitalize",
-      textShadow: "2px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000",
+      textShadow: "1px 1px 1px #000",
 
       border: `.1rem solid ${typeColors[type.type.name]}`,
       background: `linear-gradient(0deg, ${
