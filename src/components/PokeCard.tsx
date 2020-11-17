@@ -15,7 +15,7 @@ const Card = styled("div", {
   borderRadius: "1rem",
 
   display: "flex",
-  flexDirection: "column",
+  flexDirection: "row",
   alignContent: "center",
   justifyContent: "center",
 
@@ -49,15 +49,16 @@ export const PokeCard = ({ pokemonName }) => {
   };
 
   return loading ? (
+    // this needs to wait longer
     <SwordAndShieldLoader />
   ) : (
     <Card>
-      <TypeTag types={pokemon.types} />
       <PokeSprite
         ref={attachHoverEvent}
         src={pokemon.sprites.front_default}
         alt="front_default"
       />
+      <TypeTag types={pokemon.types} />
     </Card>
   );
 };

@@ -3,16 +3,26 @@ import { styled } from "../../stitches.config";
 import { typeColors } from "../dynamic-styling/colors";
 import { hexToRgbA } from "../dynamic-styling/hex-to-rba";
 
+const TypeTagContainer = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center"
+});
+
 export const TypeTag = ({ types }) => {
   const getTypeTag = (type) => {
     const Tag = styled("div", {
-      padding: "1rem 2rem",
+      padding: ".5rem 1rem",
       color: "white",
       textAlign: "center",
 
-      fontSize: "1rem",
+      height: ".8rem",
+      width: "3.5rem",
+
+      fontSize: ".8rem",
       textTransform: "capitalize",
-      textShadow: "1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000",
+      textShadow: "2px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000",
 
       border: `.1rem solid ${typeColors[type.type.name]}`,
       background: `linear-gradient(0deg, ${
@@ -25,5 +35,5 @@ export const TypeTag = ({ types }) => {
     return <Tag key={type.type.name}>{type.type.name}</Tag>;
   };
 
-  return types.map(getTypeTag);
+  return <TypeTagContainer>{types.map(getTypeTag)}</TypeTagContainer>;
 };
