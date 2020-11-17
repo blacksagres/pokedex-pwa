@@ -13,6 +13,8 @@ const TypeTagContainer = styled("div", {
 export const TypeTag = ({ types }) => {
   const getTypeTag = (type) => {
     const Tag = styled("div", {
+      transition: "background .3s ease-in-out",
+
       padding: ".5rem 1rem",
       color: "white",
       textAlign: "center",
@@ -29,7 +31,13 @@ export const TypeTag = ({ types }) => {
         typeColors[type.type.name]
       } 15%, ${hexToRgbA(typeColors[type.type.name])} 100%)`,
 
-      borderRadius: ".5rem"
+      borderRadius: ".5rem",
+
+      ":hover": {
+        background: `linear-gradient(0deg, ${
+          typeColors[type.type.name]
+        } 45%, ${hexToRgbA(typeColors[type.type.name])} 100%)`
+      }
     });
 
     return <Tag key={type.type.name}>{type.type.name}</Tag>;
