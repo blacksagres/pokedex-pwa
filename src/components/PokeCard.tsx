@@ -1,7 +1,7 @@
 import React from "react";
 import { useAsync } from "react-use";
 import { styled } from "../../stitches.config";
-import { bounce as bounceSprite } from "../animations";
+import { bounce as bounceSprite, expandCard } from "../animations";
 import { fetchPokemon } from "../gateways/poke-gateway";
 import { SwordAndShieldLoader } from "./SwordShieldLoader";
 import { TypeTag } from "./TypeTag";
@@ -49,7 +49,7 @@ export const PokeCard = ({ pokemonName }) => {
     }
   });
 
-  const attachHoverEvent = (element) => {
+  const animateSprite = (element) => {
     element.addEventListener("mouseenter", () => {
       bounceSprite({ element: element });
     });
@@ -59,13 +59,19 @@ export const PokeCard = ({ pokemonName }) => {
     });
   };
 
+  const animateCard = (element) => {
+    element.addEventListener("click", () => {
+      expandCard({ element: element });
+    });
+  };
+
   return loading ? (
     // this needs to wait longer
     <SwordAndShieldLoader />
   ) : (
-    <Card>
+    <Card ref={animateCard}>
       <PokeSprite
-        ref={attachHoverEvent}
+        ref={animateSprite}
         src={pokemon.sprites.front_default}
         alt="front_default"
       />
