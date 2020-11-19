@@ -35,10 +35,12 @@ const Card = styled("div", {
     boxShadow: ".25rem .25rem .75rem 1px rgba(0, 0, 0, .3)"
   },
 
+  // When in row mode
   ":not(:last-child)": {
     marginBottom: "1rem"
   },
 
+  // When in grid mode
   md: {
     ":not(:last-child)": {
       marginBottom: 0
