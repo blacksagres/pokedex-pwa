@@ -17,18 +17,12 @@ const PokeSprite = styled("img", {
 
 const Card = styled("div", {
   borderRadius: "1rem",
-
-  display: "flex",
-  flexDirection: "row",
-  alignContent: "center",
-  justifyContent: "space-between",
   padding: "0 1rem",
 
   transition: "box-shadow .150s ease-in-out",
   boxShadow: ".25rem .25rem .25rem 1px rgba(0, 0, 0, .2)",
 
   backgroundColor: "#fcfefb",
-
   cursor: "pointer",
 
   ":hover": {
@@ -46,6 +40,19 @@ const Card = styled("div", {
       marginBottom: 0
     }
   }
+});
+
+const CardContent = styled("div", {
+  display: "flex",
+  flexDirection: "row",
+  alignContent: "center",
+  justifyContent: "space-between"
+});
+
+const CardHeader = styled("div", {
+  marginTop: "1rem",
+  textAlign: "center",
+  textTransform: "capitalize"
 });
 
 export const PokeCard = ({ pokemonName }) => {
@@ -78,12 +85,15 @@ export const PokeCard = ({ pokemonName }) => {
     <SwordAndShieldLoader />
   ) : (
     <Card ref={animateCard}>
-      <PokeSprite
-        ref={animateSprite}
-        src={pokemon.sprites.front_default}
-        alt="front_default"
-      />
-      <TypeTag types={pokemon.types} />
+      <CardHeader>{pokemon.name}</CardHeader>
+      <CardContent>
+        <PokeSprite
+          ref={animateSprite}
+          src={pokemon.sprites.front_default}
+          alt="front_default"
+        />
+        <TypeTag types={pokemon.types} />
+      </CardContent>
     </Card>
   );
 };
