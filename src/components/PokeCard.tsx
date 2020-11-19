@@ -54,11 +54,15 @@ const CardHeader = styled("div", {
   textTransform: "capitalize",
   fontWeight: "bold",
 
-  padding: ".5rem 0",
+  padding: ".3rem 0",
 
   backgroundColor: "silver",
   borderTopLeftRadius: "1rem",
-  borderTopRightRadius: "1rem"
+  borderTopRightRadius: "1rem",
+
+  md: {
+    padding: ".5rem 0"
+  }
 });
 
 export const PokeCard = ({ pokemonName }) => {
