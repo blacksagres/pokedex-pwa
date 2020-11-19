@@ -43,10 +43,9 @@ export const TypeTag = ({ types }) => {
       },
 
       md: {
-        padding: ".5rem 1rem",
-        fontSize: ".8rem",
+        padding: ".3rem 1rem",
+        fontSize: ".9rem",
 
-        height: ".8rem",
         width: "4rem",
 
         ":not(:last-child)": {
