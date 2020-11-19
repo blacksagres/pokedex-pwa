@@ -2,7 +2,11 @@ import { createStyled } from "@stitches/react";
 
 export const { styled, css } = createStyled({
   prefix: "",
-  tokens: {},
+  tokens: {
+    colors: {
+      "$card-bg": "#fcfefb"
+    }
+  },
   breakpoints: {
     sm: (rule) => `@media (min-width: 640px) { ${rule} }`,
     md: (rule) => `@media (min-width: 768px) { ${rule} }`,
