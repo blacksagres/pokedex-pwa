@@ -37,6 +37,12 @@ const Card = styled("div", {
 
   ":not(:last-child)": {
     marginBottom: "1rem"
+  },
+
+  md: {
+    ":not(:last-child)": {
+      marginBottom: 0
+    }
   }
 });
 
