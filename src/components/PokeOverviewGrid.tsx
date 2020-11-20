@@ -38,8 +38,8 @@ export const PokeOverviewGrid: React.FC<{ IPokeOverviewGridProps }> = (
       />
       {pokemons.map((pokemon) => (
         <PokeCard
-          key={pokemon}
-          pokemonName={pokemon}
+          key={pokemon.name}
+          pokemonData={pokemon}
           onClick={() => setOpenDialog(true)}
         />
       ))}

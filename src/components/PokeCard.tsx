@@ -4,7 +4,6 @@ import { styled } from "../../stitches.config";
 import { bounce as bounceSprite } from "../animations";
 import { fetchPokemon } from "../gateways/poke-gateway";
 import { Card, CardHeader, CardContent } from "./containers/StyledCard";
-import { SwordAndShieldLoader } from "./SwordShieldLoader";
 import { TypeTag } from "./TypeTag";
 
 const PokeSprite = styled("img", {
@@ -16,15 +15,7 @@ const PokeSprite = styled("img", {
   }
 });
 
-export const PokeCard = ({ pokemonName, onClick }) => {
-  const { loading, value: pokemon, error } = useAsync(async () => {
-    try {
-      return fetchPokemon({ pokemonName });
-    } catch (error) {
-      return error;
-    }
-  });
-
+export const PokeCard = ({ pokemonData, onClick }) => {
   const animateSprite = (element) => {
     if (!element) return;
     element.addEventListener("mouseenter", () => {
@@ -36,19 +27,16 @@ export const PokeCard = ({ pokemonName, onClick }) => {
     });
   };
 
-  return loading ? (
-    // this needs to wait longer
-    <SwordAndShieldLoader />
-  ) : (
+  return (
     <Card onClick={onClick}>
-      <CardHeader>{pokemon.name}</CardHeader>
+      <CardHeader>{pokemonData.name}</CardHeader>
       <CardContent>
         <PokeSprite
           ref={animateSprite}
-          src={pokemon.sprites.front_default}
+          src={pokemonData.sprites.front_default}
           alt="front_default"
         />
-        <TypeTag types={pokemon.types} />
+        <TypeTag types={pokemonData.types} />
       </CardContent>
     </Card>
   );
