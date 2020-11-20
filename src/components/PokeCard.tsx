@@ -1,7 +1,7 @@
 import React from "react";
 import { useAsync } from "react-use";
 import { styled } from "../../stitches.config";
-import { bounce as bounceSprite, expandCard } from "../animations";
+import { bounce as bounceSprite } from "../animations";
 import { fetchPokemon } from "../gateways/poke-gateway";
 import { SwordAndShieldLoader } from "./SwordShieldLoader";
 import { TypeTag } from "./TypeTag";
@@ -65,7 +65,7 @@ const CardHeader = styled("div", {
   }
 });
 
-export const PokeCard = ({ pokemonName }) => {
+export const PokeCard = ({ pokemonName, onClick }) => {
   const { loading, value: pokemon, error } = useAsync(async () => {
     try {
       return fetchPokemon({ pokemonName });
@@ -84,17 +84,11 @@ export const PokeCard = ({ pokemonName }) => {
     });
   };
 
-  const animateCard = (element) => {
-    element.addEventListener("click", () => {
-      expandCard({ element: element });
-    });
-  };
-
   return loading ? (
     // this needs to wait longer
     <SwordAndShieldLoader />
   ) : (
-    <Card ref={animateCard}>
+    <Card onClick={onClick}>
       <CardHeader>{pokemon.name}</CardHeader>
       <CardContent>
         <PokeSprite

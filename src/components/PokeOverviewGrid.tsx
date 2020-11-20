@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "../../stitches.config";
+import { PokeCard } from "./PokeCard";
+import { PokeDialog } from "./PokeDialog";
+import { StyledSummary } from "./PokeSummary";
 
 const StyledGrid = styled("div", {
   padding: "1rem",
+  position: "relative",
 
   md: {
     display: "grid",
@@ -14,6 +18,26 @@ const StyledGrid = styled("div", {
   }
 });
 
-export const PokeOverviewGrid: React.FC<{}> = (props) => {
-  return <StyledGrid>{props.children}</StyledGrid>;
+interface IPokeOverviewGridProps {
+  pokemons: string[];
+}
+
+export const PokeOverviewGrid: React.FC<{ IPokeOverviewGridProps }> = (
+  props
+) => {
+  const { openDialog, setOpenDialog } = useState<boolean>("open");
+  const { pokemons } = props;
+
+  return (
+    <StyledGrid>
+      <PokeDialog open={openDialog} />
+      {pokemons.map((pokemon) => (
+        <PokeCard
+          key={pokemon}
+          pokemonName={pokemon}
+          onClick={() => setOpenDialog(true)}
+        />
+      ))}
+    </StyledGrid>
+  );
 };
