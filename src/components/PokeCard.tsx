@@ -75,6 +75,7 @@ export const PokeCard = ({ pokemonName, onClick }) => {
   });
 
   const animateSprite = (element) => {
+    if (!element) return;
     element.addEventListener("mouseenter", () => {
       bounceSprite({ element: element });
     });

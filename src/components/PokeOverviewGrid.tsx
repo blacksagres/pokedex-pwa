@@ -25,7 +25,7 @@ interface IPokeOverviewGridProps {
 export const PokeOverviewGrid: React.FC<{ IPokeOverviewGridProps }> = (
   props
 ) => {
-  const { openDialog, setOpenDialog } = useState<boolean>("open");
+  const [openDialog, setOpenDialog] = useState<boolean>(false);
   const { pokemons } = props;
 
   return (
