@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { styled } from "../../stitches.config";
+import { Card, CardContent } from "./containers/StyledCard";
 
 const Overlay = styled("div", {
   position: "fixed",
@@ -43,7 +44,11 @@ export const PokeDialog: React.FC<IPokeDialogProps> = (props) => {
   return ReactDOM.createPortal(
     <Overlay mode={isOpen ? "open" : "closed"}>
       <PokeDialogContainer>
-        <button onClick={close}>Close</button>
+        <Card>
+          <CardContent>
+            <button onClick={close}>Close</button>
+          </CardContent>
+        </Card>
       </PokeDialogContainer>
     </Overlay>,
     document.querySelector("#modal-root")
