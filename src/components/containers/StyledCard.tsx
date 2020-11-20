@@ -23,6 +23,14 @@ export const Card = styled("div", {
     ":not(:last-child)": {
       marginBottom: 0
     }
+  },
+
+  variants: {
+    cursor: {
+      auto: {
+        cursor: "auto"
+      }
+    }
   }
 });
 
@@ -35,6 +43,7 @@ export const CardContent = styled("div", {
 });
 
 export const CardHeader = styled("div", {
+  position: "relative",
   textAlign: "center",
   textTransform: "capitalize",
   fontWeight: "bold",

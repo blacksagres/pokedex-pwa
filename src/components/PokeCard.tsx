@@ -29,7 +29,9 @@ export const PokeCard = ({ pokemonData, onClick }) => {
 
   return (
     <Card onClick={onClick}>
-      <CardHeader>{pokemonData.name}</CardHeader>
+      <CardHeader>
+        {pokemonData.name} #{pokemonData.id}
+      </CardHeader>
       <CardContent>
         <PokeSprite
           ref={animateSprite}

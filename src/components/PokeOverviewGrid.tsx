@@ -26,21 +26,28 @@ export const PokeOverviewGrid: React.FC<{ IPokeOverviewGridProps }> = (
   props
 ) => {
   const [openDialog, setOpenDialog] = useState<boolean>(false);
+  const [currentViewingPokemon, setCurrentViewingPokemon] = useState(null);
+
   const { pokemons } = props;
 
   return (
     <StyledGrid>
       <PokeDialog
         isOpen={openDialog}
+        pokemonData={currentViewingPokemon}
         close={() => {
           setOpenDialog(false);
+          setCurrentViewingPokemon(null);
         }}
       />
       {pokemons.map((pokemon) => (
         <PokeCard
           key={pokemon.name}
           pokemonData={pokemon}
-          onClick={() => setOpenDialog(true)}
+          onClick={() => {
+            setCurrentViewingPokemon(pokemon);
+            setOpenDialog(true);
+          }}
         />
       ))}
     </StyledGrid>

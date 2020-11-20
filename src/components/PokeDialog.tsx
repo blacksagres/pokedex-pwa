@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { styled } from "../../stitches.config";
-import { Card, CardContent } from "./containers/StyledCard";
+import { PokeData } from "../definitions";
+import { Card, CardContent, CardHeader } from "./containers/StyledCard";
 
 const Overlay = styled("div", {
   position: "fixed",
@@ -24,7 +25,7 @@ const Overlay = styled("div", {
 });
 
 const PokeDialogContainer = styled("div", {
-  margin: "5rem",
+  margin: "3rem",
   backgroundColor: "$card-bg",
 
   maxHeight: "100%",
@@ -36,17 +37,47 @@ const PokeDialogContainer = styled("div", {
 interface IPokeDialogProps {
   isOpen: boolean;
   close: () => {};
+  pokemonData: PokeData;
 }
 
 export const PokeDialog: React.FC<IPokeDialogProps> = (props) => {
-  const { isOpen, close } = props;
+  const { isOpen, close, pokemonData } = props;
 
+  if (!pokemonData) return null;
   return ReactDOM.createPortal(
     <Overlay mode={isOpen ? "open" : "closed"}>
       <PokeDialogContainer>
-        <Card>
+        <Card cursor="auto">
+          <CardHeader>
+            {pokemonData.name} #{pokemonData.id}
+            <button
+              style={{
+                position: "absolute",
+                right: 10
+              }}
+              onClick={close}
+            >
+              Close
+            </button>
+          </CardHeader>
           <CardContent>
-            <button onClick={close}>Close</button>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center"
+              }}
+            >
+              <img
+                src={pokemonData.sprites.front_default}
+                style={{
+                  display: "block",
+                  height: "10rem"
+                }}
+                alt={pokemonData.name}
+              />
+            </div>
           </CardContent>
         </Card>
       </PokeDialogContainer>
