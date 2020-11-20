@@ -23,13 +23,17 @@ const Overlay = styled("div", {
 });
 
 interface IPokeDialogProps {
-  open: boolean;
+  isOpen: boolean;
+  close: () => {};
 }
 
 export const PokeDialog: React.FC<IPokeDialogProps> = (props) => {
-  console.log(props);
+  const { isOpen, close } = props;
+
   return ReactDOM.createPortal(
-    <Overlay mode={props.open ? "open" : "closed"} />,
+    <Overlay mode={isOpen ? "open" : "closed"}>
+      <button onClick={close}>Close</button>
+    </Overlay>,
     document.querySelector("#modal-root")
   );
 };

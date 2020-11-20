@@ -30,7 +30,12 @@ export const PokeOverviewGrid: React.FC<{ IPokeOverviewGridProps }> = (
 
   return (
     <StyledGrid>
-      <PokeDialog open={openDialog} />
+      <PokeDialog
+        isOpen={openDialog}
+        close={() => {
+          setOpenDialog(false);
+        }}
+      />
       {pokemons.map((pokemon) => (
         <PokeCard
           key={pokemon}
