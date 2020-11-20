@@ -16,7 +16,7 @@ const PokeSprite = styled("img", {
 });
 
 const Card = styled("div", {
-  borderRadius: "1rem",
+  borderRadius: "$card",
 
   transition: "box-shadow .150s ease-in-out",
   boxShadow: ".25rem .25rem .25rem 1px rgba(0, 0, 0, .2)",

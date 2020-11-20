@@ -22,6 +22,16 @@ const Overlay = styled("div", {
   }
 });
 
+const PokeDialogContainer = styled("div", {
+  margin: "5rem",
+  backgroundColor: "$card-bg",
+
+  maxHeight: "100%",
+  maxWidth: "100%",
+
+  borderRadius: "$card"
+});
+
 interface IPokeDialogProps {
   isOpen: boolean;
   close: () => {};
@@ -32,7 +42,9 @@ export const PokeDialog: React.FC<IPokeDialogProps> = (props) => {
 
   return ReactDOM.createPortal(
     <Overlay mode={isOpen ? "open" : "closed"}>
-      <button onClick={close}>Close</button>
+      <PokeDialogContainer>
+        <button onClick={close}>Close</button>
+      </PokeDialogContainer>
     </Overlay>,
     document.querySelector("#modal-root")
   );

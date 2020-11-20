@@ -2,9 +2,13 @@ import { createStyled } from "@stitches/react";
 
 export const { styled, css } = createStyled({
   prefix: "",
+  // https://stitches.dev/docs/tokens
   tokens: {
     colors: {
       "$card-bg": "#fcfefb"
+    },
+    radii: {
+      $card: "1rem"
     }
   },
   breakpoints: {
