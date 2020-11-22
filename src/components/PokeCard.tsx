@@ -1,10 +1,8 @@
 import React from "react";
-import { useAsync } from "react-use";
 import { styled } from "../../stitches.config";
 import { bounce as bounceSprite } from "../animations";
-import { fetchPokemon } from "../gateways/poke-gateway";
 import { Card, CardHeader, CardContent } from "./containers/StyledCard";
-import { TypeTag } from "./TypeTag";
+import { TypeTagSwordAndShield } from "./TypeTagSwordShield";
 
 const PokeSprite = styled("img", {
   height: "5rem",
@@ -38,7 +36,7 @@ export const PokeCard = ({ pokemonData, onClick }) => {
           src={pokemonData.sprites.front_default}
           alt="front_default"
         />
-        <TypeTag types={pokemonData.types} />
+        <TypeTagSwordAndShield types={pokemonData.types} />
       </CardContent>
     </Card>
   );

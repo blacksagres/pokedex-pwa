@@ -63,8 +63,9 @@ export const PokeDialog: React.FC<IPokeDialogProps> = (props) => {
           <CardContent>
             <div
               style={{
+                width: "100%",
                 display: "flex",
-                flexDirection: "row",
+                flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center"
               }}
