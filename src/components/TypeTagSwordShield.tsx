@@ -12,6 +12,12 @@ const TypeTagContainer = styled("div", {
 
 export const TypeTagSwordAndShield = ({ types }) => {
   const getTypeTag = (type) => {
+    const TypeIcon = styled("div", {
+      height: "67px",
+      width: "67px",
+      background: `url(https://www.spriters-resource.com/resources/sheets/123/126207.png?updated=1582496833)0 0`
+    });
+
     const Tag = styled("div", {
       transition: "background .3s ease-in-out",
 
@@ -26,9 +32,7 @@ export const TypeTagSwordAndShield = ({ types }) => {
       textShadow: "1px 1px 1px #000",
 
       border: `.1rem solid ${typeColors[type.type.name]}`,
-      background: `linear-gradient(0deg, ${
-        typeColors[type.type.name]
-      } 15%, ${hexToRgbA(typeColors[type.type.name])} 100%)`,
+      background: `#333`,
 
       borderRadius: ".5rem",
 
@@ -55,6 +59,12 @@ export const TypeTagSwordAndShield = ({ types }) => {
     });
 
     return <Tag key={type.type.name}>{type.type.name}</Tag>;
+    return (
+      <div>
+        {/* <TypeIcon /> */}
+        <Tag key={type.type.name}>{type.type.name}</Tag>
+      </div>
+    );
   };
 
   return <TypeTagContainer>{types.map(getTypeTag)}</TypeTagContainer>;
