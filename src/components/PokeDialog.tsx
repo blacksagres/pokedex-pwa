@@ -6,7 +6,8 @@ import {
   GameCard,
   GameCardHeader,
   GameCardContent,
-  GameCardImage
+  GameCardImage,
+  GameCardInfo
 } from "./containers/StyledGameCard";
 import { TypeTagSwordAndShield } from "./TypeTagSwordShield";
 
@@ -72,15 +73,9 @@ export const PokeDialog: React.FC<IPokeDialogProps> = (props) => {
               src={pokemonData.sprites.front_default}
               alt={pokemonData.name}
             />
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                width: "100%"
-              }}
-            >
+            <GameCardInfo>
               <TypeTagSwordAndShield types={pokemonData.types} />
-            </div>
+            </GameCardInfo>
           </GameCardContent>
         </GameCard>
       </PokeDialogContainer>

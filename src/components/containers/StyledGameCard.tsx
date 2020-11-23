@@ -25,6 +25,17 @@ export const GameCardImage = styled("img", {
 
   md: {
     height: "12rem",
+    padding: "0 8rem"
+  }
+});
+
+export const GameCardInfo = styled("div", {
+  display: "flex",
+  flexDirection: "row",
+  marginTop: "1rem",
+  padding: "0 1.5rem",
+
+  md: {
     padding: "0 5rem"
   }
 });
