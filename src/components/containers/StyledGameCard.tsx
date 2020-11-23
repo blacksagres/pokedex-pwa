@@ -31,7 +31,7 @@ export const GameCardImage = styled("img", {
 
 export const GameCardInfo = styled("div", {
   display: "flex",
-  flexDirection: "row",
+  flexDirection: "column",
   marginTop: "1rem",
   padding: "0 1.5rem",
 
@@ -47,6 +47,8 @@ export const GameCardContent = styled("div", {
   justifyContent: "column",
   padding: "1rem"
 });
+
+export const GameCardStats = styled("div", {});
 
 export const GameCardHeader = styled("div", {
   position: "relative",

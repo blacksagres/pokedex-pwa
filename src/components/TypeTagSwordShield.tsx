@@ -13,7 +13,8 @@ const TypeTagContainer = styled("div", {
     mode: {
       row: {
         flexDirection: "row",
-        justifyContent: "left"
+        justifyContent: "start",
+        flexWrap: "wrap"
       }
     }
   }
