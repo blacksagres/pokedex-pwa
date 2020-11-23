@@ -30,13 +30,14 @@ const Overlay = styled("div", {
 });
 
 const PokeDialogContainer = styled("div", {
-  margin: "3rem",
+  margin: "3rem auto",
   backgroundColor: "$card-bg",
 
-  maxHeight: "100%",
-  maxWidth: "100%",
+  borderRadius: "$card",
 
-  borderRadius: "$card"
+  md: {
+    maxWidth: "40rem"
+  }
 });
 
 interface IPokeDialogProps {
@@ -52,7 +53,7 @@ export const PokeDialog: React.FC<IPokeDialogProps> = (props) => {
   return ReactDOM.createPortal(
     <Overlay mode={isOpen ? "open" : "closed"}>
       <PokeDialogContainer>
-        <GameCard>
+        <GameCard data-label="game-card">
           <GameCardHeader>
             {pokemonData.name} #{pokemonData.id}
             <button
