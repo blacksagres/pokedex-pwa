@@ -19,8 +19,13 @@ export const GameCardImage = styled("img", {
   height: "10rem",
   margin: "0 auto",
 
+  padding: "0 2.5rem",
+
+  boxShadow: "inset 3px 3px 7px 7px rgba(0, 0, 0, .4)",
+
   md: {
-    height: "12rem"
+    height: "12rem",
+    padding: "0 5rem"
   }
 });
 
