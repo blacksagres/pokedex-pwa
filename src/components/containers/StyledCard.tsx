@@ -39,7 +39,17 @@ export const CardContent = styled("div", {
   flexDirection: "row",
   alignContent: "center",
   justifyContent: "space-between",
-  padding: "0 1rem"
+  padding: "0 1rem",
+
+  variants: {
+    mode: {
+      column: {
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center"
+      }
+    }
+  }
 });
 
 export const CardHeader = styled("div", {

@@ -2,7 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { styled } from "../../stitches.config";
 import { PokeData } from "../definitions";
-import { Card, CardContent, CardHeader } from "./containers/StyledCard";
+import {
+  GameCard,
+  GameCardHeader,
+  GameCardContent
+} from "./containers/StyledGameCard";
+import { TypeTagSwordAndShield } from "./TypeTagSwordShield";
 
 const Overlay = styled("div", {
   position: "fixed",
@@ -47,8 +52,8 @@ export const PokeDialog: React.FC<IPokeDialogProps> = (props) => {
   return ReactDOM.createPortal(
     <Overlay mode={isOpen ? "open" : "closed"}>
       <PokeDialogContainer>
-        <Card cursor="auto">
-          <CardHeader>
+        <GameCard>
+          <GameCardHeader>
             {pokemonData.name} #{pokemonData.id}
             <button
               style={{
@@ -59,28 +64,28 @@ export const PokeDialog: React.FC<IPokeDialogProps> = (props) => {
             >
               Close
             </button>
-          </CardHeader>
-          <CardContent>
+          </GameCardHeader>
+          <GameCardContent>
+            <img
+              src={pokemonData.sprites.front_default}
+              style={{
+                display: "block",
+                maxHeight: "10rem",
+                maxWidth: "10rem"
+              }}
+              alt={pokemonData.name}
+            />
             <div
               style={{
-                width: "100%",
                 display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center"
+                flexDirection: "row",
+                width: "100%"
               }}
             >
-              <img
-                src={pokemonData.sprites.front_default}
-                style={{
-                  display: "block",
-                  height: "10rem"
-                }}
-                alt={pokemonData.name}
-              />
+              <TypeTagSwordAndShield types={pokemonData.types} />
             </div>
-          </CardContent>
-        </Card>
+          </GameCardContent>
+        </GameCard>
       </PokeDialogContainer>
     </Overlay>,
     document.querySelector("#modal-root")
