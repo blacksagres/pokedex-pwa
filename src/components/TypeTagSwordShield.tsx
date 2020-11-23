@@ -12,6 +12,17 @@ const TypeTagContainer = styled("div", {
 
 export const TypeTagSwordAndShield = ({ types }) => {
   const getTypeTag = (type) => {
+    const TagContainer = styled("div", {
+      backgroundColor: `${typeColors[type.type.name]}`,
+      padding: ".1rem",
+      borderRadius: ".5rem",
+
+      md: {
+        width: "3rem",
+        ":not(:last-child)": {}
+      }
+    });
+
     const TypeIcon = styled("div", {
       height: "67px",
       width: "67px",
@@ -27,19 +38,21 @@ export const TypeTagSwordAndShield = ({ types }) => {
 
       width: "3rem",
 
+      border: `.1rem solid ${typeColors[type.type.name]}`,
+      borderLeft: "1.8rem",
+
       fontSize: ".7rem",
       textTransform: "capitalize",
       textShadow: "1px 1px 1px #000",
 
-      border: `.1rem solid ${typeColors[type.type.name]}`,
       background: `#333`,
 
       borderRadius: ".5rem",
 
+      position: "relative",
+
       ":hover": {
-        background: `linear-gradient(0deg, ${
-          typeColors[type.type.name]
-        } 45%, ${hexToRgbA(typeColors[type.type.name])} 100%)`
+        background: `#444`
       },
 
       ":not(:last-child)": {
@@ -49,7 +62,6 @@ export const TypeTagSwordAndShield = ({ types }) => {
       md: {
         padding: ".3rem 1rem",
         fontSize: ".9rem",
-
         width: "4rem",
 
         ":not(:last-child)": {
@@ -60,10 +72,10 @@ export const TypeTagSwordAndShield = ({ types }) => {
 
     return <Tag key={type.type.name}>{type.type.name}</Tag>;
     return (
-      <div>
+      <TagContainer>
         {/* <TypeIcon /> */}
         <Tag key={type.type.name}>{type.type.name}</Tag>
-      </div>
+      </TagContainer>
     );
   };
 
