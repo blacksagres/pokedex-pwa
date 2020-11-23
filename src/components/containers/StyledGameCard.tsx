@@ -14,6 +14,16 @@ export const GameCard = styled("div", {
   }
 });
 
+export const GameCardImage = styled("img", {
+  display: "block",
+  height: "10rem",
+  margin: "0 auto",
+
+  md: {
+    height: "12rem"
+  }
+});
+
 export const GameCardContent = styled("div", {
   display: "flex",
   flexDirection: "column",

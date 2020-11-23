@@ -5,7 +5,8 @@ import { PokeData } from "../definitions";
 import {
   GameCard,
   GameCardHeader,
-  GameCardContent
+  GameCardContent,
+  GameCardImage
 } from "./containers/StyledGameCard";
 import { TypeTagSwordAndShield } from "./TypeTagSwordShield";
 
@@ -32,7 +33,7 @@ const Overlay = styled("div", {
 const PokeDialogContainer = styled("div", {
   margin: "3rem auto",
   backgroundColor: "$card-bg",
-
+  maxWidth: "20rem",
   borderRadius: "$card",
 
   md: {
@@ -67,13 +68,8 @@ export const PokeDialog: React.FC<IPokeDialogProps> = (props) => {
             </button>
           </GameCardHeader>
           <GameCardContent>
-            <img
+            <GameCardImage
               src={pokemonData.sprites.front_default}
-              style={{
-                display: "block",
-                maxHeight: "10rem",
-                maxWidth: "10rem"
-              }}
               alt={pokemonData.name}
             />
             <div
