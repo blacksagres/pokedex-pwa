@@ -74,7 +74,7 @@ export const PokeDialog: React.FC<IPokeDialogProps> = (props) => {
               alt={pokemonData.name}
             />
             <GameCardInfo>
-              <TypeTagSwordAndShield types={pokemonData.types} />
+              <TypeTagSwordAndShield mode="row" types={pokemonData.types} />
             </GameCardInfo>
           </GameCardContent>
         </GameCard>

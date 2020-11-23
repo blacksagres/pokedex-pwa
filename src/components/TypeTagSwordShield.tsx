@@ -7,11 +7,20 @@ const TypeTagContainer = styled("div", {
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  justifyContent: "center"
+  justifyContent: "center",
+
+  variants: {
+    mode: {
+      row: {
+        flexDirection: "row",
+        justifyContent: "left"
+      }
+    }
+  }
 });
 
-export const TypeTagSwordAndShield = ({ types }) => {
-  const getTypeTag = (type) => {
+export const TypeTagSwordAndShield = ({ types, mode }) => {
+  const getTypeTag = (type, mode) => {
     const Tag = styled("div", {
       transition: "background .3s ease-in-out",
 
@@ -44,6 +53,21 @@ export const TypeTagSwordAndShield = ({ types }) => {
         marginBottom: ".5rem"
       },
 
+      variants: {
+        mode: {
+          row: {
+            ":not(:last-child)": {
+              marginBottom: "0",
+              marginRight: ".5rem",
+
+              md: {
+                marginBottom: "0"
+              }
+            }
+          }
+        }
+      },
+
       md: {
         padding: ".3rem 1rem",
         fontSize: ".9rem",
@@ -55,8 +79,16 @@ export const TypeTagSwordAndShield = ({ types }) => {
       }
     });
 
-    return <Tag key={type.type.name}>{type.type.name}</Tag>;
+    return (
+      <Tag mode={mode} key={type.type.name}>
+        {type.type.name}
+      </Tag>
+    );
   };
 
-  return <TypeTagContainer>{types.map(getTypeTag)}</TypeTagContainer>;
+  return (
+    <TypeTagContainer mode={mode}>
+      {types.map((type) => getTypeTag(type, mode))}
+    </TypeTagContainer>
+  );
 };
