@@ -30,3 +30,9 @@ export default function App() {
   if (loading) <SwordAndShieldLoader />;
   return <PokeOverviewGrid pokemons={fetchedPokemon} />;
 }
+
+/**
+ * gradient on top bar per type
+ * number in front of the name
+ * use this to open the dialog: https://www.framer.com/motion/
+ */

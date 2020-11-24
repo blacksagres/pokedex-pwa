@@ -6,6 +6,7 @@
   "main": "src/index.js",
   "dependencies": {
     "@stitches/react": "0.0.3-canary.1",
+    "framer-motion": "2.9.4",
     "gsap": "3.5.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",

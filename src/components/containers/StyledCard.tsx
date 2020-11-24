@@ -1,6 +1,7 @@
+import { motion } from "framer-motion";
 import { styled } from "../../../stitches.config";
 
-export const Card = styled("div", {
+export const Card = styled(motion.div, {
   borderRadius: "$card",
 
   transition: "box-shadow .150s ease-in-out",
@@ -34,7 +35,7 @@ export const Card = styled("div", {
   }
 });
 
-export const CardContent = styled("div", {
+export const CardContent = styled(motion.div, {
   display: "flex",
   flexDirection: "row",
   alignContent: "center",
@@ -52,7 +53,7 @@ export const CardContent = styled("div", {
   }
 });
 
-export const CardHeader = styled("div", {
+export const CardHeader = styled(motion.div, {
   position: "relative",
   textAlign: "center",
   textTransform: "capitalize",
