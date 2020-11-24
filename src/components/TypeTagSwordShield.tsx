@@ -21,7 +21,7 @@ const TypeTagContainer = styled("div", {
 });
 
 export const TypeTagSwordAndShield = ({ types, mode }) => {
-  const getTypeTag = (type, mode) => {
+  const getTypeTag = (type) => {
     const Tag = styled("div", {
       transition: "background .3s ease-in-out",
 
@@ -46,50 +46,23 @@ export const TypeTagSwordAndShield = ({ types, mode }) => {
 
       position: "relative",
 
+      margin: ".25rem",
+
       ":hover": {
         background: `#444`
-      },
-
-      ":not(:last-child)": {
-        marginBottom: ".5rem"
-      },
-
-      variants: {
-        mode: {
-          row: {
-            ":not(:last-child)": {
-              marginBottom: "0",
-              marginRight: ".5rem",
-
-              md: {
-                marginBottom: "0"
-              }
-            }
-          }
-        }
       },
 
       md: {
         padding: ".3rem 1rem",
         fontSize: ".9rem",
-        width: "4rem",
-
-        ":not(:last-child)": {
-          marginBottom: "1rem"
-        }
+        width: "4rem"
       }
     });
 
-    return (
-      <Tag mode={mode} key={type.type.name}>
-        {type.type.name}
-      </Tag>
-    );
+    return <Tag key={type.type.name}>{type.type.name}</Tag>;
   };
 
   return (
-    <TypeTagContainer mode={mode}>
-      {types.map((type) => getTypeTag(type, mode))}
-    </TypeTagContainer>
+    <TypeTagContainer mode={mode}>{types.map(getTypeTag)}</TypeTagContainer>
   );
 };
