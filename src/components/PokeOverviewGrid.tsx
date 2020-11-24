@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { styled } from "../../stitches.config";
+import { PokeData } from "../definitions";
 import { PokeCard } from "./PokeCard";
 import { PokeDialog } from "./PokeDialog";
-import { StyledSummary } from "./PokeSummary";
 
 const StyledGrid = styled("div", {
   padding: "1rem",
@@ -26,7 +26,10 @@ export const PokeOverviewGrid: React.FC<{ IPokeOverviewGridProps }> = (
   props
 ) => {
   const [openDialog, setOpenDialog] = useState<boolean>(false);
-  const [currentViewingPokemon, setCurrentViewingPokemon] = useState(null);
+  const [
+    currentViewingPokemon,
+    setCurrentViewingPokemon
+  ] = useState<PokeData | null>(null);
 
   const { pokemons } = props;
 
@@ -42,8 +45,10 @@ export const PokeOverviewGrid: React.FC<{ IPokeOverviewGridProps }> = (
       />
       {pokemons.map((pokemon) => (
         <PokeCard
+          id={pokemon.name}
           key={pokemon.name}
           pokemonData={pokemon}
+          isSelected={pokemon.name === currentViewingPokemon?.name}
           onClick={() => {
             setCurrentViewingPokemon(pokemon);
             setOpenDialog(true);

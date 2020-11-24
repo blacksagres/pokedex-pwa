@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { styled } from "../../stitches.config";
 import { bounce as bounceSprite } from "../animations";
 import { Card, CardHeader, CardContent } from "./containers/StyledCard";
@@ -13,10 +13,14 @@ const PokeSprite = styled("img", {
   }
 });
 
-export const PokeCard = ({ pokemonData, onClick }) => {
+export const PokeCard = ({ id, pokemonData, onClick, isSelected }) => {
+  const variants = {
+    closed: { opacity: 1 },
+    open: { opacity: 0.3 }
+  };
+
   const animateSprite = (element) => {
     if (!element) return;
-    // bounceSprite({ element: element });
     element.addEventListener("mouseenter", () => {
       bounceSprite({ element: element });
     });
@@ -27,9 +31,15 @@ export const PokeCard = ({ pokemonData, onClick }) => {
   };
 
   return (
-    <Card onClick={onClick}>
+    <Card
+      animate={isSelected ? "open" : "closed"}
+      variants={variants}
+      id={id}
+      layoutId={id}
+      onClick={onClick}
+    >
       <CardHeader>
-        {pokemonData.name} #{pokemonData.id}
+        #{pokemonData.id} {pokemonData.name}
       </CardHeader>
       <CardContent>
         <PokeSprite

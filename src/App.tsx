@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { AnimateSharedLayout } from "framer-motion";
 import { PokeOverviewGrid } from "./components/PokeOverviewGrid";
 import { SwordAndShieldLoader } from "./components/SwordShieldLoader";
 import { fetchPokemon } from "./gateways/poke-gateway";
@@ -28,7 +29,11 @@ export default function App() {
   }, []);
 
   if (loading) <SwordAndShieldLoader />;
-  return <PokeOverviewGrid pokemons={fetchedPokemon} />;
+  return (
+    <AnimateSharedLayout type="crossfade">
+      <PokeOverviewGrid pokemons={fetchedPokemon} />
+    </AnimateSharedLayout>
+  );
 }
 
 /**
