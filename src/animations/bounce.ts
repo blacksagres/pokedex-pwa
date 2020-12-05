@@ -1,6 +1,6 @@
 import gsap, { Bounce } from "gsap";
 
-export default ({ element }) => {
+export default ({ element }: { element: HTMLElement}) => {
   return gsap.fromTo(
     element,
     {

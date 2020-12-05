@@ -1,5 +1,5 @@
 import React from "react";
-import { styled } from "../../stitches.config";
+import { styled } from "../stitches.config";
 import { typeColors } from "../dynamic-styling/colors";
 import { hexToRgbA } from "../dynamic-styling/hex-to-rba";
 

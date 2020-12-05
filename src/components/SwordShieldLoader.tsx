@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { styled } from "../../stitches.config";
+import { styled } from "../stitches.config";
 import { infiniteRotation } from "../animations";
 
 const PokeCircle = styled("div", {

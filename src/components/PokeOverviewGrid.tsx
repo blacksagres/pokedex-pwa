@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { styled } from "../../stitches.config";
+import { styled } from "../stitches.config";
 import { PokeData } from "../definitions";
 import { PokeCard } from "./PokeCard";
 import { PokeDialog } from "./PokeDialog";

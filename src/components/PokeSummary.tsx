@@ -1,5 +1,5 @@
 import React from "react";
-import { styled } from "../../stitches.config";
+import { styled } from "../stitches.config";
 
 export const StyledSummary = styled("div", {
   height: "50vh",

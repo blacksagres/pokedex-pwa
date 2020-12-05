@@ -1,4 +1,8 @@
-export const typeColors = {
+interface ColorDictionary {
+  [key: string]: string
+}
+
+export const typeColors: ColorDictionary = {
   normal: "#A8A77A",
   fire: "#EE8130",
   water: "#6390F0",

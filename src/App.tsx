@@ -4,7 +4,7 @@ import { PokeOverviewGrid } from "./components/PokeOverviewGrid";
 import { SwordAndShieldLoader } from "./components/SwordShieldLoader";
 import { fetchPokemon } from "./gateways/poke-gateway";
 
-import "./styles/main.scss";
+import "./styles/main.css";
 
 export default function App() {
   const [loading, setLoading] = useState(true);

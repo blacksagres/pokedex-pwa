@@ -1,6 +1,6 @@
 import gsap, { Power3, Power2 } from "gsap";
 
-export default ({ element, duration, delay, onComplete }) => {
+export default ({ element, duration, delay, onComplete }: {element: HTMLElement, duration: number, delay: number, onComplete: () => void}) => {
   return gsap
     .timeline({
       onComplete: onComplete

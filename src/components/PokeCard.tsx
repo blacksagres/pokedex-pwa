@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { styled } from "../../stitches.config";
+import { styled } from "../stitches.config";
 import { bounce as bounceSprite } from "../animations";
 import { Card, CardHeader, CardContent } from "./containers/StyledCard";
 import { TypeTagSwordAndShield } from "./TypeTagSwordShield";

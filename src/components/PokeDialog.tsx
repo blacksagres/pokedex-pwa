@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { styled } from "../../stitches.config";
+import { styled } from "../stitches.config";
 import { PokeData } from "../definitions";
 import {
   GameCard,
