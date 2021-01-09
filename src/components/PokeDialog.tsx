@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import ReactDOM from 'react-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { styled } from '../stitches.config';
-import type { PokeData } from '../definitions';
+import type { PokeData, PokeEnrichedData } from '../definitions';
 import {
   GameCard,
   GameCardHeader,
@@ -39,7 +39,7 @@ const PokeDialogContainer = styled(motion.div, {
 interface IPokeDialogProps {
   isOpen: boolean;
   close: () => void;
-  pokemonData: PokeData | null;
+  pokemonData: PokeEnrichedData | null;
 }
 
 export const PokeDialog = (props: IPokeDialogProps) => {
@@ -60,7 +60,7 @@ export const PokeDialog = (props: IPokeDialogProps) => {
         >
           <GameCard data-label="game-card">
             <GameCardHeader>
-              #{pokemonData.id} {pokemonData.name}
+              #{pokemonData.Pokemon.id} {pokemonData.Pokemon.name}
               <button
                 style={{
                   position: 'absolute',
@@ -73,15 +73,24 @@ export const PokeDialog = (props: IPokeDialogProps) => {
             </GameCardHeader>
             <GameCardContent>
               <GameCardImage
-                src={pokemonData.sprites.front_default}
-                alt={pokemonData.name}
+                src={pokemonData.Pokemon.sprites.front_default}
+                alt={pokemonData.Pokemon.name}
               />
               <GameCardInfo>
-                <TypeTagSwordAndShield mode="row" types={pokemonData.types} />
+                <TypeTagSwordAndShield
+                  mode="row"
+                  types={pokemonData.Pokemon.types}
+                />
                 <h3>Strong versus</h3>
                 <TypeTagSwordAndShield
                   mode="row"
-                  types={[...pokemonData.types, ...pokemonData.types]}
+                  types={pokemonData.PokeTypes.map((pokeType) =>
+                    pokeType.damage_relations.double_damage_to.map(
+                      (typeDoubleDamage) => ({
+                        type: { name: typeDoubleDamage.name },
+                      })
+                    )
+                  ).flat()}
                 />
               </GameCardInfo>
             </GameCardContent>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { styled } from '../stitches.config';
-import type { PokeData } from '../definitions';
+import type { PokeData, PokeEnrichedData } from '../definitions';
 import { PokeCard } from './PokeCard';
 import { PokeDialog } from './PokeDialog';
 
@@ -19,7 +19,7 @@ const StyledGrid = styled('div', {
 });
 
 interface IPokeOverviewGridProps {
-  pokemons: PokeData[];
+  pokemons: PokeEnrichedData[];
 }
 
 export const PokeOverviewGrid: React.FC<IPokeOverviewGridProps> = (props) => {
@@ -27,7 +27,7 @@ export const PokeOverviewGrid: React.FC<IPokeOverviewGridProps> = (props) => {
   const [
     currentViewingPokemon,
     setCurrentViewingPokemon,
-  ] = useState<PokeData | null>(null);
+  ] = useState<PokeEnrichedData | null>(null);
 
   const { pokemons } = props;
 
@@ -41,14 +41,14 @@ export const PokeOverviewGrid: React.FC<IPokeOverviewGridProps> = (props) => {
           setCurrentViewingPokemon(null);
         }}
       />
-      {pokemons.map((pokemon) => (
+      {pokemons.map((data) => (
         <PokeCard
-          id={pokemon.name}
-          key={pokemon.name}
-          pokemonData={pokemon}
-          isSelected={pokemon.name === currentViewingPokemon?.name}
+          id={data.Pokemon.name}
+          key={data.Pokemon.name}
+          pokemonData={data}
+          isSelected={data.Pokemon.name === currentViewingPokemon?.Pokemon.name}
           onClick={() => {
-            setCurrentViewingPokemon(pokemon);
+            setCurrentViewingPokemon(data);
             setOpenDialog(true);
           }}
         />

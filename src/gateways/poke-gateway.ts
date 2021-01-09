@@ -1,4 +1,4 @@
-import type { PokeData } from '../definitions';
+import type { PokeData, PokeEnrichedData } from '../definitions';
 import { endpoint } from './poke-config';
 import { getCachedObject, setCachedObject } from './poke-cacher';
 import type { PokeDataType } from '../definitions/PokeDataType';
@@ -41,7 +41,7 @@ export const fetchEnrichedPokeData = async ({
   pokemonName,
 }: {
   pokemonName: string;
-}) => {
+}): Promise<PokeEnrichedData> => {
   const pokemon = await fetchPokemon({ pokemonName });
   const typeDataPromises = pokemon.types.map((type) =>
     fetchTypes({ type: type.type.name })
@@ -49,7 +49,7 @@ export const fetchEnrichedPokeData = async ({
   const typeData = await Promise.all(typeDataPromises);
 
   return {
-    pokemon,
-    typeData,
+    Pokemon: pokemon,
+    PokeTypes: typeData,
   };
 };

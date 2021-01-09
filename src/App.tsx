@@ -4,10 +4,10 @@ import { PokeOverviewGrid } from './components/PokeOverviewGrid';
 import { fetchEnrichedPokeData, fetchPokemon } from './gateways/poke-gateway';
 
 import './styles/main.css';
-import type { PokeData } from './definitions';
+import type { PokeEnrichedData } from './definitions';
 
 export default function App() {
-  const [fetchedPokemon, setFetchedPokemon] = useState<PokeData[]>([]);
+  const [fetchedPokemon, setFetchedPokemon] = useState<PokeEnrichedData[]>([]);
 
   useEffect(() => {
     Promise.all(
@@ -21,10 +21,7 @@ export default function App() {
         'chandelure',
         'milotic',
       ].map((pokemon) => {
-        fetchEnrichedPokeData({ pokemonName: pokemon }).then((a) =>
-          console.log(a)
-        );
-        return fetchPokemon({ pokemonName: pokemon });
+        return fetchEnrichedPokeData({ pokemonName: pokemon });
       })
     ).then((result) => {
       setFetchedPokemon(result);

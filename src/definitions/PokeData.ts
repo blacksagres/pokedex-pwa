@@ -1,4 +1,4 @@
-interface PokeType {
+export interface PokeType {
   slot: string;
   type: {
     name: string;
@@ -19,7 +19,7 @@ interface PokeData {
   id: number;
   name: string;
   sprites: {
-    front_default: "string";
+    front_default: 'string';
   };
   types: Array<PokeType>;
   stats: Array<PokeBaseStat>;
