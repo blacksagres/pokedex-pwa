@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { AnimateSharedLayout } from 'framer-motion';
 import { PokeOverviewGrid } from './components/PokeOverviewGrid';
-import { fetchPokemon } from './gateways/poke-gateway';
+import { fetchEnrichedPokeData, fetchPokemon } from './gateways/poke-gateway';
 
 import './styles/main.css';
 import type { PokeData } from './definitions';
@@ -20,7 +20,12 @@ export default function App() {
         'lurantis',
         'chandelure',
         'milotic',
-      ].map((pokemon) => fetchPokemon({ pokemonName: pokemon }))
+      ].map((pokemon) => {
+        fetchEnrichedPokeData({ pokemonName: pokemon }).then((a) =>
+          console.log(a)
+        );
+        return fetchPokemon({ pokemonName: pokemon });
+      })
     ).then((result) => {
       setFetchedPokemon(result);
     });

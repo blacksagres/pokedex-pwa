@@ -36,3 +36,20 @@ export const fetchTypes = ({
       return jsonResult;
     });
 };
+
+export const fetchEnrichedPokeData = async ({
+  pokemonName,
+}: {
+  pokemonName: string;
+}) => {
+  const pokemon = await fetchPokemon({ pokemonName });
+  const typeDataPromises = pokemon.types.map((type) =>
+    fetchTypes({ type: type.type.name })
+  );
+  const typeData = await Promise.all(typeDataPromises);
+
+  return {
+    pokemon,
+    typeData,
+  };
+};
