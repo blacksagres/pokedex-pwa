@@ -1,34 +1,32 @@
-import React, { useState } from "react";
-import { styled } from "../stitches.config";
-import { PokeData } from "../definitions";
-import { PokeCard } from "./PokeCard";
-import { PokeDialog } from "./PokeDialog";
+import React, { useState } from 'react';
+import { styled } from '../stitches.config';
+import type { PokeData } from '../definitions';
+import { PokeCard } from './PokeCard';
+import { PokeDialog } from './PokeDialog';
 
-const StyledGrid = styled("div", {
-  padding: "1rem",
-  position: "relative",
+const StyledGrid = styled('div', {
+  padding: '1rem',
+  position: 'relative',
 
   md: {
-    display: "grid",
-    gridTemplateColumns: "repeat(2, 1fr)",
-    gridGap: "1rem"
+    display: 'grid',
+    gridTemplateColumns: 'repeat(2, 1fr)',
+    gridGap: '1rem',
   },
   lg: {
-    gridTemplateColumns: "repeat(4, 1fr)"
-  }
+    gridTemplateColumns: 'repeat(4, 1fr)',
+  },
 });
 
 interface IPokeOverviewGridProps {
-  pokemons: string[];
+  pokemons: PokeData[];
 }
 
-export const PokeOverviewGrid: React.FC<{ IPokeOverviewGridProps }> = (
-  props
-) => {
+export const PokeOverviewGrid: React.FC<IPokeOverviewGridProps> = (props) => {
   const [openDialog, setOpenDialog] = useState<boolean>(false);
   const [
     currentViewingPokemon,
-    setCurrentViewingPokemon
+    setCurrentViewingPokemon,
   ] = useState<PokeData | null>(null);
 
   const { pokemons } = props;

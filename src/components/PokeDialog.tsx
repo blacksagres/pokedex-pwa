@@ -38,8 +38,8 @@ const PokeDialogContainer = styled(motion.div, {
 
 interface IPokeDialogProps {
   isOpen: boolean;
-  close: () => {};
-  pokemonData: PokeData;
+  close: () => void;
+  pokemonData: PokeData | null;
 }
 
 export const PokeDialog = (props: IPokeDialogProps) => {

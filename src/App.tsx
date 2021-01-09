@@ -1,34 +1,33 @@
-import React, { useEffect, useState } from "react";
-import { AnimateSharedLayout } from "framer-motion";
-import { PokeOverviewGrid } from "./components/PokeOverviewGrid";
-import { SwordAndShieldLoader } from "./components/SwordShieldLoader";
-import { fetchPokemon } from "./gateways/poke-gateway";
+import React, { useEffect, useState } from 'react';
+import { AnimateSharedLayout } from 'framer-motion';
+import { PokeOverviewGrid } from './components/PokeOverviewGrid';
+import { fetchPokemon } from './gateways/poke-gateway';
 
-import "./styles/main.css";
+import './styles/main.css';
+import type { PokeData } from './definitions';
 
 export default function App() {
-  const [loading, setLoading] = useState(true);
-  const [fetchedPokemon, setFetchedPokemon] = useState([]);
+  const [fetchedPokemon, setFetchedPokemon] = useState<PokeData[]>([]);
 
   useEffect(() => {
     Promise.all(
       [
-        "blastoise",
-        "charizard",
-        "venusaur",
-        "eevee",
-        "pikachu",
-        "lurantis",
-        "chandelure",
-        "milotic"
+        'blastoise',
+        'charizard',
+        'venusaur',
+        'eevee',
+        'pikachu',
+        'lurantis',
+        'chandelure',
+        'milotic',
       ].map((pokemon) => fetchPokemon({ pokemonName: pokemon }))
     ).then((result) => {
-      setLoading(false);
       setFetchedPokemon(result);
     });
   }, []);
 
-  if (loading) <SwordAndShieldLoader />;
+  // if (loading) <SwordAndShieldLoader />;
+
   return (
     <AnimateSharedLayout type="crossfade">
       <PokeOverviewGrid pokemons={fetchedPokemon} />
