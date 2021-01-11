@@ -13,7 +13,7 @@ const PokeSprite = styled('img', {
   },
 });
 
-export const PokeCard = ({ id, pokemonData, onClick, isSelected }) => {
+export const PokeCard = ({ id, pokemonData, onClick }) => {
   const variants = {
     closed: { opacity: 1 },
     open: { opacity: 0.3 },
@@ -31,13 +31,7 @@ export const PokeCard = ({ id, pokemonData, onClick, isSelected }) => {
   };
 
   return (
-    <Card
-      animate={isSelected ? 'open' : 'closed'}
-      variants={variants}
-      id={id}
-      layoutId={id}
-      onClick={onClick}
-    >
+    <Card variants={variants} id={id} layoutId={id} onClick={onClick}>
       <CardHeader>
         #{pokemonData.Pokemon.id} {pokemonData.Pokemon.name}
       </CardHeader>

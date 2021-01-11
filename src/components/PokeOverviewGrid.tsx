@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { styled } from '../stitches.config';
-import type { PokeData, PokeEnrichedData } from '../definitions';
+import type { PokeEnrichedData } from '../definitions';
 import { PokeCard } from './PokeCard';
-import { PokeDialog } from './PokeDialog';
 
 const StyledGrid = styled('div', {
   padding: '1rem',
@@ -23,33 +23,18 @@ interface IPokeOverviewGridProps {
 }
 
 export const PokeOverviewGrid: React.FC<IPokeOverviewGridProps> = (props) => {
-  const [openDialog, setOpenDialog] = useState<boolean>(false);
-  const [
-    currentViewingPokemon,
-    setCurrentViewingPokemon,
-  ] = useState<PokeEnrichedData | null>(null);
-
   const { pokemons } = props;
+  const history = useHistory();
 
   return (
     <StyledGrid>
-      <PokeDialog
-        isOpen={openDialog}
-        pokemonData={currentViewingPokemon}
-        close={() => {
-          setOpenDialog(false);
-          setCurrentViewingPokemon(null);
-        }}
-      />
       {pokemons.map((data) => (
         <PokeCard
           id={data.Pokemon.name}
           key={data.Pokemon.name}
           pokemonData={data}
-          isSelected={data.Pokemon.name === currentViewingPokemon?.Pokemon.name}
           onClick={() => {
-            setCurrentViewingPokemon(data);
-            setOpenDialog(true);
+            history.push(`/summary/${data.Pokemon.name}`);
           }}
         />
       ))}
