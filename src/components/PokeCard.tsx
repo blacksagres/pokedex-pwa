@@ -41,7 +41,7 @@ export const PokeCard = ({ id, pokemonData, onClick }) => {
           src={pokemonData.Pokemon.sprites.front_default}
           alt="front_default"
         />
-        <TypeTagSwordAndShield types={pokemonData.Pokemon.types} />
+        <TypeTagSwordAndShield types={pokemonData.Pokemon.types} onClick={() => history.push(`/summary/${type.type.name}`)} />
       </CardContent>
     </Card>
   );

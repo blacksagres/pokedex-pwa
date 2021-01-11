@@ -4,6 +4,7 @@ import { typeColors } from '../dynamic-styling/colors';
 import { hexToRgbA } from '../dynamic-styling/hex-to-rba';
 import type { PokeDataType } from '../definitions';
 import type { PokeType } from '../definitions/PokeData';
+import { useHistory } from 'react-router-dom';
 
 const TypeTagContainer = styled('div', {
   display: 'flex',
@@ -22,7 +23,9 @@ const TypeTagContainer = styled('div', {
   },
 });
 
-export const TypeTagSwordAndShield = ({ types, mode }) => {
+export const TypeTagSwordAndShield = ({ types, mode }): React.ReactElement => {
+  const history = useHistory();
+
   console.log(types);
   const getTypeTag = (type: PokeType) => {
     const Tag = styled('div', {
@@ -62,7 +65,7 @@ export const TypeTagSwordAndShield = ({ types, mode }) => {
       },
     });
 
-    return <Tag key={type.type.name}>{type.type.name}</Tag>;
+    return <Tag key={type.type.name} onClick={() => history.push(`/type-summary/${type.type.name}`)}>{type.type.name}</Tag>;
   };
 
   return (
