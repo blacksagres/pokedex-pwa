@@ -4,11 +4,15 @@ import { motion } from 'framer-motion';
 export const GameCard = styled(motion.div, {
   borderRadius: '$card',
 
+  maxWidth: '600px',
+
   transition: 'box-shadow .150s ease-in-out',
   boxShadow: '.25rem .25rem .25rem 1px rgba(0, 0, 0, .2)',
 
   backgroundColor: '$card-bg',
   cursor: 'auto',
+
+  margin: '0 auto',
 
   ':hover': {
     boxShadow: '.25rem .25rem .75rem 1px rgba(0, 0, 0, .3)',
