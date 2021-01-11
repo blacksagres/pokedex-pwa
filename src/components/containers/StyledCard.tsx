@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { styled } from "../../../stitches.config";
+import { styled } from "../../stitches.config";
 
 export const Card = styled(motion.div, {
   borderRadius: "$card",

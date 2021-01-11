@@ -1,6 +1,6 @@
 import gsap, { Power3 } from "gsap";
 
-export default ({ element, duration, delay, onComplete }) => {
+export default ({ element, duration, delay, onComplete } :{element: HTMLElement, duration: number, delay: number, onComplete: () => void}) => {
   return gsap.to(element, {
     rotation: "360",
     ease: Power3.easeInOut,

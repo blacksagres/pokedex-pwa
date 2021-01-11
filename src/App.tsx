@@ -1,43 +1,23 @@
-import React, { useEffect, useState } from "react";
-import { AnimateSharedLayout } from "framer-motion";
-import { PokeOverviewGrid } from "./components/PokeOverviewGrid";
-import { SwordAndShieldLoader } from "./components/SwordShieldLoader";
-import { fetchPokemon } from "./gateways/poke-gateway";
+import React from 'react';
+import { AnimatePresence } from 'framer-motion';
 
-import "./styles/main.scss";
+import './styles/main.css';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Home } from './pages/Home';
+import { PokemonSummary } from './pages/PokemonSummary';
+import { useLocation } from 'react-use';
 
-export default function App() {
-  const [loading, setLoading] = useState(true);
-  const [fetchedPokemon, setFetchedPokemon] = useState([]);
+export default () => {
+  const location = useLocation();
 
-  useEffect(() => {
-    Promise.all(
-      [
-        "blastoise",
-        "charizard",
-        "venusaur",
-        "eevee",
-        "pikachu",
-        "lurantis",
-        "chandelure",
-        "milotic"
-      ].map((pokemon) => fetchPokemon({ pokemonName: pokemon }))
-    ).then((result) => {
-      setLoading(false);
-      setFetchedPokemon(result);
-    });
-  }, []);
-
-  if (loading) <SwordAndShieldLoader />;
   return (
-    <AnimateSharedLayout type="crossfade">
-      <PokeOverviewGrid pokemons={fetchedPokemon} />
-    </AnimateSharedLayout>
+    <Router>
+      <AnimatePresence>
+        <Switch location={location} key={location}>
+          <Route exact path="/" component={Home} />
+          <Route path="/summary/:pokemon" component={PokemonSummary} />
+        </Switch>
+      </AnimatePresence>
+    </Router>
   );
-}
-
-/**
- * gradient on top bar per type
- * number in front of the name
- * use this to open the dialog: https://www.framer.com/motion/
- */
+};

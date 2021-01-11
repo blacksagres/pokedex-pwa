@@ -1,57 +1,40 @@
-import React, { useState } from "react";
-import { styled } from "../../stitches.config";
-import { PokeData } from "../definitions";
-import { PokeCard } from "./PokeCard";
-import { PokeDialog } from "./PokeDialog";
+import React from 'react';
+import { useHistory } from 'react-router-dom';
+import { styled } from '../stitches.config';
+import type { PokeEnrichedData } from '../definitions';
+import { PokeCard } from './PokeCard';
 
-const StyledGrid = styled("div", {
-  padding: "1rem",
-  position: "relative",
+const StyledGrid = styled('div', {
+  padding: '1rem',
+  position: 'relative',
 
   md: {
-    display: "grid",
-    gridTemplateColumns: "repeat(2, 1fr)",
-    gridGap: "1rem"
+    display: 'grid',
+    gridTemplateColumns: 'repeat(2, 1fr)',
+    gridGap: '1rem',
   },
   lg: {
-    gridTemplateColumns: "repeat(4, 1fr)"
-  }
+    gridTemplateColumns: 'repeat(4, 1fr)',
+  },
 });
 
 interface IPokeOverviewGridProps {
-  pokemons: string[];
+  pokemons: PokeEnrichedData[];
 }
 
-export const PokeOverviewGrid: React.FC<{ IPokeOverviewGridProps }> = (
-  props
-) => {
-  const [openDialog, setOpenDialog] = useState<boolean>(false);
-  const [
-    currentViewingPokemon,
-    setCurrentViewingPokemon
-  ] = useState<PokeData | null>(null);
-
+export const PokeOverviewGrid: React.FC<IPokeOverviewGridProps> = (props) => {
   const { pokemons } = props;
+  const history = useHistory();
 
   return (
     <StyledGrid>
-      <PokeDialog
-        isOpen={openDialog}
-        pokemonData={currentViewingPokemon}
-        close={() => {
-          setOpenDialog(false);
-          setCurrentViewingPokemon(null);
-        }}
-      />
-      {pokemons.map((pokemon) => (
+      {pokemons.map((data) => (
         <PokeCard
-          id={pokemon.name}
-          key={pokemon.name}
-          pokemonData={pokemon}
-          isSelected={pokemon.name === currentViewingPokemon?.name}
+          id={data.Pokemon.name}
+          key={data.Pokemon.name}
+          pokemonData={data}
           onClick={() => {
-            setCurrentViewingPokemon(pokemon);
-            setOpenDialog(true);
+            history.push(`/summary/${data.Pokemon.name}`);
           }}
         />
       ))}
