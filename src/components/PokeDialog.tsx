@@ -2,15 +2,7 @@ import React, { useRef } from 'react';
 import ReactDOM from 'react-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { styled } from '../stitches.config';
-import type { PokeData, PokeEnrichedData } from '../definitions';
-import {
-  GameCard,
-  GameCardHeader,
-  GameCardContent,
-  GameCardImage,
-  GameCardInfo,
-} from './containers/StyledGameCard';
-import { TypeTagSwordAndShield } from './TypeTagSwordShield';
+import type { PokeEnrichedData } from '../definitions';
 import { useClickAway } from 'react-use';
 
 const Overlay = styled(motion.div, {
@@ -25,18 +17,6 @@ const Overlay = styled(motion.div, {
   backgroundColor: 'rgba(0, 0, 0, .6)',
 });
 
-const PokeDialogContainer = styled(motion.div, {
-  margin: 'auto',
-  backgroundColor: '$card-bg',
-  maxWidth: '20rem',
-  borderRadius: '$card',
-
-  overflowY: 'auto',
-
-  md: {
-    maxWidth: '40rem',
-  },
-});
 
 interface IPokeDialogProps {
   isOpen: boolean;
