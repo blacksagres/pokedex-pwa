@@ -2,7 +2,7 @@ import React from 'react';
 import { AnimatePresence } from 'framer-motion';
 
 import './styles/main.css';
-import { BrowserRouter as Router, Route, Switch, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Link, Route, Switch, useLocation } from 'react-router-dom';
 import { Home } from './pages/Home';
 import { PokemonSummary } from './pages/PokemonSummary';
 
@@ -21,6 +21,7 @@ const Routing = () => {
 
 export default () => (
   <Router>
+    <nav><Link to="/">Home</Link></nav>
     <Routing />
   </Router>
 );

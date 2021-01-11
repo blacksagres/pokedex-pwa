@@ -25,7 +25,7 @@ export const PokemonSummary = () => {
 
   if (!pokemonData) return null;
   return (
-    <GameCard data-label="game-card">
+    <GameCard exit={{ opacity: 0 }} animate={{ opacity: 1 }} data-label="game-card">
       <GameCardHeader>
         #{pokemonData.Pokemon.id} {pokemonData.Pokemon.name}
       </GameCardHeader>
