@@ -39,7 +39,8 @@ export const Tag = styled(motion.div, {
     },
 
     span: {
-      display: 'inline-block'
+      display: 'block',
+      width: '100%'
     },
 
     ':hover': {
@@ -47,7 +48,7 @@ export const Tag = styled(motion.div, {
     },
 
     md: {
-      padding: '.3rem 0rem',
-      width: '5rem',
+      width: '6rem',
+      fontSize: '.9rem',
     },
   });
