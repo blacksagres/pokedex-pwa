@@ -66,7 +66,7 @@ export interface PokemonOnTypeModel {
 export interface PokeType {
     id: number;
     name: string;
-    damage_relations: DamageRelations[];
+    damage_relations: DamageRelations;
     game_indices: GameIndice[];
     generation: Generation;
     moves: Move[];

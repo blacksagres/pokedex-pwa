@@ -5,7 +5,7 @@ import { Tag } from './TypeTag.style';
 import { hexToRgbA } from '../../dynamic-styling/hex-to-rba';
 import { allTypes } from '../../assets/type-icons';
 import { useHistory } from 'react-router-dom';
-import type { TypeOnFullPokemon } from 'src/definitions/FullPokemon';
+import type {TypeInfo, TypeOnFullPokemon } from 'src/definitions/FullPokemon';
 
 type TypeTagSwordShieldProps = {
   types: TypeOnFullPokemon[];

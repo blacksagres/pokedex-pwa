@@ -10,12 +10,12 @@ import {
   SummaryBlockInfo,
 } from '../components/SummaryBlock/SummaryBlock.styles';
 import { TypeTagSwordAndShield } from '../components/TypeTag/TypeTagSwordShield';
-import type { PokeEnrichedData } from '../definitions';
+import type { CombinedPokemonData } from '../definitions/CombinedPokemonData';
 import { fetchEnrichedPokeData } from '../gateways/poke-gateway';
 
 export const PokemonSummary = () => {
-  const [pokemonData, setPokemonData] = useState<PokeEnrichedData | null>();
-  const { pokemon } = useParams();
+  const [pokemonData, setPokemonData] = useState<CombinedPokemonData | null>();
+  const { pokemon } = useParams<{pokemon: string}>();
 
   useEffect(() => {
     console.log(pokemon);
@@ -26,6 +26,7 @@ export const PokemonSummary = () => {
   }, []);
 
   if (!pokemonData) return null;
+  console.log('HOI', pokemonData);
   return (
     <>
       {/* <TranslateDown exit={{ height: '100vh' }} animate={{ height: '0' }} /> */}
@@ -46,7 +47,7 @@ export const PokemonSummary = () => {
               types={pokemonData.PokeTypes.map((pokeType) =>
                 pokeType.damage_relations.double_damage_to.map(
                   (typeDoubleDamage: DoubleDamageTo) => ({
-                    type: { name: typeDoubleDamage.name },
+                  type: { name: typeDoubleDamage.name }
                   })
                 )
               ).flat()}
@@ -57,7 +58,7 @@ export const PokemonSummary = () => {
               types={pokemonData.PokeTypes.map((pokeType) =>
                 pokeType.damage_relations.double_damage_from.map(
                   (typeDoubleDamage: DoubleDamageFrom) => ({
-                    type: { name: typeDoubleDamage.name },
+                    type: { name: typeDoubleDamage.name }
                   })
                 )
               ).flat()}

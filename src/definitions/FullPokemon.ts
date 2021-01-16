@@ -32,11 +32,11 @@ export interface Stat {
 
 export interface TypeInfo {
   name: string;
-  url: string;
+  url?: string;
 }
 
 export interface TypeOnFullPokemon {
-  slot: number;
+  slot?: number;
   type: TypeInfo
 }
 
