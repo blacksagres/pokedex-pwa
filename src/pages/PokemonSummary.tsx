@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { TranslateDown } from '../components/animated-transitions/TranslateDown';
 import {
-  GameCard,
-  GameCardContent,
-  GameCardHeader,
-  GameCardImage,
-  GameCardInfo,
-} from '../components/containers/StyledGameCard';
-import { TypeTagSwordAndShield } from '../components/TypeTagSwordShield';
+  SummaryBlock,
+  SummaryBlockContent,
+  SummaryBlockHeader,
+  SummaryBlockImage,
+  SummaryBlockInfo,
+} from '../components/SummaryBlock/SummaryBlock.styles';
+import { TypeTagSwordAndShield } from '../components/TypeTag/TypeTagSwordShield';
 import type { PokeEnrichedData } from '../definitions';
 import { fetchEnrichedPokeData } from '../gateways/poke-gateway';
 
@@ -25,41 +26,44 @@ export const PokemonSummary = () => {
 
   if (!pokemonData) return null;
   return (
-    <GameCard data-label="game-card">
-      <GameCardHeader>
-        #{pokemonData.Pokemon.id} {pokemonData.Pokemon.name}
-      </GameCardHeader>
-      <GameCardContent>
-        <GameCardImage
-          src={pokemonData.Pokemon.sprites.front_default}
-          alt={pokemonData.Pokemon.name}
-        />
-        <GameCardInfo>
-          <TypeTagSwordAndShield mode="row" types={pokemonData.Pokemon.types} />
-          <h3>Strong versus</h3>
-          <TypeTagSwordAndShield
-            mode="row"
-            types={pokemonData.PokeTypes.map((pokeType) =>
-              pokeType.damage_relations.double_damage_to.map(
-                (typeDoubleDamage) => ({
-                  type: { name: typeDoubleDamage.name },
-                })
-              )
-            ).flat()}
+    <>
+      {/* <TranslateDown exit={{ height: '100vh' }} animate={{ height: '0' }} /> */}
+      <SummaryBlock exit={{ opacity: 0 }} animate={{ opacity: 1 }} data-label="game-card">
+        <SummaryBlockHeader>
+          #{pokemonData.Pokemon.id} {pokemonData.Pokemon.name}
+        </SummaryBlockHeader>
+        <SummaryBlockContent>
+          <SummaryBlockImage
+            src={pokemonData.Pokemon.sprites.front_default}
+            alt={pokemonData.Pokemon.name}
           />
-          <h3>Weak versus</h3>
-          <TypeTagSwordAndShield
-            mode="row"
-            types={pokemonData.PokeTypes.map((pokeType) =>
-              pokeType.damage_relations.double_damage_from.map(
-                (typeDoubleDamage) => ({
-                  type: { name: typeDoubleDamage.name },
-                })
-              )
-            ).flat()}
-          />
-        </GameCardInfo>
-      </GameCardContent>
-    </GameCard>
+          <SummaryBlockInfo>
+            <TypeTagSwordAndShield mode="row" types={pokemonData.Pokemon.types} />
+            <h3>Strong versus</h3>
+            <TypeTagSwordAndShield
+              mode="row"
+              types={pokemonData.PokeTypes.map((pokeType) =>
+                pokeType.damage_relations.double_damage_to.map(
+                  (typeDoubleDamage) => ({
+                    type: { name: typeDoubleDamage.name },
+                  })
+                )
+              ).flat()}
+            />
+            <h3>Weak versus</h3>
+            <TypeTagSwordAndShield
+              mode="row"
+              types={pokemonData.PokeTypes.map((pokeType) =>
+                pokeType.damage_relations.double_damage_from.map(
+                  (typeDoubleDamage) => ({
+                    type: { name: typeDoubleDamage.name },
+                  })
+                )
+              ).flat()}
+            />
+          </SummaryBlockInfo>
+        </SummaryBlockContent>
+      </SummaryBlock>
+    </>
   );
 };

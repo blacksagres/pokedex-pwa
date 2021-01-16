@@ -1,17 +1,8 @@
 import React, { useRef } from 'react';
-import { styled } from '../stitches.config';
-import { bounce as bounceSprite } from '../animations';
-import { Card, CardHeader, CardContent } from './containers/StyledCard';
-import { TypeTagSwordAndShield } from './TypeTagSwordShield';
-
-const PokeSprite = styled('img', {
-  height: '5rem',
-  userSelect: 'none',
-
-  md: {
-    height: '8rem',
-  },
-});
+import { bounce as bounceSprite } from '../../animations';
+import { Card, CardHeader, CardContent } from '../containers/StyledCard';
+import { TypeTagSwordAndShield } from '../TypeTag/TypeTagSwordShield';
+import { PokeSprite } from './PokeSprite.styles';
 
 export const PokeCard = ({ id, pokemonData, onClick }) => {
   const variants = {
