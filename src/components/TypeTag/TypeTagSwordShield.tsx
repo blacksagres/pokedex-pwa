@@ -8,11 +8,11 @@ import { allTypes } from '../../assets/type-icons';
 import { useHistory } from 'react-router-dom';
 
 export const TypeTagSwordAndShield = ({ types, mode }) => {
-const history = useHistory();
+  const history = useHistory();
 
   console.log(types);
   const getTypeTag = (type: PokeType) => {
-   
+
     return <Tag css={{
       border: `.1rem solid ${typeColors[type.type.name]}`,
       backgroundColor: hexToRgbA(typeColors[type.type.name]),
@@ -20,8 +20,11 @@ const history = useHistory();
       ":hover": {
         background: typeColors[type.type.name],
       },
-    }} key={type.type.name} onClick={() => history.push(`/type-summary/${type.type.name}`)}>
-      <img src={(allTypes[type.type.name])} alt={`type-icon-${type.type.name}`}/>
+    }} key={type.type.name} onClick={(event: any) => {
+      event.stopPropagation();
+      history.push(`/type-summary/${type.type.name}`);
+    }}>
+      <img src={(allTypes[type.type.name])} alt={`type-icon-${type.type.name}`} />
       <span>{type.type.name}</span>
     </Tag>;
   };

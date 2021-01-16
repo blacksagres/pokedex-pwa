@@ -34,7 +34,8 @@ export const PokeOverviewGrid: React.FC<IPokeOverviewGridProps> = (props) => {
           id={data.Pokemon.name}
           key={data.Pokemon.name}
           pokemonData={data}
-          onClick={() => {
+          onClick={(event: any) => {
+            event.stopPropagation();
             history.push(`/summary/${data.Pokemon.name}`);
           }}
         />
