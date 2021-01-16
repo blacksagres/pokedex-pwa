@@ -61,13 +61,16 @@ const HalfCircle = styled("div", {
   // transformOrigin: "bottom"
 });
 
-export const SwordAndShieldLoader = ({ style }) => {
-  const middleStripeRef = useRef(null);
+export const SwordAndShieldLoader = ({ style }: { style: any }) => {
+  const middleStripeRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (!middleStripeRef.current) return;
     infiniteRotation({
       element: middleStripeRef.current,
-      duration: 1
+      duration: 1,
+      delay: 1,
+      onComplete: () => { }
     });
   }, []);
 
