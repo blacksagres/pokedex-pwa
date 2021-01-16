@@ -36,5 +36,7 @@ export const allTypes = {
     rock,
     steel,
     water
+} as {
+    [key: string]: string
 }
 

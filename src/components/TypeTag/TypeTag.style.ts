@@ -4,13 +4,17 @@ import { styled } from "../../stitches.config";
 export const Tag = styled(motion.div, {
     transition: 'background .3s ease-in-out',
 
-    padding: '.3rem 1rem',
+    display: 'flex',
+    alignContent: 'center',
+    justifyContent: 'flex-start',
+
+    padding: '.3rem .5rem',
     color: 'white',
     textAlign: 'center',
 
     cursor: 'pointer',
 
-    width: '3rem',
+    width: '5.5rem',
 
     // this needs to be dynamically passed from the parent component
     // border: `.1rem solid ${typeColors[type.type.name]}`,
@@ -28,13 +32,22 @@ export const Tag = styled(motion.div, {
 
     margin: '.25rem',
 
+    img: {
+      height: '1rem',
+      display: 'inline-block',
+      marginRight: '.5rem',
+    },
+
+    span: {
+      display: 'inline-block'
+    },
+
     ':hover': {
       background: `#444`,
     },
 
     md: {
-      padding: '.3rem 1rem',
-      fontSize: '.9rem',
-      width: '4rem',
+      padding: '.3rem 0rem',
+      width: '5rem',
     },
   });
