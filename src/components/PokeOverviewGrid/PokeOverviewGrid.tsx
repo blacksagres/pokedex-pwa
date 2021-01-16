@@ -1,22 +1,8 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { styled } from '../stitches.config';
-import type { PokeEnrichedData } from '../definitions';
-import { PokeCard } from './PokeCard';
-
-const StyledGrid = styled('div', {
-  padding: '1rem',
-  position: 'relative',
-
-  md: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(2, 1fr)',
-    gridGap: '1rem',
-  },
-  lg: {
-    gridTemplateColumns: 'repeat(4, 1fr)',
-  },
-});
+import type { PokeEnrichedData } from '../../definitions';
+import { PokeCard } from '../PokeCard/PokeCard';
+import { StyledGrid } from './StyledGrid.styles';
 
 interface IPokeOverviewGridProps {
   pokemons: PokeEnrichedData[];
@@ -26,10 +12,25 @@ export const PokeOverviewGrid: React.FC<IPokeOverviewGridProps> = (props) => {
   const { pokemons } = props;
   const history = useHistory();
 
+  // https://www.framer.com/api/motion/animation
+  const variants = {
+    backUp: (index: number) => ({
+      y: 0,
+      transition: {
+        delay: index * 0.08,
+      },
+    }),
+    downLow: { y: '10px' },
+  }
+
   return (
     <StyledGrid>
-      {pokemons.map((data) => (
+      {pokemons.map((data, index) => (
         <PokeCard
+          animate="backUp"
+          initial="downLow"
+          custom={index}
+          variants={variants}
           id={data.Pokemon.name}
           key={data.Pokemon.name}
           pokemonData={data}

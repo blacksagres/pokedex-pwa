@@ -1,24 +1,10 @@
 import React, { useRef } from 'react';
-import { styled } from '../stitches.config';
-import { bounce as bounceSprite } from '../animations';
-import { Card, CardHeader, CardContent } from './containers/StyledCard';
-import { TypeTagSwordAndShield } from './TypeTagSwordShield';
+import { bounce as bounceSprite } from '../../animations';
+import { Card, CardHeader, CardContent } from '../containers/StyledCard';
+import { TypeTagSwordAndShield } from '../TypeTag/TypeTagSwordShield';
+import { PokeSprite } from './PokeSprite.styles';
 
-const PokeSprite = styled('img', {
-  height: '5rem',
-  userSelect: 'none',
-
-  md: {
-    height: '8rem',
-  },
-});
-
-export const PokeCard = ({ id, pokemonData, onClick }) => {
-  const variants = {
-    closed: { opacity: 1 },
-    open: { opacity: 0.3 },
-  };
-
+export const PokeCard = ({ id, pokemonData, onClick, custom, initial, animate, variants }) => {
   const animateSprite = (element) => {
     if (!element) return;
     element.addEventListener('mouseenter', () => {
@@ -31,7 +17,7 @@ export const PokeCard = ({ id, pokemonData, onClick }) => {
   };
 
   return (
-    <Card variants={variants} id={id} layoutId={id} onClick={onClick}>
+    <Card custom={custom} initial={initial} animate={animate} variants={variants} id={id} layoutId={id} onClick={onClick}>
       <CardHeader>
         #{pokemonData.Pokemon.id} {pokemonData.Pokemon.name}
       </CardHeader>
