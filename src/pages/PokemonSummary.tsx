@@ -8,7 +8,7 @@ import {
   SummaryBlockImage,
   SummaryBlockInfo,
 } from '../components/SummaryBlock/SummaryBlock.styles';
-import { TypeTagSwordAndShield } from '../components/TypeTagSwordShield';
+import { TypeTagSwordAndShield } from '../components/TypeTag/TypeTagSwordShield';
 import type { PokeEnrichedData } from '../definitions';
 import { fetchEnrichedPokeData } from '../gateways/poke-gateway';
 

@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { bounce as bounceSprite } from '../../animations';
 import { Card, CardHeader, CardContent } from '../containers/StyledCard';
-import { TypeTagSwordAndShield } from '../TypeTagSwordShield';
+import { TypeTagSwordAndShield } from '../TypeTag/TypeTagSwordShield';
 import { PokeSprite } from './PokeSprite.styles';
 
 export const PokeCard = ({ id, pokemonData, onClick }) => {

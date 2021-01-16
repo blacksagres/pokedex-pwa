@@ -1,22 +1,8 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { styled } from '../stitches.config';
-import type { PokeEnrichedData } from '../definitions';
-import { PokeCard } from './PokeCard/PokeCard';
-
-const StyledGrid = styled('div', {
-  padding: '1rem',
-  position: 'relative',
-
-  md: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(2, 1fr)',
-    gridGap: '1rem',
-  },
-  lg: {
-    gridTemplateColumns: 'repeat(4, 1fr)',
-  },
-});
+import type { PokeEnrichedData } from '../../definitions';
+import { PokeCard } from '../PokeCard/PokeCard';
+import { StyledGrid } from './StyledGrid.styles';
 
 interface IPokeOverviewGridProps {
   pokemons: PokeEnrichedData[];
