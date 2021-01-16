@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { styled } from '../stitches.config';
 import type { PokeEnrichedData } from '../definitions';
-import { PokeCard } from './PokeCard';
+import { PokeCard } from './PokeCard/PokeCard';
 
 const StyledGrid = styled('div', {
   padding: '1rem',
