@@ -5,14 +5,14 @@ import {
     SummaryBlockContent,
     SummaryBlockHeader,
 } from '../components/SummaryBlock/SummaryBlock.styles';
-// import './TypeSummary.scss';
+import './TypeSummary.scss';
 
 
 export const TypeSummary = (): React.ReactElement => {
     const { type } = useParams();
 
     return (
-        <SummaryBlock data-label="game-card">
+        <SummaryBlock  exit={{ opacity: 0 }} animate={{ opacity: 1 }} data-label="game-card">
             <SummaryBlockHeader>
                 {type}
             </SummaryBlockHeader>
