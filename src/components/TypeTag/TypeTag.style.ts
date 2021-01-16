@@ -1,6 +1,7 @@
+import { motion } from "framer-motion";
 import { styled } from "../../stitches.config";
 
-export const Tag = styled('div', {
+export const Tag = styled(motion.div, {
     transition: 'background .3s ease-in-out',
 
     padding: '.3rem 1rem',
