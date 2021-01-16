@@ -1,11 +1,11 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import type { PokeEnrichedData } from '../../definitions';
+import type { CombinedPokemonData } from '../../definitions/CombinedPokemonData';
 import { PokeCard } from '../PokeCard/PokeCard';
 import { StyledGrid } from './StyledGrid.styles';
 
 interface IPokeOverviewGridProps {
-  pokemons: PokeEnrichedData[];
+  pokemons: CombinedPokemonData[];
 }
 
 export const PokeOverviewGrid: React.FC<IPokeOverviewGridProps> = (props) => {
@@ -31,7 +31,7 @@ export const PokeOverviewGrid: React.FC<IPokeOverviewGridProps> = (props) => {
           initial="downLow"
           custom={index}
           variants={variants}
-          id={data.Pokemon.name}
+          id={data.Pokemon.id}
           key={data.Pokemon.name}
           pokemonData={data}
           onClick={(event) => {
