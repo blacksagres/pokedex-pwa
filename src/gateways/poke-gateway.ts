@@ -1,14 +1,15 @@
-import type { PokeData, PokeEnrichedData } from '../definitions';
 import { endpoint } from './poke-config';
 import { getCachedObject, setCachedObject } from './poke-cacher';
-import type { PokeDataType } from '../definitions/PokeDataType';
+import type {FullPokemon } from '../definitions/PokeDataType';
+import type { FullPokemonData } from '../definitions/FullPokemonData';
+import type { PokeType } from '../definitions/PokeTypeModels';
 
 export const fetchPokemon = ({
   pokemonName,
 }: {
   pokemonName: string;
-}): Promise<PokeData> => {
-  const cachedPokemon = getCachedObject<PokeData>(pokemonName);
+}): Promise<FullPokemon> => {
+  const cachedPokemon = getCachedObject<FullPokemon>(pokemonName);
 
   if (cachedPokemon) return Promise.resolve(cachedPokemon);
 
@@ -24,8 +25,8 @@ export const fetchTypes = ({
   type,
 }: {
   type: string;
-}): Promise<PokeDataType> => {
-  const cachedType = getCachedObject<PokeDataType>(type);
+}): Promise<PokeType> => {
+  const cachedType = getCachedObject<PokeType>(type);
 
   if (cachedType) return Promise.resolve(cachedType);
 
@@ -41,7 +42,7 @@ export const fetchEnrichedPokeData = async ({
   pokemonName,
 }: {
   pokemonName: string;
-}): Promise<PokeEnrichedData> => {
+}): Promise<FullPokemonData> => {
   const pokemon = await fetchPokemon({ pokemonName });
   const typeDataPromises = pokemon.types.map((type) =>
     fetchTypes({ type: type.type.name })
@@ -50,6 +51,6 @@ export const fetchEnrichedPokeData = async ({
 
   return {
     Pokemon: pokemon,
-    PokeTypes: typeData,
+    PokeTypes: typeData
   };
 };

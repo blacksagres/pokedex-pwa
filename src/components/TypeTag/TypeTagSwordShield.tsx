@@ -1,17 +1,22 @@
 import React from 'react';
 import { typeColors } from '../../dynamic-styling/colors';
-import type { PokeType } from '../../definitions/PokeData';
 import { TypeTagContainer } from './TypeTagContainer.style';
 import { Tag } from './TypeTag.style';
 import { hexToRgbA } from '../../dynamic-styling/hex-to-rba';
 import { allTypes } from '../../assets/type-icons';
 import { useHistory } from 'react-router-dom';
+import type { TypeOnFullPokemon } from 'src/definitions/FullPokemon';
 
-export const TypeTagSwordAndShield = ({ types, mode }) => {
+type TypeTagSwordShieldProps = {
+  types: TypeOnFullPokemon[];
+  mode: string;
+}
+
+export const TypeTagSwordAndShield = ({ types, mode }: TypeTagSwordShieldProps) => {
   const history = useHistory();
 
   console.log(types);
-  const getTypeTag = (type: PokeType) => {
+  const getTypeTag = (type: TypeOnFullPokemon) => {
 
     return <Tag css={{
       border: `.1rem solid ${typeColors[type.type.name]}`,

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import { TypeTagSwordAndShield } from '../components/TypeTag/TypeTagSwordShield'
 import {
     SummaryBlock,
     SummaryBlockContent,
@@ -9,6 +10,7 @@ import './TypeSummary.scss';
 
 
 export const TypeSummary = (): React.ReactElement => {
+    // @ts-ignore
     const { type } = useParams();
 
     return (
@@ -16,12 +18,12 @@ export const TypeSummary = (): React.ReactElement => {
             <SummaryBlockHeader>
                 {type}
             </SummaryBlockHeader>
-            <SummaryBlockContent>
+            <SummaryBlockContent className="type-summary-content">
                 <div className="strengths">
-
+                    Test
                 </div>
                 <div className="weaknesses">
-
+                    Test
                 </div>
             </SummaryBlockContent>
         </SummaryBlock>

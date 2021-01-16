@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import type {DoubleDamageFrom, DoubleDamageTo } from 'src/definitions/PokemonType';
 import { TranslateDown } from '../components/animated-transitions/TranslateDown';
 import {
   SummaryBlock,
@@ -44,7 +45,7 @@ export const PokemonSummary = () => {
               mode="row"
               types={pokemonData.PokeTypes.map((pokeType) =>
                 pokeType.damage_relations.double_damage_to.map(
-                  (typeDoubleDamage) => ({
+                  (typeDoubleDamage: DoubleDamageTo) => ({
                     type: { name: typeDoubleDamage.name },
                   })
                 )
@@ -55,7 +56,7 @@ export const PokemonSummary = () => {
               mode="row"
               types={pokemonData.PokeTypes.map((pokeType) =>
                 pokeType.damage_relations.double_damage_from.map(
-                  (typeDoubleDamage) => ({
+                  (typeDoubleDamage: DoubleDamageFrom) => ({
                     type: { name: typeDoubleDamage.name },
                   })
                 )

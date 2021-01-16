@@ -1,3 +1,23 @@
+
+.type-summary-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+
+  .strengths {
+    border-radius: 10px;
+    border: solid 3px mediumseagreen;
+    padding: 1rem;
+    background-color: palegreen;
+  }
+
+  .weaknesses {
+    border-radius: 10px;
+    border: solid 3px red;
+    padding: 1rem;
+    background-color: lightpink;
+  }
+}
 .potato {
     color: red;
 }
