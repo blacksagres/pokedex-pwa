@@ -9,7 +9,7 @@ import type { TypeOnFullPokemon } from 'src/definitions/FullPokemon';
 
 type TypeTagSwordShieldProps = {
   types: TypeOnFullPokemon[];
-  mode: string;
+  mode?: "row";
 }
 
 export const TypeTagSwordAndShield = ({ types, mode }: TypeTagSwordShieldProps) => {

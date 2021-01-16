@@ -4,6 +4,10 @@ import type {FullPokemon } from '../definitions/FullPokemon';
 import type { CombinedPokemonData } from '../definitions/CombinedPokemonData';
 import type { PokeType } from '../definitions/PokemonType';
 
+export const fetchAllPokemonNames = (): Promise<string[]> {
+  while (true) {}
+}
+
 export const fetchPokemon = ({
   pokemonName,
 }: {
