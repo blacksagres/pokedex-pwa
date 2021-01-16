@@ -1,14 +1,13 @@
-import React, { useRef } from 'react';
-import type { PokeDataType } from 'src/definitions';
-import type { FullPokemonData } from 'src/definitions/CombinedPokemonData';
+import React from 'react';
+import type { CombinedPokemonData } from 'src/definitions/CombinedPokemonData';
 import { bounce as bounceSprite } from '../../animations';
 import { Card, CardHeader, CardContent } from '../containers/StyledCard';
 import { TypeTagSwordAndShield } from '../TypeTag/TypeTagSwordShield';
 import { PokeSprite } from './PokeSprite.styles';
 
 type PokeCardProps = {
-    id: number;
-    pokemonData: FullPokemonData,
+    id: string;
+    pokemonData: CombinedPokemonData,
     onClick: (event: any) => void;
     custom: any;
     initial: any;
