@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { TranslateDown } from '../components/animated-transitions/TranslateDown';
 import {
-  GameCard,
-  GameCardContent,
-  GameCardHeader,
-  GameCardImage,
-  GameCardInfo,
-} from '../components/containers/StyledGameCard';
+  SummaryBlock,
+  SummaryBlockContent,
+  SummaryBlockHeader,
+  SummaryBlockImage,
+  SummaryBlockInfo,
+} from '../components/SummaryBlock/SummaryBlock.styles';
 import { TypeTagSwordAndShield } from '../components/TypeTagSwordShield';
 import type { PokeEnrichedData } from '../definitions';
 import { fetchEnrichedPokeData } from '../gateways/poke-gateway';
@@ -28,16 +28,16 @@ export const PokemonSummary = () => {
   return (
     <>
       {/* <TranslateDown exit={{ height: '100vh' }} animate={{ height: '0' }} /> */}
-      <GameCard exit={{ opacity: 0 }} animate={{ opacity: 1 }} data-label="game-card">
-        <GameCardHeader>
+      <SummaryBlock exit={{ opacity: 0 }} animate={{ opacity: 1 }} data-label="game-card">
+        <SummaryBlockHeader>
           #{pokemonData.Pokemon.id} {pokemonData.Pokemon.name}
-        </GameCardHeader>
-        <GameCardContent>
-          <GameCardImage
+        </SummaryBlockHeader>
+        <SummaryBlockContent>
+          <SummaryBlockImage
             src={pokemonData.Pokemon.sprites.front_default}
             alt={pokemonData.Pokemon.name}
           />
-          <GameCardInfo>
+          <SummaryBlockInfo>
             <TypeTagSwordAndShield mode="row" types={pokemonData.Pokemon.types} />
             <h3>Strong versus</h3>
             <TypeTagSwordAndShield
@@ -61,9 +61,9 @@ export const PokemonSummary = () => {
                 )
               ).flat()}
             />
-          </GameCardInfo>
-        </GameCardContent>
-      </GameCard>
+          </SummaryBlockInfo>
+        </SummaryBlockContent>
+      </SummaryBlock>
     </>
   );
 };

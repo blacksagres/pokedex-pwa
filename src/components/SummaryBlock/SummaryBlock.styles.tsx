@@ -1,7 +1,7 @@
 import { styled } from '../../stitches.config';
 import { motion } from 'framer-motion';
 
-export const GameCard = styled(motion.div, {
+export const SummaryBlock = styled(motion.div, {
   borderRadius: '$card',
 
   maxWidth: '600px',
@@ -19,7 +19,7 @@ export const GameCard = styled(motion.div, {
   },
 });
 
-export const GameCardImage = styled('img', {
+export const SummaryBlockImage = styled('img', {
   display: 'block',
   height: '10rem',
   margin: '0 auto',
@@ -34,7 +34,7 @@ export const GameCardImage = styled('img', {
   },
 });
 
-export const GameCardInfo = styled('div', {
+export const SummaryBlockInfo = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   marginTop: '1rem',
@@ -45,7 +45,7 @@ export const GameCardInfo = styled('div', {
   },
 });
 
-export const GameCardContent = styled('div', {
+export const SummaryBlockContent = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   alignContent: 'center',
@@ -53,9 +53,9 @@ export const GameCardContent = styled('div', {
   padding: '1rem',
 });
 
-export const GameCardStats = styled('div', {});
+export const SummaryBlockStats = styled('div', {});
 
-export const GameCardHeader = styled('div', {
+export const SummaryBlockHeader = styled('div', {
   position: 'relative',
   textAlign: 'center',
   textTransform: 'capitalize',
