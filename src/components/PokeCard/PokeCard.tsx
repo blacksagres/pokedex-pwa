@@ -6,16 +6,15 @@ import { TypeTagSwordAndShield } from '../TypeTag/TypeTagSwordShield';
 import { PokeSprite } from './PokeSprite.styles';
 
 type PokeCardProps = {
-    id: string;
-    pokemonData: CombinedPokemonData,
-    onClick: (event: any) => void;
-    custom: any;
-    initial: any;
-    animate: any;
-    variants: any;
+  pokemonData: CombinedPokemonData,
+  onClick: (event: any) => void;
+  custom: any;
+  initial: any;
+  animate: any;
+  variants: any;
 }
 
-export const PokeCard = ({ id, pokemonData, onClick, custom, initial, animate, variants }: PokeCardProps) => {
+export const PokeCard = ({ pokemonData, onClick, custom, initial, animate, variants }: PokeCardProps) => {
   const animateSprite = (element: HTMLImageElement) => {
     if (!element) return;
     element.addEventListener('mouseenter', () => {
@@ -27,8 +26,8 @@ export const PokeCard = ({ id, pokemonData, onClick, custom, initial, animate, v
     });
   };
 
-    return (
-    <Card custom={custom} initial={initial} animate={animate} variants={variants} id={id} layoutId={id} onClick={onClick}>
+  return (
+    <Card custom={custom} initial={initial} animate={animate} variants={variants} id={pokemonData.Pokemon.name} layoutId={pokemonData.Pokemon.name} onClick={onClick}>
       <CardHeader>
         #{pokemonData.Pokemon.id} {pokemonData.Pokemon.name}
       </CardHeader>

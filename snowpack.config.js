@@ -27,6 +27,5 @@ module.exports = {
   },
   alias: {
     /* ... */
-    stitches: './src/stitches.config.ts'
   },
 };
