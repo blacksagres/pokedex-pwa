@@ -11,11 +11,11 @@ const Routing = () => {
   const location = useLocation();
 
   return (
-          <Route path="/type-summary/:type" component={TypeSummary} />
     <AnimatePresence exitBeforeEnter>
       <Switch location={location} key={location.pathname}>
         <Route exact path="/" component={Home} />
         <Route path="/summary/:pokemon" component={PokemonSummary} />
+        <Route path="/type-summary/:type" component={TypeSummary} />
       </Switch>
     </AnimatePresence>
   )
