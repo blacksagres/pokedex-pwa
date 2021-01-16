@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import type {DoubleDamageFrom, DoubleDamageTo } from 'src/definitions/PokemonType';
+import type { DoubleDamageFrom, DoubleDamageTo } from 'src/definitions/PokemonType';
 import { TranslateDown } from '../components/animated-transitions/TranslateDown';
 import {
   SummaryBlock,
@@ -15,7 +15,7 @@ import { fetchEnrichedPokeData } from '../gateways/poke-gateway';
 
 export const PokemonSummary = () => {
   const [pokemonData, setPokemonData] = useState<PokeEnrichedData | null>();
-  const { pokemon } = useParams();
+  const { pokemon } = useParams<{ pokemon: string }>();
 
   useEffect(() => {
     console.log(pokemon);

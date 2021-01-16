@@ -31,7 +31,6 @@ export const PokeOverviewGrid: React.FC<IPokeOverviewGridProps> = (props) => {
           initial="downLow"
           custom={index}
           variants={variants}
-          id={data.Pokemon.id}
           key={data.Pokemon.name}
           pokemonData={data}
           onClick={(event: any) => {
