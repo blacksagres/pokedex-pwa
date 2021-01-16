@@ -4,6 +4,7 @@ import type { PokeType } from '../../definitions/PokeData';
 import { TypeTagContainer } from './TypeTagContainer.style';
 import { Tag } from './TypeTag.style';
 import { hexToRgbA } from '../../dynamic-styling/hex-to-rba';
+import { allTypes } from '../../assets/type-icons';
 
 export const TypeTagSwordAndShield = ({ types, mode }) => {
 
@@ -17,9 +18,11 @@ export const TypeTagSwordAndShield = ({ types, mode }) => {
 
     return <Tag css={{
       border: `.1rem solid ${typeColors[type.type.name]}`,
-      background: backgroundStyle,
+      backgroundColor: hexToRgbA(typeColors[type.type.name]),
+      backgroundImage: `url(${allTypes[type.type.name]})`,
+
       ":hover": {
-        background: backgroundStyleOnHover
+        background: backgroundStyleOnHover,
       },
     }} key={type.type.name}>{type.type.name}</Tag>;
   };
