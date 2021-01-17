@@ -14,7 +14,7 @@ const PokeCircle = styled(motion.div, {
   width: "3rem",
   height: "3rem",
 
-  // transform: 'scale(.7)',
+  transform: 'scale(.7)',
 
   variants: {
     fill: {
@@ -30,6 +30,15 @@ const PokeCircle = styled(motion.div, {
         left: "50%",
 
         transform: "translate(-50%, -50%)"
+      },
+      // to not overwrite the transform when scaling the circle back to 1
+      'md-child': {
+        position: "absolute",
+
+        top: "50%",
+        left: "50%",
+
+        transform: "scale(1) translate(-50%, -50%)"
       }
     },
     size: {
@@ -50,9 +59,9 @@ const PokeCircle = styled(motion.div, {
     }
   },
 
-  // md: {
-  //   transform: 'scale(1)',
-  // }
+  md: {
+    transform: 'scale(1)',
+  }
 });
 
 const HalfCircle = styled("div", {
@@ -78,8 +87,8 @@ export const SwordAndShieldLoader = () => {
       whileTap={{ rotate: 180, scale: 1.1 }}
       onTap={() => history.push('/')}>
       <HalfCircle data-label="half-circle" />
-      <PokeCircle scope="child" size="medium" fill="white" />
-      <PokeCircle scope="child" size="smol" />
+      <PokeCircle scope={{ initial: "child", md: 'md-child' }} size="medium" fill="white" />
+      <PokeCircle scope={{ initial: "child", md: 'md-child' }} size="smol" />
     </PokeCircle>
   );
 };
