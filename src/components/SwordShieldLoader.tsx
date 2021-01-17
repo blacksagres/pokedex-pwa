@@ -1,15 +1,19 @@
 import React, { useEffect, useRef } from "react";
 import { styled } from "../stitches.config";
 import { infiniteRotation } from "../animations";
+import { motion } from "framer-motion";
+import { useHistory } from "react-router-dom";
 
-const PokeCircle = styled("div", {
+const PokeCircle = styled(motion.div, {
   position: "relative",
-
+  cursor: 'pointer',
   border: ".25rem solid black",
   borderRadius: "50%",
 
   width: "3rem",
   height: "3rem",
+
+  // transform: 'scale(.7)',
 
   variants: {
     fill: {
@@ -43,7 +47,11 @@ const PokeCircle = styled("div", {
         border: ".15rem solid black"
       }
     }
-  }
+  },
+
+  // md: {
+  //   transform: 'scale(1)',
+  // }
 });
 
 const HalfCircle = styled("div", {
@@ -62,20 +70,13 @@ const HalfCircle = styled("div", {
 });
 
 export const SwordAndShieldLoader = ({ style }: { style: any }) => {
-  const middleStripeRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!middleStripeRef.current) return;
-    infiniteRotation({
-      element: middleStripeRef.current,
-      duration: 1,
-      delay: 1,
-      onComplete: () => { }
-    });
-  }, []);
+  const history = useHistory();
 
   return (
-    <PokeCircle style={style} ref={middleStripeRef}>
+    <PokeCircle
+      whileTap={{ rotate: 180 }}
+      onTap={() => history.push('/')}
+      style={style}>
       <HalfCircle data-label="half-circle" />
       <PokeCircle scope="child" size="medium" fill="white" />
       <PokeCircle scope="child" size="smol" />

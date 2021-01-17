@@ -5,7 +5,7 @@ export const { styled, css } = createStyled({
   // https://stitches.dev/docs/tokens
   tokens: {
     colors: {
-      "$card-bg": "#fcfefb"
+      "$almost-white": "#fcfefb"
     },
     radii: {
       $card: "1rem"

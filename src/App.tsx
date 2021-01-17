@@ -6,6 +6,8 @@ import { BrowserRouter as Router, Link, Route, Switch, useLocation } from 'react
 import { Home } from './pages/Home';
 import { PokemonSummary } from './pages/PokemonSummary';
 import { TypeSummary } from './pages/TypeSummary';
+import { StyledNavbar } from './components/NavBar/StyledNavbar.styles';
+import { SwordAndShieldLoader } from './components/SwordShieldLoader';
 
 const Routing = () => {
   const location = useLocation();
@@ -23,7 +25,9 @@ const Routing = () => {
 
 export default () => (
   <Router>
-    <nav><Link to="/">Home</Link></nav>
+    <StyledNavbar>
+      <SwordAndShieldLoader />
+    </StyledNavbar>
     <Routing />
   </Router>
 );

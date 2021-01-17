@@ -5,6 +5,8 @@ export const CustomInput = styled('input', {
     borderRadius: '1rem',
     padding: '1rem',
     width: '100%',
+    
+    backgroundColor: '$almost-white',
 
     display: 'block',
 

@@ -9,7 +9,7 @@ export const SummaryBlock = styled(motion.div, {
   transition: 'box-shadow .150s ease-in-out',
   boxShadow: '.25rem .25rem .25rem 1px rgba(0, 0, 0, .2)',
 
-  backgroundColor: '$card-bg',
+  backgroundColor: '$almost-white',
   cursor: 'auto',
 
   margin: '0 auto',
