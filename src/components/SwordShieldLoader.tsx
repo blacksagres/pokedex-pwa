@@ -1,94 +1,99 @@
-import React, { useEffect, useRef } from "react";
-import { styled } from "../stitches.config";
-import { infiniteRotation } from "../animations";
-import { motion } from "framer-motion";
-import { useHistory } from "react-router-dom";
+import React from 'react';
+import { styled } from '../stitches.config';
+import { motion } from 'framer-motion';
+import { useHistory } from 'react-router-dom';
 
 const PokeCircle = styled(motion.div, {
-  position: "relative",
+  position: 'relative',
   cursor: 'pointer',
-  border: ".25rem solid black",
-  borderRadius: "50%",
+  border: '.15rem solid black',
+  borderRadius: '50%',
   userSelect: 'none',
 
-  width: "3rem",
-  height: "3rem",
-
-  transform: 'scale(.7)',
-
-  variants: {
-    fill: {
-      white: {
-        backgroundColor: "#fff"
-      }
-    },
-    scope: {
-      child: {
-        position: "absolute",
-
-        top: "50%",
-        left: "50%",
-
-        transform: "translate(-50%, -50%)"
-      },
-      // to not overwrite the transform when scaling the circle back to 1
-      'md-child': {
-        position: "absolute",
-
-        top: "50%",
-        left: "50%",
-
-        transform: "scale(1) translate(-50%, -50%)"
-      }
-    },
-    size: {
-      big: {
-        width: "3rem",
-        height: "3rem"
-      },
-      medium: {
-        width: "1rem",
-        height: "1rem"
-      },
-      smol: {
-        width: ".5rem",
-        height: ".5rem",
-
-        border: ".15rem solid black"
-      }
-    }
-  },
+  width: '2rem',
+  height: '2rem',
 
   md: {
-    transform: 'scale(1)',
+    width: '3rem',
+    height: '3rem',
+    border: '.25rem solid black',
   }
 });
 
-const HalfCircle = styled("div", {
-  boxSizing: "border-box",
+const PokeCircleMedium = styled(motion.div, {
+  position: 'absolute',
+  cursor: 'pointer',
+  borderRadius: '50%',
+  userSelect: 'none',
+  backgroundColor: '$almost-white',
+
+  top: '50%',
+  left: '50%',
+
+  transform: 'translate(-50%, -50%)',
+
+  border: '.15rem solid black',
+  width: '.75rem',
+  height: '.75rem',
+
+  md: {
+    border: '.25rem solid black',
+
+    width: '1rem',
+    height: '1rem',
+  }
+});
+
+const PokeCircleSmall = styled(motion.div, {
+  position: 'absolute',
+  cursor: 'pointer',
+  borderRadius: '50%',
+  userSelect: 'none',
+  backgroundColor: '$almost-white',
+
+  top: '50%',
+  left: '50%',
+
+  transform: 'translate(-50%, -50%)',
+
+  width: '.3rem',
+  height: '.3rem',
+
+  border: '.15rem solid black',
+
+  md: {
+    width: '.5rem',
+    height: '.5rem',
+  }
+});
+
+const HalfCircle = styled('div', {
+  boxSizing: 'border-box',
 
   background:
-    "linear-gradient(90deg, rgba(132,22,23,1) 35%, rgba(210,18,46,1) 65%)",
+    'linear-gradient(90deg, rgba(132,22,23,1) 35%, rgba(210,18,46,1) 65%)',
 
-  width: "3rem",
-  height: "1.5rem",
+  width: '2rem',
+  height: '1rem',
 
-  borderRadius: "2.5rem 2.5rem 0 0",
-  borderBottom: ".3rem solid black"
+  borderRadius: '2.5rem 2.5rem 0 0',
+  borderBottom: '.2rem solid black',
 
-  // transformOrigin: "bottom"
+  md: {
+    width: '3rem',
+    height: '1.5rem',
+    borderBottom: '.3rem solid black',
+  }
 });
 
 export const SwordAndShieldLoader = () => {
   const history = useHistory();
 
   return (
-    <PokeCircle
-      whileTap={{ rotate: 180, scale: 1.1 }}
-      onTap={() => history.push('/')}>
+    <PokeCircle whileTap={{ rotate: 180, scale: .8 }} onTap={() => history.push('/')}>
       <HalfCircle data-label="half-circle" />
-      <PokeCircle scope={{ initial: "child", md: 'md-child' }} size="medium" fill="white" />
-      <PokeCircle scope={{ initial: "child", md: 'md-child' }} size="smol" />
+      <PokeCircleMedium />
+      <PokeCircleSmall />
     </PokeCircle>
   );
 };
