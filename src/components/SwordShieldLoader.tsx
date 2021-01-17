@@ -9,6 +9,7 @@ const PokeCircle = styled(motion.div, {
   cursor: 'pointer',
   border: ".25rem solid black",
   borderRadius: "50%",
+  userSelect: 'none',
 
   width: "3rem",
   height: "3rem",
@@ -74,7 +75,7 @@ export const SwordAndShieldLoader = () => {
 
   return (
     <PokeCircle
-      whileTap={{ rotate: 180 }}
+      whileTap={{ rotate: 180, scale: 1.1 }}
       onTap={() => history.push('/')}>
       <HalfCircle data-label="half-circle" />
       <PokeCircle scope="child" size="medium" fill="white" />
