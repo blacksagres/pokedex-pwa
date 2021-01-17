@@ -69,14 +69,13 @@ const HalfCircle = styled("div", {
   // transformOrigin: "bottom"
 });
 
-export const SwordAndShieldLoader = ({ style }: { style: any }) => {
+export const SwordAndShieldLoader = () => {
   const history = useHistory();
 
   return (
     <PokeCircle
       whileTap={{ rotate: 180 }}
-      onTap={() => history.push('/')}
-      style={style}>
+      onTap={() => history.push('/')}>
       <HalfCircle data-label="half-circle" />
       <PokeCircle scope="child" size="medium" fill="white" />
       <PokeCircle scope="child" size="smol" />
