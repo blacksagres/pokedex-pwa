@@ -36,7 +36,9 @@ export const PokemonSummary = () => {
       {/* <TranslateDown exit={{ height: '100vh' }} animate={{ height: '0' }} /> */}
       <SummaryBlock data-label="game-card">
         <SummaryBlockHeader>
-          #{pokemonData.Pokemon.id} {pokemonData.Pokemon.name}
+          <h1 style={{ fontSize: '1rem' }}>
+            #{pokemonData.Pokemon.id} {pokemonData.Pokemon.name}
+          </h1>
         </SummaryBlockHeader>
         <SummaryBlockContent>
           <SummaryBlockImage
@@ -44,6 +46,7 @@ export const PokemonSummary = () => {
             alt={pokemonData.Pokemon.name}
           />
           <SummaryBlockInfo>
+            <h3 style={{marginTop: 0}}>Type(s)</h3>
             <TypeTagSwordAndShield
               mode="row"
               types={pokemonData.Pokemon.types}

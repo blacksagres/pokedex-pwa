@@ -24,10 +24,6 @@ export const SummaryBlockImage = styled('img', {
   height: '10rem',
   margin: '0 auto',
 
-  padding: '0 2.5rem',
-
-  boxShadow: 'inset 3px 3px 7px 7px rgba(0, 0, 0, .4)',
-
   md: {
     height: '12rem',
     padding: '0 8rem',
@@ -35,14 +31,13 @@ export const SummaryBlockImage = styled('img', {
 });
 
 export const SummaryBlockInfo = styled('div', {
+  boxSizing: 'border-box',
   display: 'flex',
   flexDirection: 'column',
-  marginTop: '1rem',
-  padding: '0 1.5rem',
-
-  md: {
-    padding: '0 5rem',
-  },
+  borderRadius: '$card',
+  backgroundColor: '#eee',
+  padding: '1rem',
+  // border: '2px solid black'
 });
 
 export const SummaryBlockContent = styled('div', {
