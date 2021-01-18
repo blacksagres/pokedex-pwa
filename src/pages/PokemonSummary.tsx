@@ -46,6 +46,15 @@ export const PokemonSummary = () => {
             src={pokemonData.Pokemon.sprites.front_default}
             alt={pokemonData.Pokemon.name}
           />
+          <div
+            style={{
+              margin: '0 auto 1rem auto'
+            }}>
+            <TypeTagSwordAndShield
+              mode="row"
+              types={pokemonData.Pokemon.types}
+            />
+          </div>
           <SummaryBlockInfo>
             {/* <h3 style={{ marginTop: 0 }}>Type(s)</h3>
             <TypeTagSwordAndShield
