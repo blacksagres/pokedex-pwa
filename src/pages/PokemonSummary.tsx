@@ -17,6 +17,8 @@ import { TypeTagSwordAndShield } from '@components/TypeTag/TypeTagSwordShield';
 import type { CombinedPokemonData } from '@definitions/CombinedPokemonData';
 import { fetchEnrichedPokeData } from '../gateways/poke-gateway';
 import { PageContainer } from './PageContainer.styles';
+import { motion } from 'framer-motion';
+import { SummaryLinks } from '@components/SummaryBlock/SummaryLinks';
 
 export const PokemonSummary = () => {
   const [pokemonData, setPokemonData] = useState<CombinedPokemonData | null>();
@@ -56,6 +58,7 @@ export const PokemonSummary = () => {
             />
           </div>
           <SummaryBlockInfo>
+           <SummaryLinks links={['Info.', 'Stats', 'Evolution', 'Moves']} />
             {/* <h3 style={{ marginTop: 0 }}>Type(s)</h3>
             <TypeTagSwordAndShield
               mode="row"
