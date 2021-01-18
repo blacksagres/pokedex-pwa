@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import type {
   DoubleDamageFrom,
   DoubleDamageTo,
-} from 'src/definitions/PokemonType';
+} from '@definitions/PokemonType';
 import { TranslateDown } from '../components/animated-transitions/TranslateDown';
 import {
   SummaryBlock,

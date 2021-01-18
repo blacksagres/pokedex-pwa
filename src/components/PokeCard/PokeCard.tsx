@@ -1,5 +1,5 @@
 import React from 'react';
-import type { CombinedPokemonData } from 'src/definitions/CombinedPokemonData';
+import type { CombinedPokemonData } from '@definitions/CombinedPokemonData';
 import { bounce as bounceSprite } from '../../animations';
 import { Card, CardHeader, CardContent } from '../containers/StyledCard';
 import { TypeTagSwordAndShield } from '../TypeTag/TypeTagSwordShield';

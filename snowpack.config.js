@@ -27,5 +27,6 @@ module.exports = {
   },
   alias: {
     /* ... */
+    '@definitions': './src/definitions',
   },
 };
