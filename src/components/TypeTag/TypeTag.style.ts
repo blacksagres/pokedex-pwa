@@ -8,12 +8,14 @@ export const Tag = styled(motion.div, {
   alignItems: 'center',
   justifyContent: 'flex-start',
 
+  padding: '.3rem',
+
   color: 'white',
   textAlign: 'center',
 
   cursor: 'pointer',
 
-  width: '6rem',
+  width: '5.5rem',
 
   // this needs to be dynamically passed from the parent component
   // border: `.1rem solid ${typeColors[type.type.name]}`,
@@ -40,11 +42,8 @@ export const Tag = styled(motion.div, {
   span: {
     display: 'block',
     width: '100%',
-    // TODO: still deciding what to do with the buttons
-    backgroundColor: '#black',
+    textAlign: 'center',
     fontWeight: 'bold',
-    padding: '.3rem .5rem',
-    borderRadius: '0 .5rem .5rem 0',
   },
 
   ':hover': {
