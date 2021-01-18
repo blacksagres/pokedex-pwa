@@ -1,10 +1,11 @@
 {
   "scripts": {
     "start": "snowpack dev",
-    "build": "snowpack build",
+    "build": "snowpack build && yarn generate-redirects",
     "test": "web-test-runner \"src/**/*.test.tsx\"",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
-    "lint": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\""
+    "lint": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\"",
+    "generate-redirects": "node src/post-build-scripts/redirects-generator.js"
   },
   "dependencies": {
     "@stitches/react": "0.0.3-canary.1",
