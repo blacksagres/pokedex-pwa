@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Stat } from '@definitions/FullPokemon';
 import { StatsGauge, StatsGaugeContainer } from './StatsGaugeContainer.styles';
+import { motion } from 'framer-motion';
 
 const BaseStatusGauge = (props: { stats: Stat }) => {
   const {
@@ -46,7 +47,14 @@ const BaseStatusGauge = (props: { stats: Stat }) => {
             originX: 0,
           }}
         >
-          {base_stat}/255
+          <motion.span
+            style={{ display: 'block' }}
+            initial={{ x: -20, opacity: 0 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.5 }}
+          >
+            {base_stat}/255
+          </motion.span>
         </StatsGauge>
       </StatsGaugeContainer>
     </div>
