@@ -4,16 +4,17 @@ import type {
   DoubleDamageFrom,
   DoubleDamageTo,
 } from '@definitions/PokemonType';
-import { TranslateDown } from '../components/animated-transitions/TranslateDown';
+
 import {
   SummaryBlock,
   SummaryBlockContent,
   SummaryBlockHeader,
   SummaryBlockImage,
   SummaryBlockInfo,
-} from '../components/SummaryBlock/SummaryBlock.styles';
-import { TypeTagSwordAndShield } from '../components/TypeTag/TypeTagSwordShield';
-import type { CombinedPokemonData } from '../definitions/CombinedPokemonData';
+} from '@components/SummaryBlock/SummaryBlock.styles';
+import { BaseStatuses } from '@components/BaseStatus/BaseStatus';
+import { TypeTagSwordAndShield } from '@components/TypeTag/TypeTagSwordShield';
+import type { CombinedPokemonData } from '@definitions/CombinedPokemonData';
 import { fetchEnrichedPokeData } from '../gateways/poke-gateway';
 import { PageContainer } from './PageContainer.styles';
 
@@ -46,7 +47,7 @@ export const PokemonSummary = () => {
             alt={pokemonData.Pokemon.name}
           />
           <SummaryBlockInfo>
-            <h3 style={{marginTop: 0}}>Type(s)</h3>
+            <h3 style={{ marginTop: 0 }}>Type(s)</h3>
             <TypeTagSwordAndShield
               mode="row"
               types={pokemonData.Pokemon.types}
@@ -73,6 +74,7 @@ export const PokemonSummary = () => {
                 )
               ).flat()}
             />
+            <BaseStatuses statuses={pokemonData.Pokemon.stats} />
           </SummaryBlockInfo>
         </SummaryBlockContent>
       </SummaryBlock>

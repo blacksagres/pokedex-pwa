@@ -25,7 +25,7 @@ export interface StatInfo {
 }
 
 export interface Stat {
-  base_state: number;
+  base_stat: number;
   effort: number;
   stat: StatInfo
 }

@@ -28,5 +28,6 @@ module.exports = {
   alias: {
     /* ... */
     '@definitions': './src/definitions',
+    '@components': './src/components',
   },
 };
