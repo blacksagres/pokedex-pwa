@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Stat } from '@definitions/FullPokemon';
+import { StatsGauge, StatsGaugeContainer } from './StatsGaugeContainer.styles';
 
 const BaseStatusGauge = (props: { stats: Stat }) => {
   const {
@@ -34,27 +35,20 @@ const BaseStatusGauge = (props: { stats: Stat }) => {
       >
         {transforStatName(name)}
       </span>
-      <span
-        style={{
-          borderRadius: '10px',
-          display: 'block',
-          backgroundColor: 'white',
-          width: `100%`,
-        }}
-      >
-        <span
-          style={{
-            borderRadius: '10px',
-            display: 'block',
-            backgroundColor: 'orangeRed',
+      <StatsGaugeContainer>
+        <StatsGauge
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          css={{
             width: `${(base_stat / 255) * 100}%`,
-            padding: '.1rem 1rem',
-            borderBottom: '2px solid black'
+          }}
+          style={{
+            originX: 0,
           }}
         >
           {base_stat}/255
-        </span>
-      </span>
+        </StatsGauge>
+      </StatsGaugeContainer>
     </div>
   );
 };
