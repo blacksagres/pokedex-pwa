@@ -1,8 +1,9 @@
 import { styled } from '../../stitches.config';
 
-export const StyledSummaryLink = styled('span', {
-  display: 'block',
+export const StyledSummaryLink = styled('div', {
+  boxSizing: 'border-box',
   padding: '.1rem',
+  margin: '0 1rem',
   cursor: 'pointer',
 
   'div.link-bottom': {
@@ -11,6 +12,10 @@ export const StyledSummaryLink = styled('span', {
     borderRadius: '10px',
     backgroundColor: 'orangered',
     transform: 'scale(0)',
+  },
+
+  ':hover': {
+    fontWeight: 'bold',
   },
 
   ':hover div.link-bottom': {

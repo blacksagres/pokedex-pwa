@@ -58,7 +58,7 @@ export const PokemonSummary = () => {
             />
           </div>
           <SummaryBlockInfo>
-           <SummaryLinks links={['Info.', 'Stats', 'Evolution', 'Moves']} />
+           <SummaryLinks links={['Info.', 'Stats', 'Evolutions', 'Moves']} />
             {/* <h3 style={{ marginTop: 0 }}>Type(s)</h3>
             <TypeTagSwordAndShield
               mode="row"
