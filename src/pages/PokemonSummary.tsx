@@ -47,7 +47,7 @@ export const PokemonSummary = () => {
             alt={pokemonData.Pokemon.name}
           />
           <SummaryBlockInfo>
-            <h3 style={{ marginTop: 0 }}>Type(s)</h3>
+            {/* <h3 style={{ marginTop: 0 }}>Type(s)</h3>
             <TypeTagSwordAndShield
               mode="row"
               types={pokemonData.Pokemon.types}
@@ -73,7 +73,7 @@ export const PokemonSummary = () => {
                   })
                 )
               ).flat()}
-            />
+            /> */}
             <BaseStatuses statuses={pokemonData.Pokemon.stats} />
           </SummaryBlockInfo>
         </SummaryBlockContent>

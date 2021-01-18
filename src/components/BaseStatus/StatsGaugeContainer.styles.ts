@@ -9,6 +9,7 @@ export const StatsGaugeContainer = styled('span', {
 });
 
 export const StatsGauge = styled(motion.span, {
+  boxSizing: 'border-box',
   borderRadius: '10px',
   display: 'block',
   backgroundColor: 'orangeRed',
