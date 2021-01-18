@@ -15,7 +15,7 @@ export const Tag = styled(motion.div, {
 
   cursor: 'pointer',
 
-  width: '5.5rem',
+  width: '5rem',
 
   // this needs to be dynamically passed from the parent component
   // border: `.1rem solid ${typeColors[type.type.name]}`,
