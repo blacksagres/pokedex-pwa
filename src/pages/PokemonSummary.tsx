@@ -18,7 +18,6 @@ import { TypeTagSwordAndShield } from '@components/TypeTag/TypeTagSwordShield';
 import type { CombinedPokemonData } from '@definitions/CombinedPokemonData';
 import { fetchEnrichedPokeData } from '../gateways/poke-gateway';
 import { PageContainer } from './PageContainer.styles';
-import { motion } from 'framer-motion';
 import { SummaryLinks } from '@components/SummaryBlock/SummaryLinks';
 
 export const PokemonSummary = () => {
@@ -38,24 +37,44 @@ export const PokemonSummary = () => {
   /**
    * For the strengths we don't care about duplicates because
    * each move only has one type.
+   *
+   * This is a tricky function.
    */
-  const getStrengths = useCallback(
-    (pokeTypes: PokeType[]) => {
-      const resultUnduplicated: { type: { name: string } }[] = [];
+  const filterTypes = useCallback(
+    (
+      pokeTypes: PokeType[],
+      propertyToSearch: 'double_damage_to' | 'double_damage_from',
+      duplicates?: boolean
+    ) => {
+      if (duplicates) {
+        return pokeTypes
+          .map((pokeType) => pokeType.damage_relations[propertyToSearch])
+          .flat()
+          .filter((damageData, index, currentArray) => {
+            return (
+              currentArray.filter(
+                (searchableItem) => searchableItem.name === damageData.name
+              ).length > 1
+            );
+          })
+          .map((flatDamage) => ({ type: { name: flatDamage.name } }));
+      }
+
+      const result: { type: { name: string } }[] = [];
 
       pokeTypes.forEach((pokeType) => {
-        pokeType.damage_relations.double_damage_to.forEach((damageTo) => {
+        pokeType.damage_relations[propertyToSearch].forEach((damageTo) => {
           if (
-            resultUnduplicated.find(
+            result.find(
               (unduplicated) => unduplicated.type.name === damageTo.name
             )
           )
             return;
-          resultUnduplicated.push({ type: { name: damageTo.name } });
+          result.push({ type: { name: damageTo.name } });
         });
       });
 
-      return resultUnduplicated;
+      return result;
     },
     [pokemonData]
   );
@@ -94,21 +113,27 @@ export const PokemonSummary = () => {
             />
             {currentTab === 'Info.' && (
               <>
-                <h3>Strong versus</h3>
+                <h4>Strong versus</h4>
                 <TypeTagSwordAndShield
                   mode="row"
-                  types={getStrengths(pokemonData.PokeTypes)}
+                  types={filterTypes(pokemonData.PokeTypes, 'double_damage_to')}
                 />
-                <h3>Weak versus</h3>
+                <h4>Weak versus</h4>
                 <TypeTagSwordAndShield
                   mode="row"
-                  types={pokemonData.PokeTypes.map((pokeType) =>
-                    pokeType.damage_relations.double_damage_from.map(
-                      (typeDoubleDamage: DoubleDamageFrom) => ({
-                        type: { name: typeDoubleDamage.name },
-                      })
-                    )
-                  ).flat()}
+                  types={filterTypes(
+                    pokemonData.PokeTypes,
+                    'double_damage_from'
+                  )}
+                />
+                <h4>Very weak versus</h4>
+                <TypeTagSwordAndShield
+                  mode="row"
+                  types={filterTypes(
+                    pokemonData.PokeTypes,
+                    'double_damage_from',
+                    true
+                  )}
                 />
               </>
             )}
