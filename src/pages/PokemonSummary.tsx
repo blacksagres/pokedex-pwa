@@ -64,34 +64,33 @@ export const PokemonSummary = () => {
               setCurrentTab={setCurrentTab}
               links={['Info.', 'Stats', 'Evolutions', 'Moves']}
             />
-            {/* <h3 style={{ marginTop: 0 }}>Type(s)</h3>
-            <TypeTagSwordAndShield
-              mode="row"
-              types={pokemonData.Pokemon.types}
-            />
-            <h3>Strong versus</h3>
-            <TypeTagSwordAndShield
-              mode="row"
-              types={pokemonData.PokeTypes.map((pokeType) =>
-                pokeType.damage_relations.double_damage_to.map(
-                  (typeDoubleDamage: DoubleDamageTo) => ({
-                    type: { name: typeDoubleDamage.name },
-                  })
-                )
-              ).flat()}
-            />
-            <h3>Weak versus</h3>
-            <TypeTagSwordAndShield
-              mode="row"
-              types={pokemonData.PokeTypes.map((pokeType) =>
-                pokeType.damage_relations.double_damage_from.map(
-                  (typeDoubleDamage: DoubleDamageFrom) => ({
-                    type: { name: typeDoubleDamage.name },
-                  })
-                )
-              ).flat()}
-            /> */}
-            <BaseStatuses statuses={pokemonData.Pokemon.stats} />
+            {currentTab === "Info." && (
+              <>
+                <h3>Strong versus</h3>
+                <TypeTagSwordAndShield
+                  mode="row"
+                  types={pokemonData.PokeTypes.map((pokeType) =>
+                    pokeType.damage_relations.double_damage_to.map(
+                      (typeDoubleDamage: DoubleDamageTo) => ({
+                        type: { name: typeDoubleDamage.name },
+                      })
+                    )
+                  ).flat()}
+                />
+                <h3>Weak versus</h3>
+                <TypeTagSwordAndShield
+                  mode="row"
+                  types={pokemonData.PokeTypes.map((pokeType) =>
+                    pokeType.damage_relations.double_damage_from.map(
+                      (typeDoubleDamage: DoubleDamageFrom) => ({
+                        type: { name: typeDoubleDamage.name },
+                      })
+                    )
+                  ).flat()}
+                />
+              </>
+            )}
+            {currentTab === "Stats" && <BaseStatuses statuses={pokemonData.Pokemon.stats} />}
           </SummaryBlockInfo>
         </SummaryBlockContent>
       </SummaryBlock>
