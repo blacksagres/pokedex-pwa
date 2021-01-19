@@ -48,7 +48,7 @@ export const fetchEvolutionData = async ({
   const speciesData = await fetch(speciesUrl).then(
     (result) => result.json() as Promise<PokemonSpecies>
   );
-  
+
   // Maybe only look backwards?
   const evolution = await fetch(speciesData.evolution_chain.url).then(
     (result) => result.json() as Promise<PokemonEvolutionChain>
@@ -74,12 +74,14 @@ export const fetchEnrichedPokeData = async ({
   );
 
   const typeData = await Promise.all(typeDataPromises);
-  const evolutionData = await fetchEvolutionData({
+
+  const { evolvesFrom = null } = await fetchEvolutionData({
     speciesUrl: pokemon.species.url,
   });
 
   return {
     Pokemon: pokemon,
     PokeTypes: typeData,
+    EvolvesFrom: evolvesFrom,
   };
 };

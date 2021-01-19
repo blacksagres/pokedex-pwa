@@ -1,7 +1,8 @@
-import type { FullPokemon } from "./FullPokemon";
-import type { PokeType } from "./PokemonType";
+import type { FullPokemon } from './FullPokemon';
+import type { PokeType } from './PokemonType';
 
 export interface CombinedPokemonData {
-    Pokemon: FullPokemon;
-    PokeTypes: PokeType[];
+  Pokemon: FullPokemon;
+  PokeTypes: PokeType[];
+  EvolvesFrom: FullPokemon | null;
 }
