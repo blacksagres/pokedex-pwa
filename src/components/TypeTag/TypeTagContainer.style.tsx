@@ -12,7 +12,7 @@ export const TypeTagContainer = styled('div', {
         flexDirection: 'row',
         justifyContent: 'start',
         flexWrap: 'wrap',
-      },
+      }
     },
   },
 });

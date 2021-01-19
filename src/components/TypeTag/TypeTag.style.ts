@@ -8,24 +8,18 @@ export const Tag = styled(motion.div, {
   alignItems: 'center',
   justifyContent: 'flex-start',
 
-  padding: '.3rem',
+  padding: '.25rem',
 
   color: 'white',
   textAlign: 'center',
 
   cursor: 'pointer',
 
-  width: '5rem',
-
-  // this needs to be dynamically passed from the parent component
-  // border: `.1rem solid ${typeColors[type.type.name]}`,
-  borderLeft: '1.8rem',
+  width: '4.5rem',
 
   fontSize: '.7rem',
   textTransform: 'capitalize',
   textShadow: '1px 1px 1px #000',
-
-  background: `#333`,
 
   borderRadius: '.5rem',
 
@@ -51,6 +45,7 @@ export const Tag = styled(motion.div, {
   },
 
   md: {
+    padding: '.3rem',
     width: '6.5rem',
     fontSize: '.9rem',
   },
