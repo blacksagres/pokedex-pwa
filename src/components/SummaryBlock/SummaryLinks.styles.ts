@@ -5,7 +5,7 @@ export const HoverBar = styled('div', {
   height: '.2rem',
   borderRadius: '10px',
   backgroundColor: 'orangered',
-  transform: 'scale(0)',
+  transform: 'scaleX(0)',
 });
 
 export const StyledSummaryLink = styled('div', {
