@@ -22,6 +22,7 @@ import { SummaryLinks } from '@components/SummaryBlock/SummaryLinks';
 
 export const PokemonSummary = () => {
   const [pokemonData, setPokemonData] = useState<CombinedPokemonData | null>();
+  const [currentTab, setCurrentTab] = useState('Info.')
   const { pokemon } = useParams<{ pokemon: string }>();
 
   useEffect(() => {
@@ -33,7 +34,7 @@ export const PokemonSummary = () => {
   }, []);
 
   if (!pokemonData) return null;
-  console.log('HOI', pokemonData);
+
   return (
     <PageContainer exit={{ opacity: 0 }} animate={{ opacity: 1 }}>
       {/* <TranslateDown exit={{ height: '100vh' }} animate={{ height: '0' }} /> */}
@@ -58,7 +59,11 @@ export const PokemonSummary = () => {
             />
           </div>
           <SummaryBlockInfo>
-           <SummaryLinks links={['Info.', 'Stats', 'Evolutions', 'Moves']} />
+            <SummaryLinks
+              currentTab={currentTab}
+              setCurrentTab={setCurrentTab}
+              links={['Info.', 'Stats', 'Evolutions', 'Moves']}
+            />
             {/* <h3 style={{ marginTop: 0 }}>Type(s)</h3>
             <TypeTagSwordAndShield
               mode="row"

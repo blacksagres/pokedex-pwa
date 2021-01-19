@@ -1,25 +1,37 @@
 import { styled } from '../../stitches.config';
 
+export const HoverBar = styled('div', {
+  transition: 'transform .2s ease-in-out',
+  height: '.2rem',
+  borderRadius: '10px',
+  backgroundColor: 'orangered',
+  transform: 'scale(0)',
+});
+
 export const StyledSummaryLink = styled('div', {
   boxSizing: 'border-box',
-  padding: '.1rem',
-  margin: '0 1rem',
+  padding: '1rem',
   cursor: 'pointer',
-
-  'div.link-bottom': {
-    transition: 'transform .2s ease-in-out',
-    height: '.2rem',
-    borderRadius: '10px',
-    backgroundColor: 'orangered',
-    transform: 'scale(0)',
-  },
+  opacity: '.8',
 
   ':hover': {
-    fontWeight: 'bold',
+    opacity: '1',
   },
 
-  ':hover div.link-bottom': {
+  [`:hover ${HoverBar}`]: {
     transform: 'scaleX(1)',
+  },
+
+  variants: {
+    isCurrent: {
+      true: {
+        opacity: 1,
+
+        [`${HoverBar}`]: {
+          transform: 'scaleX(1)',
+        },
+      },
+    },
   },
 });
 

@@ -1,12 +1,14 @@
 import React from 'react';
-import { StyledSummaryLink, StyledSummaryLinks } from "./SummaryLinks.styles";
+import { HoverBar, StyledSummaryLink, StyledSummaryLinks } from "./SummaryLinks.styles";
 
-export const SummaryLinks = (props: { links: string[] }) => {
-  const { links } = props;
+export const SummaryLinks = (props: { links: string[], currentTab: string, setCurrentTab: (tab: string) => void }) => {
+  const { links, setCurrentTab, currentTab } = props;
   return <StyledSummaryLinks>
-    {links.map(link => <StyledSummaryLink>
-      <span>{link}</span>
-      <div className="link-bottom" />
-    </StyledSummaryLink>)}
+    {links.map(link => (
+      <StyledSummaryLink isCurrent={link === currentTab} onClick={() => setCurrentTab(link)}>
+        <span>{link}</span>
+        <HoverBar />
+      </StyledSummaryLink>
+    ))}
   </StyledSummaryLinks>
 }
