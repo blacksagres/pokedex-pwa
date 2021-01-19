@@ -53,7 +53,7 @@ const BaseStatusGauge = (props: { stats: Stat }) => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.5 }}
           >
-            {base_stat}/255
+            {base_stat}
           </motion.span>
         </StatsGauge>
       </StatsGaugeContainer>
