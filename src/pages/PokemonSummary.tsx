@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import type {
   DoubleDamageFrom,
   DoubleDamageTo,
+  PokeType,
 } from '@definitions/PokemonType';
 
 import {
@@ -33,6 +34,23 @@ export const PokemonSummary = () => {
       setPokemonData(pokeResult)
     });
   }, []);
+
+  /**
+   * For the strengths we don't care about duplicates because
+   * each move only has one type.
+   */
+  const getStrengths = useCallback((pokeTypes: PokeType[]) => {
+    const resultUnduplicated: { type: { name: string } }[] = [];
+
+    pokeTypes.forEach((pokeType) => {
+      pokeType.damage_relations.double_damage_to.forEach((damageTo => {
+        if (resultUnduplicated.find(unduplicated => unduplicated.type.name === damageTo.name)) return;
+        resultUnduplicated.push({ type: { name: damageTo.name } })
+      }))
+    });
+
+    return resultUnduplicated;
+  }, [pokemonData])
 
   if (!pokemonData) return null;
 
@@ -70,13 +88,7 @@ export const PokemonSummary = () => {
                 <h3>Strong versus</h3>
                 <TypeTagSwordAndShield
                   mode="row"
-                  types={pokemonData.PokeTypes.map((pokeType) =>
-                    pokeType.damage_relations.double_damage_to.map(
-                      (typeDoubleDamage: DoubleDamageTo) => ({
-                        type: { name: typeDoubleDamage.name },
-                      })
-                    )
-                  ).flat()}
+                  types={getStrengths(pokemonData.PokeTypes)}
                 />
                 <h3>Weak versus</h3>
                 <TypeTagSwordAndShield
