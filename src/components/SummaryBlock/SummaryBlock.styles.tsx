@@ -37,7 +37,11 @@ export const SummaryBlockInfo = styled('div', {
   borderRadius: '$card',
   backgroundColor: '#eee',
   padding: '1rem',
-  // border: '2px solid black'
+  // border: '2px solid black',
+
+  md: {
+    padding: '2rem',
+  },
 });
 
 export const SummaryBlockContent = styled('div', {

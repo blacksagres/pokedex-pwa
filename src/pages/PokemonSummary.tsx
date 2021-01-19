@@ -23,7 +23,7 @@ import { SummaryLinks } from '@components/SummaryBlock/SummaryLinks';
 
 export const PokemonSummary = () => {
   const [pokemonData, setPokemonData] = useState<CombinedPokemonData | null>();
-  const [currentTab, setCurrentTab] = useState('Info.')
+  const [currentTab, setCurrentTab] = useState('Info.');
   const { pokemon } = useParams<{ pokemon: string }>();
 
   useEffect(() => {
@@ -31,7 +31,7 @@ export const PokemonSummary = () => {
     fetchEnrichedPokeData({ pokemonName: pokemon }).then((pokeResult) => {
       console.log(pokeResult);
 
-      setPokemonData(pokeResult)
+      setPokemonData(pokeResult);
     });
   }, []);
 
@@ -39,18 +39,26 @@ export const PokemonSummary = () => {
    * For the strengths we don't care about duplicates because
    * each move only has one type.
    */
-  const getStrengths = useCallback((pokeTypes: PokeType[]) => {
-    const resultUnduplicated: { type: { name: string } }[] = [];
+  const getStrengths = useCallback(
+    (pokeTypes: PokeType[]) => {
+      const resultUnduplicated: { type: { name: string } }[] = [];
 
-    pokeTypes.forEach((pokeType) => {
-      pokeType.damage_relations.double_damage_to.forEach((damageTo => {
-        if (resultUnduplicated.find(unduplicated => unduplicated.type.name === damageTo.name)) return;
-        resultUnduplicated.push({ type: { name: damageTo.name } })
-      }))
-    });
+      pokeTypes.forEach((pokeType) => {
+        pokeType.damage_relations.double_damage_to.forEach((damageTo) => {
+          if (
+            resultUnduplicated.find(
+              (unduplicated) => unduplicated.type.name === damageTo.name
+            )
+          )
+            return;
+          resultUnduplicated.push({ type: { name: damageTo.name } });
+        });
+      });
 
-    return resultUnduplicated;
-  }, [pokemonData])
+      return resultUnduplicated;
+    },
+    [pokemonData]
+  );
 
   if (!pokemonData) return null;
 
@@ -70,8 +78,9 @@ export const PokemonSummary = () => {
           />
           <div
             style={{
-              margin: '0 auto 1rem auto'
-            }}>
+              margin: '0 auto 1rem auto',
+            }}
+          >
             <TypeTagSwordAndShield
               mode="row"
               types={pokemonData.Pokemon.types}
@@ -83,7 +92,7 @@ export const PokemonSummary = () => {
               setCurrentTab={setCurrentTab}
               links={['Info.', 'Stats', 'Evolutions', 'Moves']}
             />
-            {currentTab === "Info." && (
+            {currentTab === 'Info.' && (
               <>
                 <h3>Strong versus</h3>
                 <TypeTagSwordAndShield
@@ -103,7 +112,9 @@ export const PokemonSummary = () => {
                 />
               </>
             )}
-            {currentTab === "Stats" && <BaseStatuses statuses={pokemonData.Pokemon.stats} />}
+            {currentTab === 'Stats' && (
+              <BaseStatuses statuses={pokemonData.Pokemon.stats} />
+            )}
           </SummaryBlockInfo>
         </SummaryBlockContent>
       </SummaryBlock>

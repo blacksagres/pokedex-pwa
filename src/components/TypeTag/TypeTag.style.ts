@@ -25,7 +25,7 @@ export const Tag = styled(motion.div, {
 
   position: 'relative',
 
-  margin: '.25rem',
+  margin: '0 .25rem .25rem 0 ',
 
   img: {
     height: '1rem',

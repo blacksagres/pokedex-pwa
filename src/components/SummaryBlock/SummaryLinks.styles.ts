@@ -40,7 +40,6 @@ export const StyledSummaryLinks = styled('div', {
   justifyContent: 'space-around',
 
   md: {
-    padding: '0 1rem',
     justifyContent: 'space-between',
   },
 });
