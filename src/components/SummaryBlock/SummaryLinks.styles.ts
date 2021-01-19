@@ -10,7 +10,6 @@ export const HoverBar = styled('div', {
 
 export const StyledSummaryLink = styled('div', {
   boxSizing: 'border-box',
-  padding: '1rem',
   cursor: 'pointer',
   opacity: '.8',
 
@@ -36,6 +35,12 @@ export const StyledSummaryLink = styled('div', {
 });
 
 export const StyledSummaryLinks = styled('div', {
+  boxSizing: 'border-box',
   display: 'flex',
   justifyContent: 'space-around',
+
+  md: {
+    padding: '0 1rem',
+    justifyContent: 'space-between',
+  },
 });
