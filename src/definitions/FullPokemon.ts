@@ -40,6 +40,11 @@ export interface TypeOnFullPokemon {
   type: TypeInfo
 }
 
+export interface Species {
+  name: string;
+  url: string;
+}
+
 export interface FullPokemon {
   id: number;
   name: string;
@@ -51,4 +56,5 @@ export interface FullPokemon {
   height: number;
   types: TypeOnFullPokemon[];
   weight: number;
+  species: Species;
 }

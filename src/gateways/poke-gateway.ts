@@ -1,8 +1,10 @@
 import { endpoint } from './poke-config';
 import { getCachedObject, setCachedObject } from './poke-cacher';
-import type {FullPokemon } from '../definitions/FullPokemon';
+import type { FullPokemon } from '../definitions/FullPokemon';
 import type { CombinedPokemonData } from '../definitions/CombinedPokemonData';
 import type { PokeType } from '../definitions/PokemonType';
+import type { PokemonSpecies } from '@definitions/PokemonSpecies';
+import type { PokemonEvolutionChain } from '@definitions/PokemonEvolutionChain';
 
 // export const fetchAllPokemonNames = (): Promise<string[]> {
 //   while (true) {}
@@ -25,11 +27,7 @@ export const fetchPokemon = ({
     });
 };
 
-export const fetchTypes = ({
-  type,
-}: {
-  type: string;
-}): Promise<PokeType> => {
+export const fetchTypes = ({ type }: { type: string }): Promise<PokeType> => {
   const cachedType = getCachedObject<PokeType>(type);
 
   if (cachedType) return Promise.resolve(cachedType);
@@ -42,6 +40,29 @@ export const fetchTypes = ({
     });
 };
 
+export const fetchEvolutionData = async ({
+  speciesUrl,
+}: {
+  speciesUrl: string;
+}) => {
+  const speciesData = await fetch(speciesUrl).then(
+    (result) => result.json() as Promise<PokemonSpecies>
+  );
+  
+  // Maybe only look backwards?
+  const evolution = await fetch(speciesData.evolution_chain.url).then(
+    (result) => result.json() as Promise<PokemonEvolutionChain>
+  );
+
+  return {
+    evolvesFrom: speciesData.evolves_from_species
+      ? await fetchPokemon({
+          pokemonName: speciesData.evolves_from_species.name,
+        })
+      : null,
+  };
+};
+
 export const fetchEnrichedPokeData = async ({
   pokemonName,
 }: {
@@ -51,10 +72,14 @@ export const fetchEnrichedPokeData = async ({
   const typeDataPromises = pokemon.types.map((type) =>
     fetchTypes({ type: type.type.name })
   );
+
   const typeData = await Promise.all(typeDataPromises);
+  const evolutionData = await fetchEvolutionData({
+    speciesUrl: pokemon.species.url,
+  });
 
   return {
     Pokemon: pokemon,
-    PokeTypes: typeData
+    PokeTypes: typeData,
   };
 };
