@@ -34,6 +34,12 @@ export const PokemonSummary = () => {
     });
   }, []);
 
+  // From the api docs: The height of this Pokémon in decimetres.
+  const parseHeight = (pokeHeight: number) => pokeHeight / 10;
+
+  // From the api docs: The height of this Pokémon in hectograms.
+  const parseWeight = (pokeWeight: number) => pokeWeight / 10;
+
   /**
    * For the strengths we don't care about duplicates because
    * each move only has one type.
@@ -130,6 +136,12 @@ export const PokemonSummary = () => {
             />
             {currentTab === 'Info.' && (
               <>
+                <h4 style={{ marginBottom: 0 }}>
+                  Height: {parseHeight(pokemonData.Pokemon.height)}m
+                </h4>
+                <h4 style={{ marginBottom: 0, marginTop: 0 }}>
+                  Weight: {parseWeight(pokemonData.Pokemon.weight)}kg
+                </h4>
                 <h4>Strong versus</h4>
                 <TypeTagSwordAndShield
                   mode="row"
@@ -154,7 +166,8 @@ export const PokemonSummary = () => {
             {currentTab === 'Stats' && (
               <BaseStatuses statuses={pokemonData.Pokemon.stats} />
             )}
-             {currentTab === 'Evolutions' && `${pokemonData.Pokemon.name} has no evolutions.`}
+            {currentTab === 'Evolutions' &&
+              `${pokemonData.Pokemon.name} has no evolutions.`}
           </SummaryBlockInfo>
         </SummaryBlockContent>
       </SummaryBlock>
