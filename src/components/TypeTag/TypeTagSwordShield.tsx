@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { generate as generateNewId } from 'shortid';
 import { typeColors } from '../../dynamic-styling/colors';
 import { TypeTagContainer } from './TypeTagContainer.style';
@@ -13,7 +13,7 @@ type TypeTagSwordShieldProps = {
   mode?: "row";
 }
 
-export const TypeTagSwordAndShield = ({ types, mode }: TypeTagSwordShieldProps) => {
+export const TypeTagSwordAndShield = memo(({ types, mode }: TypeTagSwordShieldProps) => {
   const history = useHistory();
 
   // TODO: animate everytime?
@@ -55,4 +55,4 @@ export const TypeTagSwordAndShield = ({ types, mode }: TypeTagSwordShieldProps) 
   return (
     <TypeTagContainer mode={mode}>{types.map(getTypeTag)}</TypeTagContainer>
   );
-};
+});
