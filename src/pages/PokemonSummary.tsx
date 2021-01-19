@@ -154,6 +154,7 @@ export const PokemonSummary = () => {
             {currentTab === 'Stats' && (
               <BaseStatuses statuses={pokemonData.Pokemon.stats} />
             )}
+             {currentTab === 'Evolutions' && `${pokemonData.Pokemon.name} has no evolutions.`}
           </SummaryBlockInfo>
         </SummaryBlockContent>
       </SummaryBlock>
