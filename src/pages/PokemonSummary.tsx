@@ -143,7 +143,7 @@ export const PokemonSummary = () => {
                     'double_damage_from'
                   )}
                 />
-                {veryWeakTo.length && (
+                {veryWeakTo.length > 0 && (
                   <>
                     <h4>Very weak to (4x damage from)</h4>
                     <TypeTagSwordAndShield mode="row" types={veryWeakTo} />
