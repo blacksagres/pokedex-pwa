@@ -5,7 +5,7 @@ export const SummaryLinks = (props: { links: string[], currentTab: string, setCu
   const { links, setCurrentTab, currentTab } = props;
   return <StyledSummaryLinks>
     {links.map(link => (
-      <StyledSummaryLink isCurrent={link === currentTab} onClick={() => setCurrentTab(link)}>
+      <StyledSummaryLink key={`summary-link-${link}`} isCurrent={link === currentTab} onClick={() => setCurrentTab(link)}>
         <span>{link}</span>
         <HoverBar />
       </StyledSummaryLink>

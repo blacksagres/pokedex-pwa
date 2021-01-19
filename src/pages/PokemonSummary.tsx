@@ -26,11 +26,12 @@ export const PokemonSummary = () => {
   const { pokemon } = useParams<{ pokemon: string }>();
 
   useEffect(() => {
-    console.log(pokemon);
     if (!pokemon) return;
-    fetchEnrichedPokeData({ pokemonName: pokemon }).then((pokeResult) =>
+    fetchEnrichedPokeData({ pokemonName: pokemon }).then((pokeResult) => {
+      console.log(pokeResult);
+
       setPokemonData(pokeResult)
-    );
+    });
   }, []);
 
   if (!pokemonData) return null;

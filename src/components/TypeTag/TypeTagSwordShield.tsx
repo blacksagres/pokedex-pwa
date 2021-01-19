@@ -1,4 +1,5 @@
 import React from 'react';
+import { generate as generateNewId } from 'shortid';
 import { typeColors } from '../../dynamic-styling/colors';
 import { TypeTagContainer } from './TypeTagContainer.style';
 import { Tag } from './TypeTag.style';
@@ -24,7 +25,7 @@ export const TypeTagSwordAndShield = ({ types, mode }: TypeTagSwordShieldProps) 
       ":hover": {
         background: typeColors[type.type.name],
       },
-    }} key={type.type.name} onClick={(event: any) => {
+    }} key={`type.type.name-${generateNewId()}`} onClick={(event: any) => {
       event.stopPropagation();
       history.push(`/type-summary/${type.type.name}`);
     }}>
