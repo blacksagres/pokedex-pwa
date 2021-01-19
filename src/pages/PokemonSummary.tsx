@@ -49,24 +49,26 @@ export const PokemonSummary = () => {
       const seen = new Set();
 
       if (duplicates) {
-        return pokeTypes
-          .map((pokeType) => pokeType.damage_relations[propertyToSearch])
-          .flat()
-          // get the duplicates from the array
-          .filter((damageData, index, currentArray) => {
-            return (
-              currentArray.filter(
-                (searchableItem) => searchableItem.name === damageData.name
-              ).length > 1
-            );
-          })
-          // remove duplicates from the duplicates
-          .filter((damageData) => {
-            const duplicate = seen.has(damageData.name);
-            seen.add(damageData.name);
-            return !duplicate;
-          })
-          .map((flatDamage) => ({ type: { name: flatDamage.name } }));
+        return (
+          pokeTypes
+            .map((pokeType) => pokeType.damage_relations[propertyToSearch])
+            .flat()
+            // get the duplicates from the array
+            .filter((damageData, index, currentArray) => {
+              return (
+                currentArray.filter(
+                  (searchableItem) => searchableItem.name === damageData.name
+                ).length > 1
+              );
+            })
+            // remove duplicates from the duplicates
+            .filter((damageData) => {
+              const duplicate = seen.has(damageData.name);
+              seen.add(damageData.name);
+              return !duplicate;
+            })
+            .map((flatDamage) => ({ type: { name: flatDamage.name } }))
+        );
       }
 
       const result: { type: { name: string } }[] = [];
@@ -89,6 +91,12 @@ export const PokemonSummary = () => {
   );
 
   if (!pokemonData) return null;
+
+  const veryWeakTo = filterTypes(
+    pokemonData.PokeTypes,
+    'double_damage_from',
+    true
+  );
 
   return (
     <PageContainer exit={{ opacity: 0 }} animate={{ opacity: 1 }}>
@@ -135,18 +143,10 @@ export const PokemonSummary = () => {
                     'double_damage_from'
                   )}
                 />
-                {filterTypes(pokemonData.PokeTypes, 'double_damage_from', true)
-                  .length > 0 && (
+                {veryWeakTo.length && (
                   <>
                     <h4>Very weak to (4x damage from)</h4>
-                    <TypeTagSwordAndShield
-                      mode="row"
-                      types={filterTypes(
-                        pokemonData.PokeTypes,
-                        'double_damage_from',
-                        true
-                      )}
-                    />
+                    <TypeTagSwordAndShield mode="row" types={veryWeakTo} />
                   </>
                 )}
               </>
