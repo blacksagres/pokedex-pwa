@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import type {
   DoubleDamageFrom,
   DoubleDamageTo,
@@ -23,6 +23,7 @@ import { SummaryLinks } from '@components/SummaryBlock/SummaryLinks';
 export const PokemonSummary = () => {
   const [pokemonData, setPokemonData] = useState<CombinedPokemonData | null>();
   const [currentTab, setCurrentTab] = useState('Info.');
+  const history = useHistory();
   const { pokemon } = useParams<{ pokemon: string }>();
 
   useEffect(() => {
@@ -166,8 +167,29 @@ export const PokemonSummary = () => {
             {currentTab === 'Stats' && (
               <BaseStatuses statuses={pokemonData.Pokemon.stats} />
             )}
-            {currentTab === 'Evolutions' &&
-              `${pokemonData.Pokemon.name} has no evolutions.`}
+            {currentTab === 'Evolutions' && pokemonData.EvolvesFrom && (
+              <>
+                <h5>Evolves from:</h5>
+                <SummaryBlockImage
+                  initial={{
+                    y: -10,
+                    opacity: 0,
+                  }}
+                  animate={{
+                    y: 0,
+                    opacity: 1,
+                  }}
+                  css={{
+                    cursor: 'pointer',
+                  }}
+                  onClick={() =>
+                    history.push(`/summary/${pokemonData.EvolvesFrom!.name}`)
+                  }
+                  src={pokemonData.EvolvesFrom.sprites.front_default}
+                  alt={pokemonData.EvolvesFrom.name}
+                />
+              </>
+            )}
           </SummaryBlockInfo>
         </SummaryBlockContent>
       </SummaryBlock>

@@ -19,7 +19,7 @@ export const SummaryBlock = styled(motion.div, {
   },
 });
 
-export const SummaryBlockImage = styled('img', {
+export const SummaryBlockImage = styled(motion.img, {
   display: 'block',
   height: '10rem',
   margin: '0 auto',
