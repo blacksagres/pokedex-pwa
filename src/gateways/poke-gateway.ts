@@ -6,9 +6,12 @@ import type { PokeType } from '../definitions/PokemonType';
 import type { PokemonSpecies } from '@definitions/PokemonSpecies';
 import type { PokemonEvolutionChain } from '@definitions/PokemonEvolutionChain';
 
-// export const fetchAllPokemonNames = (): Promise<string[]> {
-//   while (true) {}
-// }
+export const fetchAllPokemonNames = (): Promise<string[]> => {
+  return fetch(`${endpoint.url}pokemon/?limit=20&offset=20`)
+      .then((result) => result.json())
+      .then((jsonResult) => jsonResult.results.map((pkmn: any) => pkmn.name)
+      )
+}
 
 export const fetchPokemon = ({
   pokemonName,
