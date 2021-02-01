@@ -6,12 +6,42 @@ import type { PokeType } from '../definitions/PokemonType';
 import type { PokemonSpecies } from '@definitions/PokemonSpecies';
 import type { PokemonEvolutionChain } from '@definitions/PokemonEvolutionChain';
 
+export type TrimmedPokemonData = Pick<
+  FullPokemon,
+  'name' | 'types' | 'id' | 'sprites'
+>;
+
 export const fetchAllPokemonNames = (): Promise<string[]> => {
-  return fetch(`${endpoint.url}pokemon/?limit=20&offset=20`)
-      .then((result) => result.json())
-      .then((jsonResult) => jsonResult.results.map((pkmn: any) => pkmn.name)
-      )
-}
+  return fetch(`${endpoint.url}pokemon/?limit=150`)
+    .then((result) => result.json())
+    .then((jsonResult) => jsonResult.results.map((pkmn: any) => pkmn.name));
+};
+
+export const fetchPokemonForOverview = ({
+  pokemonName,
+}: {
+  pokemonName: string;
+}): Promise<TrimmedPokemonData> => {
+  const cachedPokemon = getCachedObject<TrimmedPokemonData>(
+    `trimmed-data-${pokemonName}`
+  );
+
+  console.log('fetching for overview', cachedPokemon);
+
+  if (cachedPokemon) return Promise.resolve(cachedPokemon);
+
+  return fetch(`${endpoint.url}pokemon/${pokemonName}`)
+    .then((result) => result.json())
+    .then(({ id, name, types, sprites }: TrimmedPokemonData) => {
+      setCachedObject(`trimmed-data-${pokemonName}`, {
+        id,
+        name,
+        types,
+        sprites,
+      });
+      return { id, name, types, sprites };
+    });
+};
 
 export const fetchPokemon = ({
   pokemonName,

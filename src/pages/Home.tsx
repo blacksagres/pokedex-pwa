@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import {fetchAllPokemonNames, fetchEnrichedPokeData } from '../gateways/poke-gateway';
+import {fetchAllPokemonNames, fetchPokemonForOverview, TrimmedPokemonData } from '../gateways/poke-gateway';
 import { motion } from 'framer-motion';
 import { PokeOverviewGrid } from '../components/PokeOverviewGrid/PokeOverviewGrid';
-import type { CombinedPokemonData } from '../definitions/CombinedPokemonData';
 import { SearchInput } from '../components/SearchInput/SearchInput';
 
 export const Home = () => {
-    const [fetchedPokemon, setFetchedPokemon] = useState<CombinedPokemonData[]>([]);
-    const [filteredPokemon, setFilteredPokemon] = useState<CombinedPokemonData[]>([]);
+    const [fetchedPokemon, setFetchedPokemon] = useState<TrimmedPokemonData[]>([]);
+    const [filteredPokemon, setFilteredPokemon] = useState<TrimmedPokemonData[]>([]);
 
   useEffect(() => {
       const fetchAll = async () => {
           const pkmnNames = await fetchAllPokemonNames();
           Promise.all(pkmnNames.map((pokemon) => {
-                  return fetchEnrichedPokeData({ pokemonName: pokemon });
+                  return fetchPokemonForOverview({ pokemonName: pokemon });
               })
           ).then((result) => {
               setFetchedPokemon(result);

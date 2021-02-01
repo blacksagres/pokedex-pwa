@@ -1,10 +1,11 @@
 import type { CombinedPokemonData } from '@definitions/CombinedPokemonData';
+import type { TrimmedPokemonData } from 'gateways/poke-gateway';
 import React, { useState } from 'react';
 import { CustomInput } from './CustomInput.styles'
 
 type SearchInputProps = {
-    fetchedPokemon: CombinedPokemonData[]
-    onChange: (pkmn: CombinedPokemonData[]) => void;
+    fetchedPokemon: TrimmedPokemonData[]
+    onChange: (pkmn: TrimmedPokemonData[]) => void;
 }
 
 export const SearchInput = ({ fetchedPokemon, onChange }: SearchInputProps) => {
@@ -18,7 +19,7 @@ export const SearchInput = ({ fetchedPokemon, onChange }: SearchInputProps) => {
             return;
         }
 
-        const newPkmnData = fetchedPokemon.filter(pkmn => pkmn.Pokemon.name.includes(searchValue.toLowerCase()));
+        const newPkmnData = fetchedPokemon.filter(pkmn => pkmn.name.includes(searchValue.toLowerCase()));
         onChange(newPkmnData);
     }
 

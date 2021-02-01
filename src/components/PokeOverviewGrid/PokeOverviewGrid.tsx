@@ -1,11 +1,11 @@
+import type { TrimmedPokemonData } from 'gateways/poke-gateway';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import type { CombinedPokemonData } from '../../definitions/CombinedPokemonData';
 import { PokeCard } from '../PokeCard/PokeCard';
 import { StyledGrid } from './StyledGrid.styles';
 
 interface IPokeOverviewGridProps {
-  pokemons: CombinedPokemonData[];
+  pokemons: TrimmedPokemonData[];
 }
 
 export const PokeOverviewGrid: React.FC<IPokeOverviewGridProps> = (props) => {
@@ -31,11 +31,11 @@ export const PokeOverviewGrid: React.FC<IPokeOverviewGridProps> = (props) => {
           initial="downLow"
           custom={index}
           variants={variants}
-          key={data.Pokemon.name}
+          key={data.name}
           pokemonData={data}
           onClick={(event: any) => {
             event.stopPropagation();
-            history.push(`/summary/${data.Pokemon.name}`);
+            history.push(`/summary/${data.name}`);
           }}
         />
       ))}
