@@ -12,7 +12,7 @@ export type TrimmedPokemonData = Pick<
 >;
 
 export const fetchAllPokemonNames = (): Promise<string[]> => {
-  return fetch(`${endpoint.url}pokemon/?limit=150`)
+  return fetch(`${endpoint.url}pokemon/?limit=450`)
     .then((result) => result.json())
     .then((jsonResult) => jsonResult.results.map((pkmn: any) => pkmn.name));
 };
