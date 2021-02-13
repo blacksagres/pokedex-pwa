@@ -1,5 +1,5 @@
 import { endpoint } from './poke-config';
-import { getCachedObject, setCachedObject } from './poke-cacher';
+import { cachedFetchApi } from './poke-cacher';
 import type { FullPokemon } from '../definitions/FullPokemon';
 import type { CombinedPokemonData } from '../definitions/CombinedPokemonData';
 import type { PokeType } from '../definitions/PokemonType';
@@ -11,40 +11,16 @@ export type TrimmedPokemonData = Pick<
   'name' | 'types' | 'id' | 'sprites'
 >;
 
-const cachedFetchApi = async <T>(endpoint: string): Promise<T> => {
-  try {
-    const pokeCache = await caches.open('poke-cache');
-
-    const cachedResult = await pokeCache.match(endpoint);
-
-    if (cachedResult) {
-      const jsonCachedResult = (await cachedResult.json()) as T;
-      return jsonCachedResult;
-    }
-
-    const apiResponse = await fetch(endpoint);
-    // https://stackoverflow.com/q/45618984
-    // TL;DR - A request is a stream and can only be consumed once.
-    // Since we are consuming this once by cache and once by the browser for fetch,
-    // we need to clone the response.
-    pokeCache.put(endpoint, apiResponse.clone());
-
-    const jsonResult: T = await apiResponse.json();
-
-    return jsonResult;
-  } catch (error) {
-    console.error({ endpoint, error });
-    return {} as T;
-  }
-};
-
 export const fetchAllPokemonNames = async (): Promise<string[]> => {
-  // return Promise.resolve(['lickitung']);
-  const requestUrl = `${endpoint.url}pokemon/?limit=450`;
+  const requestUrl = `${endpoint.url}pokemon/?limit=150`;
   const jsonResult = await cachedFetchApi<any>(requestUrl);
-  return jsonResult.results
-    .map((pkmn: any) => pkmn.name)
-    .filter((name: string) => name !== 'lickitung');
+  return (
+    jsonResult.results
+      .map((pkmn: any) => pkmn.name)
+      // for some reason, lickitung breaks when called in the api
+      // TODO: why lickitung, why
+      .filter((name: string) => name !== 'lickitung')
+  );
 };
 
 export const fetchPokemon = async ({
