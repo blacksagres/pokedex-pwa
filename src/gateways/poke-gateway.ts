@@ -49,11 +49,13 @@ export const fetchEvolutionData = async ({
   speciesUrl: string;
 }) => {
   const speciesData = await cachedFetchApi<PokemonSpecies>(speciesUrl);
+
+  // TODO: Have to decide how to handle post evolutions
   const evolution = await cachedFetchApi<PokemonEvolutionChain>(
     speciesData.evolution_chain.url
   );
 
-  if (!evolution) return { evolvesFrom: null };
+  if (!speciesData.evolves_from_species?.name) return { evolvesFrom: null };
 
   const evolutionFrom = await fetchPokemon({
     pokemonName: speciesData.evolves_from_species.name,
