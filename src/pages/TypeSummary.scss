@@ -1,23 +1,42 @@
 
 .type-summary-content {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-evenly;
+  align-items: center;
+
+  h4 {
+    margin-bottom: 0;
+    margin-top: 0
+  }
+
+  h5 {
+    min-width: 150px;
+  }
 
   .strengths {
+    min-width: 30rem;
+    margin: 2rem;
     border-radius: 10px;
-    border: solid 3px mediumseagreen;
     padding: 1rem;
-    background-color: palegreen;
   }
 
   .weaknesses {
+    min-width: 30rem;
+    margin: 2rem;
     border-radius: 10px;
-    border: solid 3px red;
     padding: 1rem;
-    background-color: lightpink;
   }
 }
-.potato {
-    color: red;
+
+.typeSummaryContent {
+  display: flex;
+  flex-direction: column;
+
+  & div {
+    justify-content: flex-start;
+
+    & div {
+    }
+  }
 }

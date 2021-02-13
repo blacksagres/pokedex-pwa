@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 export const SummaryBlock = styled(motion.div, {
   borderRadius: '$card',
 
-  maxWidth: '600px',
+  maxWidth: '800px',
 
   transition: 'box-shadow .150s ease-in-out',
   boxShadow: '.25rem .25rem .25rem 1px rgba(0, 0, 0, .2)',
