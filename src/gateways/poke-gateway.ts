@@ -11,10 +11,24 @@ export type TrimmedPokemonData = Pick<
   'name' | 'types' | 'id' | 'sprites'
 >;
 
-export const fetchAllPokemonNames = (): Promise<string[]> => {
-  return fetch(`${endpoint.url}pokemon/?limit=450`)
-    .then((result) => result.json())
-    .then((jsonResult) => jsonResult.results.map((pkmn: any) => pkmn.name));
+export const fetchAllPokemonNames = async (): Promise<string[]> => {
+  const pokeCache = await caches.open('poke-cache');
+  const requestUrl = `${endpoint.url}pokemon/?limit=450`;
+
+  const cachedPokeNames = await pokeCache.match(
+    `${endpoint.url}pokemon/?limit=450`
+  );
+
+  if (cachedPokeNames) {
+    const jsonCachedResult = await cachedPokeNames.json();
+    return jsonCachedResult.results.map((pkmn: any) => pkmn.name);
+  }
+
+  const apiResponse = await fetch(`${endpoint.url}pokemon/?limit=450`);
+  pokeCache.put(requestUrl, apiResponse);
+
+  const jsonResult = await apiResponse.json();
+  return jsonResult.results.map((pkmn: any) => pkmn.name);
 };
 
 export const fetchPokemonForOverview = ({
@@ -26,7 +40,7 @@ export const fetchPokemonForOverview = ({
     `trimmed-data-${pokemonName}`
   );
 
-  console.log('fetching for overview', cachedPokemon);
+  // console.log('fetching for overview', cachedPokemon);
 
   if (cachedPokemon) return Promise.resolve(cachedPokemon);
 
