@@ -1,6 +1,7 @@
 import type { CombinedPokemonData } from '@definitions/CombinedPokemonData';
 import type { TrimmedPokemonData } from 'gateways/poke-gateway';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDebounce } from 'use-debounce';
 import { CustomInput } from './CustomInput.styles';
 
 type SearchInputProps = {
@@ -10,20 +11,14 @@ type SearchInputProps = {
 
 export const SearchInput = ({ fetchedPokemon, onChange }: SearchInputProps) => {
   const [searchTerm, setSearchTerm] = useState<string>('');
+  const [debouncedValue] = useDebounce(searchTerm, 300);
 
-  const handleSearch = (searchValue: string) => {
-    setSearchTerm(searchValue);
-
-    if (!searchValue) {
-      onChange(fetchedPokemon);
-      return;
-    }
-
+  useEffect(() => {
     const newPkmnData = fetchedPokemon.filter((pkmn) =>
-      pkmn.name.includes(searchValue.toLowerCase())
+      pkmn.name.includes(debouncedValue.toLowerCase())
     );
     onChange(newPkmnData);
-  };
+  }, [debouncedValue]);
 
   return (
     <div style={{ margin: '1rem 1rem 0 1rem' }}>
@@ -31,7 +26,7 @@ export const SearchInput = ({ fetchedPokemon, onChange }: SearchInputProps) => {
         css={{ letterSpacing: '.1rem' }}
         placeholder="🔎 Search for a pokemon..."
         value={searchTerm}
-        onChange={(event: any) => handleSearch(event.target.value)}
+        onChange={(event: any) => setSearchTerm(event.target.value)}
       />
     </div>
   );
