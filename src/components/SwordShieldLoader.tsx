@@ -17,7 +17,7 @@ const PokeCircle = styled(motion.div, {
     width: '3rem',
     height: '3rem',
     border: '.25rem solid black',
-  }
+  },
 });
 
 const PokeCircleMedium = styled(motion.div, {
@@ -41,7 +41,7 @@ const PokeCircleMedium = styled(motion.div, {
 
     width: '1rem',
     height: '1rem',
-  }
+  },
 });
 
 const PokeCircleSmall = styled(motion.div, {
@@ -64,7 +64,7 @@ const PokeCircleSmall = styled(motion.div, {
   md: {
     width: '.5rem',
     height: '.5rem',
-  }
+  },
 });
 
 const HalfCircle = styled('div', {
@@ -83,17 +83,22 @@ const HalfCircle = styled('div', {
     width: '3rem',
     height: '1.5rem',
     borderBottom: '.3rem solid black',
-  }
+  },
 });
 
 export const SwordAndShieldLoader = () => {
   const history = useHistory();
 
   return (
-    <PokeCircle whileTap={{ rotate: 180, scale: .8 }} onTap={() => history.push('/')}>
-      <HalfCircle data-label="half-circle" />
-      <PokeCircleMedium />
-      <PokeCircleSmall />
-    </PokeCircle>
+    <motion.div exit={{ opacity: 0 }} initial={{ opacity: 1 }}>
+      <PokeCircle
+        whileTap={{ rotate: 180, scale: 0.8 }}
+        onTap={() => history.push('/')}
+      >
+        <HalfCircle data-label="half-circle" />
+        <PokeCircleMedium />
+        <PokeCircleSmall />
+      </PokeCircle>
+    </motion.div>
   );
 };
