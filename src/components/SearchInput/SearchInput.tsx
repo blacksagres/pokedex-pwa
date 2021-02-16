@@ -5,19 +5,15 @@ import { useDebounce } from 'use-debounce';
 import { CustomInput } from './CustomInput.styles';
 
 type SearchInputProps = {
-  fetchedPokemon: TrimmedPokemonData[];
-  onChange: (pkmn: TrimmedPokemonData[]) => void;
+  onChange: (pkmn: string) => void;
 };
 
-export const SearchInput = ({ fetchedPokemon, onChange }: SearchInputProps) => {
+export const SearchInput = ({ onChange }: SearchInputProps) => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [debouncedValue] = useDebounce(searchTerm, 300);
 
   useEffect(() => {
-    const newPkmnData = fetchedPokemon.filter((pkmn) =>
-      pkmn.name.includes(debouncedValue.toLowerCase())
-    );
-    onChange(newPkmnData);
+    onChange(debouncedValue);
   }, [debouncedValue]);
 
   return (
