@@ -15,25 +15,15 @@ export const fetchAllPokemonNames = async (): Promise<string[]> => {
   const requestUrl = `${endpoint.url}pokemon/?limit=150`;
   const jsonResult = await cachedFetchApi<any>(requestUrl);
   let finalResult: any[] = jsonResult.results;
-  let maybeNext = jsonResult.next;
+  let maybeNextEndpoint = jsonResult.next;
 
-  while (!!maybeNext) {
-    const currentResult = await cachedFetchApi<any>(maybeNext);
-    maybeNext = currentResult.next;
-    console.log('have next', currentResult);
-
+  while (!!maybeNextEndpoint) {
+    const currentResult = await cachedFetchApi<any>(maybeNextEndpoint);
+    maybeNextEndpoint = currentResult.next;
     finalResult = finalResult.concat(currentResult.results);
   }
 
-  console.log(finalResult);
-
-  return (
-    finalResult
-      .map((pkmn: any) => pkmn.name)
-      // for some reason, lickitung breaks when called in the api
-      // TODO: why lickitung, why
-      .filter((name: string) => name !== 'lickitung')
-  );
+  return finalResult.map((pkmn: any) => pkmn.name);
 };
 
 export const fetchPokemon = async ({

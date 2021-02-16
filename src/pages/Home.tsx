@@ -45,7 +45,8 @@ export const Home = () => {
     fetchFilteredPokemon();
   }, [filteredPokemonNames]);
 
-  if (loading) return <SwordAndShieldLoader />;
+  // TODO: have a decent loading icon
+  // if (loading) return <SwordAndShieldLoader />;
 
   return (
     <motion.div exit={{ opacity: 0 }}>
