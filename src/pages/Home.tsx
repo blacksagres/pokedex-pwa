@@ -48,8 +48,13 @@ export const Home = () => {
       <SearchInput
         onChange={(pkmnNameSearch) => {
           setFilteredPokemonNames(
+            // TODO - handle gmax and mega forms - some of them do not have sprites
             allPokemonNames
               .filter((pkmnName: string) => pkmnName.includes(pkmnNameSearch))
+              .filter(
+                (pkmnName: string) =>
+                  !pkmnName.includes('gmax') && !pkmnName.includes('mega')
+              )
               .slice(0, 20)
           );
         }}
