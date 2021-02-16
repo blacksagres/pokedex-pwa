@@ -17,14 +17,14 @@ export const Home = () => {
 
   const { loading, value: fetchedPokemon = [], error } = useAsync(async () => {
     const pkmnNames = await fetchAllPokemonNames();
-    const allPokemons = await Promise.all(
-      pkmnNames.map((pokemon) => {
-        return fetchPokemon({ pokemonName: pokemon });
-      })
-    );
-    setFilteredPokemon(allPokemons);
+    // const allPokemons = await Promise.all(
+    //   pkmnNames.map((pokemon) => {
+    //     return fetchPokemon({ pokemonName: pokemon });
+    //   })
+    // );
+    // setFilteredPokemon(allPokemons);
 
-    return allPokemons;
+    // return allPokemons;
   }, []);
 
   if (loading) return <SwordAndShieldLoader />;

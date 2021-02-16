@@ -14,8 +14,21 @@ export type TrimmedPokemonData = Pick<
 export const fetchAllPokemonNames = async (): Promise<string[]> => {
   const requestUrl = `${endpoint.url}pokemon/?limit=150`;
   const jsonResult = await cachedFetchApi<any>(requestUrl);
+  let finalResult: any[] = jsonResult.results;
+  let maybeNext = jsonResult.next;
+
+  while (!!maybeNext) {
+    const currentResult = await cachedFetchApi<any>(maybeNext);
+    maybeNext = currentResult.next;
+    console.log('have next', currentResult);
+
+    finalResult = finalResult.concat(currentResult.results);
+  }
+
+  console.log(finalResult);
+
   return (
-    jsonResult.results
+    finalResult
       .map((pkmn: any) => pkmn.name)
       // for some reason, lickitung breaks when called in the api
       // TODO: why lickitung, why
