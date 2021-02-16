@@ -54,7 +54,9 @@ export const Home = () => {
         onChange={(pkmnNameSearch) => {
           setFilteredPokemonNames(
             allPokemonNames
-              .filter((pkmnName: string) => pkmnName.includes(pkmnNameSearch))
+              .filter((pkmnName: string) =>
+                pkmnName.toLowerCase().includes(pkmnNameSearch.toLowerCase())
+              )
               .slice(0, 20)
           );
         }}
