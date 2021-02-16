@@ -19,21 +19,18 @@ import type { CombinedPokemonData } from '@definitions/CombinedPokemonData';
 import { fetchEnrichedPokeData } from '../gateways/poke-gateway';
 import { PageContainer } from './PageContainer.styles';
 import { SummaryLinks } from '@components/SummaryBlock/SummaryLinks';
+import { useAsync } from 'react-use';
+import { PokeLoader } from '@components/PokeBallButton';
 
 export const PokemonSummary = () => {
-  const [pokemonData, setPokemonData] = useState<CombinedPokemonData | null>();
   const [currentTab, setCurrentTab] = useState('Info.');
   const history = useHistory();
   const { pokemon } = useParams<{ pokemon: string }>();
+  const { error, value: pokemonData, loading } = useAsync(async () => {
+    const pkmnNames = await fetchEnrichedPokeData({ pokemonName: pokemon });
 
-  useEffect(() => {
-    if (!pokemon) return;
-    fetchEnrichedPokeData({ pokemonName: pokemon }).then((pokeResult) => {
-      console.log(pokeResult);
-
-      setPokemonData(pokeResult);
-    });
-  }, []);
+    return pkmnNames;
+  }, [pokemon]);
 
   // From the api docs: The height of this Pokémon in decimetres.
   const parseHeight = (pokeHeight: number) => pokeHeight / 10;
@@ -97,6 +94,7 @@ export const PokemonSummary = () => {
     [pokemonData]
   );
 
+  if (loading) return <PokeLoader />;
   if (!pokemonData) return null;
 
   const veryWeakTo = filterTypes(
