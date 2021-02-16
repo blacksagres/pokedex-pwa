@@ -8,7 +8,7 @@ import { motion } from 'framer-motion';
 import { PokeOverviewGrid } from '../components/PokeOverviewGrid/PokeOverviewGrid';
 import { SearchInput } from '../components/SearchInput/SearchInput';
 import { useAsync } from 'react-use';
-import { SwordAndShieldLoader } from '@components/SwordShieldLoader';
+import { PokeBallButton, PokeBallSpinner } from '@components/PokeBallButton';
 
 export const Home = () => {
   const [filteredPokemonNames, setFilteredPokemonNames] = useState<string[]>(
@@ -19,7 +19,7 @@ export const Home = () => {
   >([]);
 
   const {
-    loading,
+    loading: loadingPokemonNames,
     value: allPokemonNames = [] as string[],
     error,
   } = useAsync(async () => {
@@ -46,7 +46,19 @@ export const Home = () => {
   }, [filteredPokemonNames]);
 
   // TODO: have a decent loading icon
-  // if (loading) return <SwordAndShieldLoader />;
+  if (true)
+    return (
+      <div
+        style={{
+          position: 'absolute',
+          transform: 'translate(-50%, -50%)',
+          top: '50%',
+          left: '50%',
+        }}
+      >
+        <PokeBallSpinner />
+      </div>
+    );
 
   return (
     <motion.div exit={{ opacity: 0 }}>

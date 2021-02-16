@@ -9,6 +9,7 @@ const PokeCircle = styled(motion.div, {
   border: '.15rem solid black',
   borderRadius: '50%',
   userSelect: 'none',
+  backgroundColor: '$almost-white',
 
   width: '2rem',
   height: '2rem',
@@ -67,7 +68,7 @@ const PokeCircleSmall = styled(motion.div, {
   },
 });
 
-const HalfCircle = styled('div', {
+const HalfCircle = styled(motion.div, {
   boxSizing: 'border-box',
 
   background:
@@ -86,7 +87,7 @@ const HalfCircle = styled('div', {
   },
 });
 
-export const SwordAndShieldLoader = () => {
+export const PokeBallButton = () => {
   const history = useHistory();
 
   return (
@@ -94,6 +95,21 @@ export const SwordAndShieldLoader = () => {
       <PokeCircle
         whileTap={{ rotate: 180, scale: 0.8 }}
         onTap={() => history.push('/')}
+      >
+        <HalfCircle data-label="half-circle" />
+        <PokeCircleMedium />
+        <PokeCircleSmall />
+      </PokeCircle>
+    </motion.div>
+  );
+};
+
+export const PokeBallSpinner = () => {
+  return (
+    <motion.div exit={{ opacity: 0 }} initial={{ opacity: 1 }}>
+      <PokeCircle
+        animate={{ rotate: 180 }}
+        transition={{ repeat: Infinity, repeatType: 'reverse', duration: 1 }}
       >
         <HalfCircle data-label="half-circle" />
         <PokeCircleMedium />

@@ -12,7 +12,7 @@ import { Home } from './pages/Home';
 import { PokemonSummary } from './pages/PokemonSummary';
 import { TypeSummary } from './pages/TypeSummary';
 import { StyledNavbar } from './components/NavBar/StyledNavbar.styles';
-import { SwordAndShieldLoader } from './components/SwordShieldLoader';
+import { PokeBallButton } from './components/PokeBallButton';
 
 const Routing = () => {
   const location = useLocation();
@@ -31,7 +31,7 @@ const Routing = () => {
 export default () => (
   <Router>
     <StyledNavbar>
-      <SwordAndShieldLoader />
+      <PokeBallButton />
     </StyledNavbar>
     <Routing />
   </Router>
