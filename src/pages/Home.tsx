@@ -46,7 +46,7 @@ export const Home = () => {
   }, [filteredPokemonNames]);
 
   // TODO: have a decent loading icon
-  if (true)
+  if (loadingPokemonNames)
     return (
       <div
         style={{
