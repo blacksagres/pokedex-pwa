@@ -87,7 +87,7 @@ const HalfCircle = styled(motion.div, {
   },
 });
 
-export const PokeBallButton = () => {
+export const PokeBallButton = (): JSX.Element => {
   const history = useHistory();
 
   return (
@@ -104,7 +104,7 @@ export const PokeBallButton = () => {
   );
 };
 
-export const PokeBallSpinner = () => {
+export const PokeBallSpinner = (): JSX.Element => {
   return (
     <motion.div exit={{ opacity: 0 }} initial={{ opacity: 1 }}>
       <PokeCircle
@@ -116,5 +116,20 @@ export const PokeBallSpinner = () => {
         <PokeCircleSmall />
       </PokeCircle>
     </motion.div>
+  );
+};
+
+export const PokeLoader = (): JSX.Element => {
+  return (
+    <div
+      style={{
+        position: 'absolute',
+        transform: 'translate(-50%, -50%)',
+        top: '50%',
+        left: '50%',
+      }}
+    >
+      <PokeBallSpinner />
+    </div>
   );
 };
