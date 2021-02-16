@@ -31,11 +31,15 @@ export const Home = () => {
   useEffect(() => {
     const fetchFilteredPokemon = async () => {
       const allPokemons = await Promise.all(
-        filteredPokemonNames.map((pokemon) => {
-          return fetchPokemon({ pokemonName: pokemon });
+        filteredPokemonNames.map((pokemonName) => {
+          return fetchPokemon({ pokemonName: pokemonName });
         })
       );
-      setFilteredPokemons(allPokemons);
+
+      // TODO: ignoring all pokemon that do not have a front sprite for now
+      setFilteredPokemons(
+        allPokemons.filter((pokemon) => pokemon.sprites.front_default)
+      );
     };
 
     fetchFilteredPokemon();
@@ -48,13 +52,8 @@ export const Home = () => {
       <SearchInput
         onChange={(pkmnNameSearch) => {
           setFilteredPokemonNames(
-            // TODO - handle gmax and mega forms - some of them do not have sprites
             allPokemonNames
               .filter((pkmnName: string) => pkmnName.includes(pkmnNameSearch))
-              .filter(
-                (pkmnName: string) =>
-                  !pkmnName.includes('gmax') && !pkmnName.includes('mega')
-              )
               .slice(0, 20)
           );
         }}

@@ -1,5 +1,3 @@
-import type { CombinedPokemonData } from '@definitions/CombinedPokemonData';
-import type { TrimmedPokemonData } from 'gateways/poke-gateway';
 import React, { useEffect, useState } from 'react';
 import { useDebounce } from 'use-debounce';
 import { CustomInput } from './CustomInput.styles';
