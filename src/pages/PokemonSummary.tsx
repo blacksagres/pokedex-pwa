@@ -21,6 +21,7 @@ import { PageContainer } from './PageContainer.styles';
 import { SummaryLinks } from '@components/SummaryBlock/SummaryLinks';
 import { useAsync } from 'react-use';
 import { PokeLoader } from '@components/PokeBallButton';
+import { SummaryEvolutionChain } from '@components/SummaryBlock/SummaryEvolutionChain';
 
 export const PokemonSummary = () => {
   const [currentTab, setCurrentTab] = useState('Info.');
@@ -165,28 +166,10 @@ export const PokemonSummary = () => {
             {currentTab === 'Stats' && (
               <BaseStatuses statuses={pokemonData.Pokemon.stats} />
             )}
-            {currentTab === 'Evolutions' && pokemonData.EvolvesFrom && (
-              <>
-                <h5>Evolves from:</h5>
-                <SummaryBlockImage
-                  initial={{
-                    y: -10,
-                    opacity: 0,
-                  }}
-                  animate={{
-                    y: 0,
-                    opacity: 1,
-                  }}
-                  css={{
-                    cursor: 'pointer',
-                  }}
-                  onClick={() =>
-                    history.push(`/summary/${pokemonData.EvolvesFrom!.name}`)
-                  }
-                  src={pokemonData.EvolvesFrom.sprites.front_default}
-                  alt={pokemonData.EvolvesFrom.name}
-                />
-              </>
+            {currentTab === 'Evolutions' && pokemonData.EvolutionChain && (
+              <SummaryEvolutionChain
+                evolutionChain={pokemonData.EvolutionChain}
+              />
             )}
           </SummaryBlockInfo>
         </SummaryBlockContent>
