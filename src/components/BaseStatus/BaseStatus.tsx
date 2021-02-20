@@ -63,7 +63,6 @@ const BaseStatusGauge = (props: { stats: Stat }) => {
 
 export const BaseStatuses = (props: { statuses: Stat[] }) => {
   const { statuses } = props;
-  console.table(statuses);
   return (
     <>
       <h3>
