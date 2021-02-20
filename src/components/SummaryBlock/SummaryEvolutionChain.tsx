@@ -5,9 +5,8 @@ export const SummaryEvolutionChain = (props: {
   evolutionChain: FullPokemon[][];
 }): JSX.Element => {
   const { evolutionChain } = props;
-  console.log(evolutionChain);
   return (
-    <div>
+    <div style={{ textAlign: 'center' }}>
       {evolutionChain.length === 1 ? (
         <h4>This Pokémon has no evolutions.</h4>
       ) : null}
