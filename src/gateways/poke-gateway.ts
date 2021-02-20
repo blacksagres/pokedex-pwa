@@ -76,6 +76,8 @@ export const fetchEvolutionData = async ({
       .map((evolutionLink) => evolutionLink.evolves_to)
       .flat();
 
+    if (!!!nextLinksToIterate.length) return;
+
     const pokemonNames = evolvesTo.map(
       (evolutionLink) => evolutionLink.species.name
     );
@@ -85,8 +87,8 @@ export const fetchEvolutionData = async ({
     );
 
     resultArray.push(resolvedPokemons);
-    if (nextLinksToIterate.length)
-      iterateOnEvolutionChain(nextLinksToIterate, resultArray);
+
+    iterateOnEvolutionChain(nextLinksToIterate, resultArray);
   };
 
   // It is all in the evolution chain. It needs to be recursively built.
