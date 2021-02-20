@@ -4,5 +4,5 @@ import type { PokeType } from './PokemonType';
 export interface CombinedPokemonData {
   Pokemon: FullPokemon;
   PokeTypes: PokeType[];
-  EvolvesFrom: FullPokemon | null;
+  EvolutionChain: FullPokemon[][];
 }

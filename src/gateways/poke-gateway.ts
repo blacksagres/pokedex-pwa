@@ -54,8 +54,7 @@ export const fetchEvolutionData = async ({
 }: {
   speciesUrl: string;
 }): Promise<{
-  evolvesFrom: FullPokemon;
-  evolvesTo: FullPokemon[];
+  evolutionChain: FullPokemon[][];
 }> => {
   const speciesData = await cachedFetchApi<PokemonSpecies>(speciesUrl);
 
@@ -91,16 +90,15 @@ export const fetchEvolutionData = async ({
   };
 
   // It is all in the evolution chain. It needs to be recursively built.
-  let evolvesTo = [[evolutionFrom]];
+  let evolutionChain = [[evolutionFrom]];
 
-  await iterateOnEvolutionChain(evolution.chain.evolves_to, evolvesTo);
+  await iterateOnEvolutionChain(evolution.chain.evolves_to, evolutionChain);
 
-  console.log(evolvesTo);
+  console.log(evolutionChain);
   // console.log(speciesData);
 
   return {
-    evolvesFrom: evolutionFrom,
-    evolvesTo: [],
+    evolutionChain,
   };
 };
 
@@ -116,13 +114,13 @@ export const fetchEnrichedPokeData = async ({
 
   const typeData = await Promise.all(typeDataPromises);
 
-  const { evolvesFrom = null } = await fetchEvolutionData({
+  const { evolutionChain = [] } = await fetchEvolutionData({
     speciesUrl: pokemon.species.url,
   });
 
   return {
     Pokemon: pokemon,
     PokeTypes: typeData,
-    EvolvesFrom: evolvesFrom,
+    EvolutionChain: evolutionChain,
   };
 };
