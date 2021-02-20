@@ -4,5 +4,23 @@ import React from 'react';
 export const SummaryEvolutionChain = (props: {
   evolutionChain: FullPokemon[][];
 }): JSX.Element => {
-  return <div>Hello</div>;
+  const { evolutionChain } = props;
+  console.log(evolutionChain);
+  return (
+    <div>
+      {evolutionChain.length === 1 ? (
+        <h4>This Pokémon has no evolutions.</h4>
+      ) : null}
+      {evolutionChain.map((evolutionLink, index) => (
+        <div key={`evolution-link-${index}`}>
+          {evolutionLink.map((evolutionInnerLink) => (
+            <img
+              key={`evolution-innerLink-${index}`}
+              src={evolutionInnerLink.sprites.front_default}
+            />
+          ))}
+        </div>
+      ))}
+    </div>
+  );
 };
