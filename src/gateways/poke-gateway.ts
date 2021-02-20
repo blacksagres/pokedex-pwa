@@ -4,7 +4,10 @@ import type { FullPokemon } from '../definitions/FullPokemon';
 import type { CombinedPokemonData } from '../definitions/CombinedPokemonData';
 import type { PokeType } from '../definitions/PokemonType';
 import type { PokemonSpecies } from '@definitions/PokemonSpecies';
-import type { PokemonEvolutionChain } from '@definitions/PokemonEvolutionChain';
+import type {
+  EvolvesTo,
+  PokemonEvolutionChain,
+} from '@definitions/PokemonEvolutionChain';
 
 export type TrimmedPokemonData = Pick<
   FullPokemon,
@@ -50,7 +53,10 @@ export const fetchEvolutionData = async ({
   speciesUrl,
 }: {
   speciesUrl: string;
-}) => {
+}): Promise<{
+  evolvesFrom: FullPokemon;
+  evolvesTo: FullPokemon[];
+}> => {
   const speciesData = await cachedFetchApi<PokemonSpecies>(speciesUrl);
 
   // TODO: Have to decide how to handle post evolutions
@@ -58,14 +64,43 @@ export const fetchEvolutionData = async ({
     speciesData.evolution_chain.url
   );
 
-  if (!speciesData.evolves_from_species?.name) return { evolvesFrom: null };
-
+  // the very base form
   const evolutionFrom = await fetchPokemon({
-    pokemonName: speciesData.evolves_from_species.name,
+    pokemonName: evolution.chain.species.name,
   });
+
+  const iterateOnEvolutionChain = async (
+    evolvesTo: EvolvesTo[],
+    resultArray: FullPokemon[][]
+  ) => {
+    const nextLinksToIterate = evolvesTo
+      .map((evolutionLink) => evolutionLink.evolves_to)
+      .flat();
+
+    const pokemonNames = evolvesTo.map(
+      (evolutionLink) => evolutionLink.species.name
+    );
+
+    const resolvedPokemons = await Promise.all(
+      pokemonNames.map((pokemonName) => fetchPokemon({ pokemonName }))
+    );
+
+    resultArray.push(resolvedPokemons);
+    if (nextLinksToIterate.length)
+      iterateOnEvolutionChain(nextLinksToIterate, resultArray);
+  };
+
+  // It is all in the evolution chain. It needs to be recursively built.
+  let evolvesTo = [[evolutionFrom]];
+
+  await iterateOnEvolutionChain(evolution.chain.evolves_to, evolvesTo);
+
+  console.log(evolvesTo);
+  // console.log(speciesData);
 
   return {
     evolvesFrom: evolutionFrom,
+    evolvesTo: [],
   };
 };
 
