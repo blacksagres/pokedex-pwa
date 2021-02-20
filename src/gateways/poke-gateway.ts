@@ -94,9 +94,6 @@ export const fetchEvolutionData = async ({
 
   await iterateOnEvolutionChain(evolution.chain.evolves_to, evolutionChain);
 
-  console.log(evolutionChain);
-  // console.log(speciesData);
-
   return {
     evolutionChain,
   };
