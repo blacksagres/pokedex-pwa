@@ -76,8 +76,6 @@ export const fetchEvolutionData = async ({
       .map((evolutionLink) => evolutionLink.evolves_to)
       .flat();
 
-    if (!!!nextLinksToIterate.length) return;
-
     const pokemonNames = evolvesTo.map(
       (evolutionLink) => evolutionLink.species.name
     );
@@ -86,7 +84,9 @@ export const fetchEvolutionData = async ({
       pokemonNames.map((pokemonName) => fetchPokemon({ pokemonName }))
     );
 
-    resultArray.push(resolvedPokemons);
+    if (!!resolvedPokemons.length) resultArray.push(resolvedPokemons);
+
+    if (!!!nextLinksToIterate.length) return;
 
     iterateOnEvolutionChain(nextLinksToIterate, resultArray);
   };
