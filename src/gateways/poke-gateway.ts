@@ -113,6 +113,9 @@ export const fetchEnrichedPokeData = async ({
 
   const typeData = await Promise.all(typeDataPromises);
 
+  // FIXME: because not always the base species name is a pokemon name, this will break
+  // for now it's possible to just check the component rendering this data for a valid object
+  // but ideally this could be properly fixed.
   const { evolutionChain = [] } = await fetchEvolutionData({
     speciesUrl: pokemon.species.url,
   });
