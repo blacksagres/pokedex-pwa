@@ -10,16 +10,18 @@ export const SummaryEvolutionChain = (props: {
       {evolutionChain.length === 1 ? (
         <h4>This Pokémon has no evolutions.</h4>
       ) : null}
-      {evolutionChain.map((evolutionLink, index) => (
-        <div key={`evolution-link-${index}`}>
-          {evolutionLink.map((evolutionInnerLink) => (
-            <img
-              key={`evolution-innerLink-${index}`}
-              src={evolutionInnerLink.sprites.front_default}
-            />
-          ))}
-        </div>
-      ))}
+      {/* check the function fetchEnrichedPokeData for why this check is here */}
+      {evolutionChain[0][0].sprites &&
+        evolutionChain.map((evolutionLink, index) => (
+          <div key={`evolution-link-${index}`}>
+            {evolutionLink.map((evolutionInnerLink) => (
+              <img
+                key={`evolution-innerLink-${index}`}
+                src={evolutionInnerLink.sprites.front_default}
+              />
+            ))}
+          </div>
+        ))}
     </div>
   );
 };
