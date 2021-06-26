@@ -9,8 +9,7 @@ import {
 } from '../components/SummaryBlock/SummaryBlock.styles';
 import './TypeSummary.scss';
 import { PageContainer } from './PageContainer.styles';
-import { SummaryLinks } from '@components/SummaryBlock/SummaryLinks';
-import type {DoubleDamageFrom, DoubleDamageTo, HalfDamageFrom, HalfDamageTo, NoDamageFrom, PokeType } from '@definitions/PokemonType';
+import type {PokeType } from '@definitions/PokemonType';
 import { fetchTypes } from '../gateways/poke-gateway';
 import type { TypeOnFullPokemon } from '@definitions/FullPokemon';
 
@@ -72,7 +71,8 @@ export const TypeSummary = (): React.ReactElement => {
                                 mode="row"
                                 types={mappedRelations.halfDmgFrom}
                             /></div>
-                        <div><h5>No damage from</h5>
+                        <div>
+                            <h5>No damage from</h5>
                             <TypeTagSwordAndShield
                                 mode="row"
                                 types={mappedRelations.noDmgFrom}

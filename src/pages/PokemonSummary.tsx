@@ -1,8 +1,6 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import type {
-  DoubleDamageFrom,
-  DoubleDamageTo,
   PokeType,
 } from '@definitions/PokemonType';
 
@@ -15,7 +13,6 @@ import {
 } from '@components/SummaryBlock/SummaryBlock.styles';
 import { BaseStatuses } from '@components/BaseStatus/BaseStatus';
 import { TypeTagSwordAndShield } from '@components/TypeTag/TypeTagSwordShield';
-import type { CombinedPokemonData } from '@definitions/CombinedPokemonData';
 import { fetchEnrichedPokeData } from '../gateways/poke-gateway';
 import { PageContainer } from './PageContainer.styles';
 import { SummaryLinks } from '@components/SummaryBlock/SummaryLinks';
